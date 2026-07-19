@@ -63,6 +63,7 @@ import {
 } from "@/components/ui/select";
 import { useForm, ValidationError } from "@formspree/react";
 import Link from "next/link";
+import TechStackSlider from "@/components/TechStackSlider";
 
 /* ───────────────────────── DATA ───────────────────────── */
 
@@ -816,6 +817,9 @@ const Home = () => {
       <div className="container mx-auto">
         <Stats />
       </div>
+
+      {/* Tech Stack Slider - Infinite horizontal scroll */}
+      <TechStackSlider />
 
       {/* Gradient line separator */}
       <div className="container mx-auto">
