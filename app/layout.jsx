@@ -3,6 +3,7 @@ import "./globals.css";
 
 //components
 import Header from "@/components/Header";
+import ParticleGalaxy from "@/components/ParticleGalaxy";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className={jetbrainsMono.variable}>
+        <ParticleGalaxy />
         <Header />
         <main className="pt-[88px] xl:pt-[104px]">
           {children}
