@@ -1,9 +1,14 @@
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import dynamic from "next/dynamic";
 
 //components
 import Header from "@/components/Header";
-import ParticleGalaxy from "@/components/ParticleGalaxy";
+
+// Import ParticleGalaxy with SSR disabled
+const ParticleGalaxy = dynamic(() => import("@/components/ParticleGalaxy"), {
+  ssr: false,
+});
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
