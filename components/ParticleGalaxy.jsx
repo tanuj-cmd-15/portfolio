@@ -122,19 +122,19 @@ export default function ParticleGalaxy() {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Click handler for burst effect
+    // Global click handler for burst effect (works even when clicking on content)
     const handleClick = (e) => {
-      const rect = canvas.getBoundingClientRect();
-      const burstX = e.clientX - rect.left;
-      const burstY = e.clientY - rect.top;
+      const burstX = e.clientX;
+      const burstY = e.clientY;
       
-      // Create elegant burst
+      // Create elegant burst at click position
       for (let i = 0; i < 50; i++) {
         burstParticles.push(new BurstParticle(burstX, burstY));
       }
     };
 
-    canvas.addEventListener("click", handleClick);
+    // Listen to document clicks to catch all clicks
+    document.addEventListener("click", handleClick);
 
     // Smooth animation loop
     const animate = () => {
@@ -175,7 +175,7 @@ export default function ParticleGalaxy() {
     // Cleanup
     return () => {
       window.removeEventListener("resize", resizeCanvas);
-      canvas.removeEventListener("click", handleClick);
+      document.removeEventListener("click", handleClick);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -183,8 +183,8 @@ export default function ParticleGalaxy() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 -z-10 cursor-pointer"
-      style={{ background: "#000000" }}
+      className="fixed inset-0 -z-10"
+      style={{ background: "#000000", pointerEvents: "none" }}
     />
   );
 }
