@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  body {
+    @apply font-primary bg-primary text-white leading-loose;
+  }
+  .h1{
+    @apply text-[48px] xl:text-[80px] leading-[1.1] font-semibold;
+  }
+  .h2{
+    @apply text-[36px] xl:text-[48px] leading-[1.1] font-semibold;
+  }
+  .h3{
+    @apply text-[20px] xl:text-[24px] leading-[1.1] font-semibold;
+  }
+  .text-outline{
+    -webkit-text-stroke: 1px #4b5a66;
+  }
+  
+  .text-outline-hover{
+    -webkit-text-stroke: 1px #cfdcdb;
+  }
+}
+
+/* Section spacing for landing page */
+.section-padding {
+  @apply py-16 xl:py-24;
+}
+
+/* Animated gradient border using all palette colors */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gradient-border {
+  background: linear-gradient(135deg, #cfdcdb, #80909b, #4b5a66, #29343e, #cfdcdb);
+  background-size: 400% 400%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Section divider — gradient using steel and accent */
+.section-divider {
+  @apply w-full max-w-[200px] mx-auto h-[2px];
+  background: linear-gradient(90deg, transparent, #4b5a66, #cfdcdb, #4b5a66, transparent);
+}
+
+/* Scroll indicator animation */
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.scroll-indicator {
+  animation: bounce-slow 2s ease-in-out infinite;
+}
+
+/* Glowing accent effect for highlights */
+.glow-accent {
+  box-shadow: 0 0 20px rgba(207, 220, 219, 0.15), 0 0 40px rgba(75, 90, 102, 0.1);
+}
+
+/* Card hover glow with steel blue */
+.card-glow:hover {
+  box-shadow: 0 4px 30px rgba(75, 90, 102, 0.25), 0 0 60px rgba(128, 144, 155, 0.08);
+}
+
+/* Alternating section backgrounds */
+.section-alt {
+  background: linear-gradient(180deg, rgba(41, 52, 62, 0.2) 0%, rgba(14, 17, 22, 0) 100%);
+}
+
+/* Custom scrollbar using palette */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0e1116;
+}
+::-webkit-scrollbar-thumb {
+  background: #4b5a66;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #80909b;
+}
