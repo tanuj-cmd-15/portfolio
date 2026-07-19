@@ -276,7 +276,7 @@ const HeroSection = () => {
               <div className="mb-8 xl:mb-0">
                 <Social
                   containerStyles="flex gap-6"
-                  iconStyles="w-9 h-9 border border-steel rounded-full flex justify-center items-center text-slate text-base hover:bg-accent hover:text-primary hover:border-accent hover:transition-all duration-500"
+                  iconStyles="social-3d w-9 h-9 border border-steel rounded-full flex justify-center items-center text-slate text-base hover:bg-accent hover:text-primary hover:border-accent hover:transition-all duration-500"
                 />
               </div>
             </div>

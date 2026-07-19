@@ -1,11 +1,40 @@
 import Link from "next/link";
 
-import { FaGithub, FaLinkedinIn, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn, FaEnvelope, FaThreads } from "react-icons/fa6";
+import { FaXTwitter } from "react-icons/fa6";
+import { SiLeetcode } from "react-icons/si";
 
 const socials = [
-    {icon: <FaGithub/>, path: 'https://github.com/tanuj-cmd-15'},
-    {icon: <FaLinkedinIn/>, path: 'https://www.linkedin.com/in/tushar-pawar'},
-    {icon: <FaEnvelope/>, path: 'mailto:pawartushar8485@gmail.com'},
+    {
+        icon: <FaGithub/>, 
+        path: 'https://github.com/tanuj-cmd-15',
+        label: 'GitHub'
+    },
+    {
+        icon: <FaLinkedinIn/>, 
+        path: 'https://www.linkedin.com/in/tushar-pawar-0524a7213/',
+        label: 'LinkedIn'
+    },
+    {
+        icon: <FaEnvelope/>, 
+        path: 'mailto:pawartushar1215@gmail.com',
+        label: 'Email'
+    },
+    {
+        icon: <FaXTwitter/>, 
+        path: 'https://x.com/t_u_s_h_a_r_p12',
+        label: 'X (Twitter)'
+    },
+    {
+        icon: <FaThreads/>, 
+        path: 'https://www.threads.com/@imheretodistract',
+        label: 'Threads'
+    },
+    {
+        icon: <SiLeetcode/>, 
+        path: 'https://leetcode.com/u/tusharp15/',
+        label: 'LeetCode'
+    },
 ];
 
 const Social = ({containerStyles, iconStyles}) => {
@@ -13,9 +42,16 @@ const Social = ({containerStyles, iconStyles}) => {
     <div className={containerStyles}>
         {socials.map((item, index) => {
             return (
-                <Link key={index} href={item.path} className={iconStyles} target="_blank" rel="noopener noreferrer">
-                {item.icon}
-            </Link>
+                <Link 
+                    key={index} 
+                    href={item.path} 
+                    className={iconStyles} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    aria-label={item.label}
+                >
+                    {item.icon}
+                </Link>
             );
         })}
     </div>
