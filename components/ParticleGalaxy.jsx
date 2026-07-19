@@ -1,191 +1,209 @@
 "use client";
 
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Stars, Float } from "@react-three/drei";
-import { useRef, useState, useMemo } from "react";
-import * as THREE from "three";
+import { useEffect, useRef } from "react";
 
-// Animated spiral galaxy particles
-function SpiralGalaxy() {
-  const pointsRef = useRef();
-  const [burst, setBurst] = useState(false);
+export default function ParticleGalaxy() {
+  const canvasRef = useRef(null);
 
-  // Generate spiral galaxy particles
-  const particles = useMemo(() => {
-    const count = 5000;
-    const positions = new Float32Array(count * 3);
-    const colors = new Float32Array(count * 3);
-    const scales = new Float32Array(count);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    const colorInside = new THREE.Color("#cfdcdb"); // accent color
-    const colorOutside = new THREE.Color("#4b5a66"); // steel color
+    const ctx = canvas.getContext("2d");
+    let animationFrameId;
+    let particles = [];
+    let mouseX = 0;
+    let mouseY = 0;
+    let burst = false;
 
-    for (let i = 0; i < count; i++) {
-      const i3 = i * 3;
+    // Set canvas size
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
 
-      // Spiral galaxy shape
-      const radius = Math.random() * 5;
-      const spinAngle = radius * 3;
-      const branchAngle = ((i % 4) / 4) * Math.PI * 2;
-
-      // Random offset for organic look
-      const randomX = Math.pow(Math.random(), 3) * (Math.random() < 0.5 ? 1 : -1) * 0.3;
-      const randomY = Math.pow(Math.random(), 3) * (Math.random() < 0.5 ? 1 : -1) * 0.3;
-      const randomZ = Math.pow(Math.random(), 3) * (Math.random() < 0.5 ? 1 : -1) * 0.3;
-
-      positions[i3] = Math.cos(branchAngle + spinAngle) * radius + randomX;
-      positions[i3 + 1] = randomY;
-      positions[i3 + 2] = Math.sin(branchAngle + spinAngle) * radius + randomZ;
-
-      // Color based on distance from center
-      const mixedColor = colorInside.clone();
-      mixedColor.lerp(colorOutside, radius / 5);
-
-      colors[i3] = mixedColor.r;
-      colors[i3 + 1] = mixedColor.g;
-      colors[i3 + 2] = mixedColor.b;
-
-      // Random scales
-      scales[i] = Math.random();
-    }
-
-    return { positions, colors, scales };
-  }, []);
-
-  // Animation loop
-  useFrame((state) => {
-    if (pointsRef.current) {
-      // Slow rotation
-      pointsRef.current.rotation.y = state.clock.elapsedTime * 0.05;
-
-      // Burst effect
-      if (burst) {
-        const scale = 1 + Math.sin(state.clock.elapsedTime * 10) * 0.3;
-        pointsRef.current.scale.set(scale, scale, scale);
-      } else {
-        pointsRef.current.scale.lerp(new THREE.Vector3(1, 1, 1), 0.1);
+    // Particle class
+    class Particle {
+      constructor(x, y, angle, speed, size, color, distance) {
+        this.baseX = x;
+        this.baseY = y;
+        this.x = x;
+        this.y = y;
+        this.angle = angle;
+        this.speed = speed;
+        this.size = size;
+        this.color = color;
+        this.distance = distance;
+        this.rotation = 0;
+        this.opacity = Math.random() * 0.5 + 0.3;
       }
 
-      // Drift effect
-      pointsRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.2) * 0.1;
+      update(burstActive) {
+        // Spiral galaxy rotation
+        this.rotation += this.speed * 0.001;
+        
+        if (burstActive) {
+          // Burst effect - particles explode outward
+          this.distance += 2;
+          this.opacity -= 0.02;
+        } else {
+          // Normal rotation
+          this.distance = Math.max(this.distance * 0.99, this.distance - 0.5);
+          this.opacity = Math.min(this.opacity + 0.01, 0.8);
+        }
+
+        // Calculate spiral position
+        const spiralAngle = this.angle + this.rotation;
+        this.x = this.baseX + Math.cos(spiralAngle) * this.distance;
+        this.y = this.baseY + Math.sin(spiralAngle) * this.distance;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color.replace(")", `, ${this.opacity})`).replace("rgb", "rgba");
+        ctx.fill();
+        
+        // Glow effect
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = this.color;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
     }
-  });
 
-  const handleClick = () => {
-    setBurst(true);
-    setTimeout(() => setBurst(false), 1000);
-  };
+    // Create spiral galaxy particles
+    const createGalaxy = () => {
+      particles = [];
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      const arms = 4;
+      const particlesPerArm = 1250;
 
-  return (
-    <points ref={pointsRef} onClick={handleClick}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={particles.positions.length / 3}
-          array={particles.positions}
-          itemSize={3}
-        />
-        <bufferAttribute
-          attach="attributes-color"
-          count={particles.colors.length / 3}
-          array={particles.colors}
-          itemSize={3}
-        />
-        <bufferAttribute
-          attach="attributes-scale"
-          count={particles.scales.length}
-          array={particles.scales}
-          itemSize={1}
-        />
-      </bufferGeometry>
-      <pointsMaterial
-        size={0.05}
-        sizeAttenuation={true}
-        depthWrite={false}
-        vertexColors={true}
-        blending={THREE.AdditiveBlending}
-        transparent={true}
-        opacity={0.8}
-      />
-    </points>
-  );
-}
+      for (let arm = 0; arm < arms; arm++) {
+        for (let i = 0; i < particlesPerArm; i++) {
+          const distance = (i / particlesPerArm) * Math.min(canvas.width, canvas.height) * 0.4;
+          const angle = (arm / arms) * Math.PI * 2 + (i / particlesPerArm) * Math.PI * 6;
+          const spread = (Math.random() - 0.5) * 30;
+          
+          const x = centerX + Math.cos(angle) * distance;
+          const y = centerY + Math.sin(angle) * distance;
+          
+          // Color gradient from center (accent) to edge (steel)
+          const ratio = distance / (Math.min(canvas.width, canvas.height) * 0.4);
+          const r = Math.floor(207 + (75 - 207) * ratio);
+          const g = Math.floor(220 + (90 - 220) * ratio);
+          const b = Math.floor(219 + (102 - 219) * ratio);
+          const color = `rgb(${r}, ${g}, ${b})`;
+          
+          const size = Math.random() * 1.5 + 0.5;
+          const speed = 0.5 + Math.random() * 0.5;
+          
+          particles.push(new Particle(
+            centerX,
+            centerY,
+            angle + spread * 0.01,
+            speed,
+            size,
+            color,
+            distance
+          ));
+        }
+      }
 
-// Floating particles
-function FloatingParticles() {
-  const count = 200;
-  const positions = useMemo(() => {
-    const pos = new Float32Array(count * 3);
-    for (let i = 0; i < count; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 20;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 20;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 20;
-    }
-    return pos;
+      // Add ambient stars
+      for (let i = 0; i < 500; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const size = Math.random() * 1 + 0.3;
+        const color = "rgb(128, 144, 155)";
+        
+        particles.push({
+          x,
+          y,
+          size,
+          color,
+          opacity: Math.random() * 0.5 + 0.2,
+          twinkle: Math.random() * 0.02,
+          update() {
+            this.opacity += this.twinkle;
+            if (this.opacity > 0.7 || this.opacity < 0.1) {
+              this.twinkle = -this.twinkle;
+            }
+          },
+          draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = this.color.replace(")", `, ${this.opacity})`).replace("rgb", "rgba");
+            ctx.fill();
+          }
+        });
+      }
+    };
+
+    createGalaxy();
+
+    // Mouse interaction
+    const handleMouseMove = (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    };
+
+    const handleClick = () => {
+      burst = true;
+      setTimeout(() => {
+        burst = false;
+        createGalaxy(); // Reset galaxy after burst
+      }, 1500);
+    };
+
+    canvas.addEventListener("mousemove", handleMouseMove);
+    canvas.addEventListener("click", handleClick);
+
+    // Animation loop
+    const animate = () => {
+      // Create gradient background
+      const gradient = ctx.createRadialGradient(
+        canvas.width / 2,
+        canvas.height,
+        0,
+        canvas.width / 2,
+        canvas.height,
+        canvas.height
+      );
+      gradient.addColorStop(0, "#0e1116");
+      gradient.addColorStop(1, "#000000");
+      
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Update and draw particles
+      particles.forEach((particle) => {
+        particle.update(burst);
+        particle.draw();
+      });
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("resize", resizeCanvas);
+      canvas.removeEventListener("mousemove", handleMouseMove);
+      canvas.removeEventListener("click", handleClick);
+      cancelAnimationFrame(animationFrameId);
+    };
   }, []);
 
-  const pointsRef = useRef();
-
-  useFrame((state) => {
-    if (pointsRef.current) {
-      pointsRef.current.rotation.y = state.clock.elapsedTime * 0.02;
-      pointsRef.current.rotation.x = state.clock.elapsedTime * 0.01;
-    }
-  });
-
   return (
-    <points ref={pointsRef}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={positions.length / 3}
-          array={positions}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <pointsMaterial
-        size={0.02}
-        color="#80909b"
-        sizeAttenuation={true}
-        transparent={true}
-        opacity={0.6}
-      />
-    </points>
-  );
-}
-
-// Main component
-export default function ParticleGalaxy() {
-  return (
-    <div
+    <canvas
+      ref={canvasRef}
       className="fixed inset-0 -z-10"
-      style={{
-        background: "radial-gradient(ellipse at bottom, #0e1116 0%, #000000 100%)",
-      }}
-    >
-      <Canvas
-        camera={{ position: [0, 0, 5], fov: 75 }}
-        gl={{ antialias: true, alpha: true }}
-      >
-        <ambientLight intensity={0.5} />
-        
-        {/* Background stars */}
-        <Stars
-          radius={100}
-          depth={50}
-          count={3000}
-          factor={4}
-          saturation={0}
-          fade
-          speed={0.5}
-        />
-
-        {/* Main spiral galaxy */}
-        <SpiralGalaxy />
-
-        {/* Floating particles */}
-        <FloatingParticles />
-      </Canvas>
-    </div>
+      style={{ background: "radial-gradient(ellipse at bottom, #0e1116 0%, #000000 100%)" }}
+    />
   );
 }
