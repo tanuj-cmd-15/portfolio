@@ -131,9 +131,9 @@ const TechStackSlider = () => {
 
           {/* Scrolling content */}
           <motion.div
-            className="flex gap-12 items-center h-full"
+            className="flex gap-6 items-center h-full"
             animate={{
-              x: isPaused ? undefined : [0, -100 * techStack.length],
+              x: isPaused ? undefined : [0, -85 * techStack.length],
             }}
             transition={{
               x: {
@@ -147,41 +147,51 @@ const TechStackSlider = () => {
             {duplicatedTechStack.map((tech, index) => (
               <div
                 key={`tech-${index}`}
-                className="flex-shrink-0 group cursor-pointer"
+                className="flex-shrink-0 group cursor-pointer relative"
               >
-                <div className="relative flex items-center gap-4">
-                  {/* Icon container */}
+                {/* Square box with icon */}
+                <div
+                  className="w-20 h-20 rounded-lg flex items-center justify-center
+                  bg-charcoal/80 border-2 transition-all duration-300
+                  group-hover:bg-charcoal group-hover:scale-110
+                  shadow-lg group-hover:shadow-2xl relative"
+                  style={{
+                    borderColor: tech.color,
+                    boxShadow: `0 0 20px ${tech.color}20`,
+                  }}
+                >
                   <div
-                    className="w-16 h-16 rounded-lg flex items-center justify-center
-                    bg-charcoal/60 border-2 border-steel/30
-                    group-hover:border-[2px] group-hover:bg-charcoal
-                    transition-all duration-300 group-hover:scale-125
-                    shadow-md group-hover:shadow-xl relative z-10"
-                    style={{
-                      borderColor: tech.color,
-                      boxShadow: `0 0 30px ${tech.color}30`,
-                    }}
-                  >
-                    <div
-                      className="text-3xl transition-all duration-300 group-hover:scale-110"
-                      style={{ color: tech.color }}
-                    >
-                      {tech.icon}
-                    </div>
-                  </div>
-                  
-                  {/* Name label (always visible) */}
-                  <div
-                    className="opacity-70 group-hover:opacity-100 transition-opacity duration-300
-                    text-sm font-semibold whitespace-nowrap tracking-wide"
+                    className="text-4xl transition-all duration-300 group-hover:scale-110"
                     style={{ color: tech.color }}
+                  >
+                    {tech.icon}
+                  </div>
+
+                  {/* Glow effect on hover */}
+                  <div
+                    className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-30 transition-opacity duration-300 blur-lg"
+                    style={{ backgroundColor: tech.color }}
+                  />
+                </div>
+                
+                {/* Tooltip - only shows on hover */}
+                <div
+                  className="absolute -bottom-10 left-1/2 transform -translate-x-1/2
+                  opacity-0 group-hover:opacity-100 transition-all duration-300
+                  pointer-events-none whitespace-nowrap z-20"
+                >
+                  <div
+                    className="px-3 py-1.5 rounded-md text-sm font-bold shadow-xl"
+                    style={{
+                      backgroundColor: tech.color,
+                      color: tech.color === "#FFFFFF" || tech.color === "#F7DF1E" ? "#000000" : "#FFFFFF",
+                    }}
                   >
                     {tech.name}
                   </div>
-
-                  {/* Hover glow effect */}
+                  {/* Arrow pointing up */}
                   <div
-                    className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl"
+                    className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 rotate-45"
                     style={{ backgroundColor: tech.color }}
                   />
                 </div>
@@ -192,8 +202,8 @@ const TechStackSlider = () => {
 
         {/* Pause indicator (optional) */}
         {isPaused && (
-          <div className="text-center mt-4">
-            <span className="text-steel text-xs uppercase tracking-wider">
+          <div className="text-center mt-6">
+            <span className="text-steel text-xs uppercase tracking-wider opacity-50">
               ⏸ Paused
             </span>
           </div>
