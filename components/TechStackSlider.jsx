@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 import {
   FaPython,
   FaJava,
@@ -87,6 +88,8 @@ const techStack = [
 ];
 
 const TechStackSlider = () => {
+  const [isPaused, setIsPaused] = useState(false);
+  
   // Duplicate for seamless loop
   const duplicatedTechStack = [...techStack, ...techStack, ...techStack];
 
@@ -115,7 +118,11 @@ const TechStackSlider = () => {
         </div>
 
         {/* Horizontal scrolling container */}
-        <div className="relative h-24">
+        <div 
+          className="relative h-24"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
           {/* Left fade overlay */}
           <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-primary via-primary/80 to-transparent z-10 pointer-events-none" />
           
@@ -126,7 +133,7 @@ const TechStackSlider = () => {
           <motion.div
             className="flex gap-12 items-center h-full"
             animate={{
-              x: [0, -100 * techStack.length],
+              x: isPaused ? undefined : [0, -100 * techStack.length],
             }}
             transition={{
               x: {
@@ -182,6 +189,15 @@ const TechStackSlider = () => {
             ))}
           </motion.div>
         </div>
+
+        {/* Pause indicator (optional) */}
+        {isPaused && (
+          <div className="text-center mt-4">
+            <span className="text-steel text-xs uppercase tracking-wider">
+              ⏸ Paused
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );
