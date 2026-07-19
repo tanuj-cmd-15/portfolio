@@ -2,89 +2,53 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import {
-  FaPython,
-  FaJava,
-  FaReact,
-  FaNodeJs,
-  FaGithub,
-  FaGit,
-  FaDocker,
-  FaAws,
-  FaLinux,
-  FaFigma,
-} from "react-icons/fa";
-import {
-  SiPytorch,
-  SiOpencv,
-  SiScikitlearn,
-  SiFastapi,
-  SiFlask,
-  SiSpringboot,
-  SiNextdotjs,
-  SiTailwindcss,
-  SiMysql,
-  SiPostgresql,
-  SiPostman,
-  SiJavascript,
-  SiCplusplus,
-  SiGooglecloud,
-  SiTensorflow,
-  SiKeras,
-  SiPandas,
-  SiNumpy,
-  SiMongodb,
-  SiRedis,
-  SiKubernetes,
-  SiJenkins,
-  SiGraphql,
-  SiTypescript,
-} from "react-icons/si";
 
 const techStack = [
   // Languages
-  { icon: <FaPython />, name: "Python", color: "#3776AB" },
-  { icon: <FaJava />, name: "Java", color: "#007396" },
-  { icon: <SiJavascript />, name: "JavaScript", color: "#F7DF1E" },
-  { icon: <SiTypescript />, name: "TypeScript", color: "#3178C6" },
-  { icon: <SiCplusplus />, name: "C++", color: "#00599C" },
+  { name: "Python", badge: "https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" },
+  { name: "Java", badge: "https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" },
+  { name: "JavaScript", badge: "https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" },
+  { name: "TypeScript", badge: "https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" },
+  { name: "C++", badge: "https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white" },
   
   // AI/ML
-  { icon: <SiPytorch />, name: "PyTorch", color: "#EE4C2C" },
-  { icon: <SiTensorflow />, name: "TensorFlow", color: "#FF6F00" },
-  { icon: <SiScikitlearn />, name: "Scikit-learn", color: "#F7931E" },
-  { icon: <SiOpencv />, name: "OpenCV", color: "#5C3EE8" },
-  { icon: <SiKeras />, name: "Keras", color: "#D00000" },
-  { icon: <SiPandas />, name: "Pandas", color: "#150458" },
-  { icon: <SiNumpy />, name: "NumPy", color: "#013243" },
+  { name: "PyTorch", badge: "https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" },
+  { name: "TensorFlow", badge: "https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" },
+  { name: "Scikit-learn", badge: "https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" },
+  { name: "OpenCV", badge: "https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white" },
+  { name: "Keras", badge: "https://img.shields.io/badge/Keras-D00000?style=for-the-badge&logo=keras&logoColor=white" },
+  { name: "Pandas", badge: "https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" },
+  { name: "NumPy", badge: "https://img.shields.io/badge/numpy-013243?style=for-the-badge&logo=numpy&logoColor=white" },
+  { name: "Hugging Face", badge: "https://img.shields.io/badge/Hugging%20Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=000" },
+  { name: "Machine Learning", badge: "https://img.shields.io/badge/Machine%20Learning-F9A826?style=for-the-badge" },
+  { name: "Deep Learning", badge: "https://img.shields.io/badge/Deep%20Learning-FF4500?style=for-the-badge" },
   
   // Web Frameworks
-  { icon: <SiFastapi />, name: "FastAPI", color: "#009688" },
-  { icon: <SiFlask />, name: "Flask", color: "#FFFFFF" },
-  { icon: <SiSpringboot />, name: "Spring Boot", color: "#6DB33F" },
-  { icon: <FaReact />, name: "React", color: "#61DAFB" },
-  { icon: <SiNextdotjs />, name: "Next.js", color: "#FFFFFF" },
-  { icon: <FaNodeJs />, name: "Node.js", color: "#339933" },
-  { icon: <SiTailwindcss />, name: "Tailwind CSS", color: "#06B6D4" },
-  { icon: <SiGraphql />, name: "GraphQL", color: "#E10098" },
+  { name: "FastAPI", badge: "https://img.shields.io/badge/fastapi-109989?style=for-the-badge&logo=FASTAPI&logoColor=white" },
+  { name: "Flask", badge: "https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" },
+  { name: "Spring Boot", badge: "https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white" },
+  { name: "React", badge: "https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" },
+  { name: "Next.js", badge: "https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" },
+  { name: "Node.js", badge: "https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" },
+  { name: "Tailwind CSS", badge: "https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" },
+  { name: "HTML5", badge: "https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" },
+  { name: "CSS3", badge: "https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" },
   
   // Databases
-  { icon: <SiMysql />, name: "MySQL", color: "#4479A1" },
-  { icon: <SiPostgresql />, name: "PostgreSQL", color: "#4169E1" },
-  { icon: <SiMongodb />, name: "MongoDB", color: "#47A248" },
-  { icon: <SiRedis />, name: "Redis", color: "#DC382D" },
+  { name: "MySQL", badge: "https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" },
+  { name: "PostgreSQL", badge: "https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" },
+  { name: "MongoDB", badge: "https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" },
+  { name: "Redis", badge: "https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" },
   
-  // Tools & Cloud
-  { icon: <FaGit />, name: "Git", color: "#F05032" },
-  { icon: <FaGithub />, name: "GitHub", color: "#FFFFFF" },
-  { icon: <FaDocker />, name: "Docker", color: "#2496ED" },
-  { icon: <SiKubernetes />, name: "Kubernetes", color: "#326CE5" },
-  { icon: <SiPostman />, name: "Postman", color: "#FF6C37" },
-  { icon: <SiJenkins />, name: "Jenkins", color: "#D24939" },
-  { icon: <FaAws />, name: "AWS", color: "#FF9900" },
-  { icon: <SiGooglecloud />, name: "GCP", color: "#4285F4" },
-  { icon: <FaLinux />, name: "Linux", color: "#FCC624" },
-  { icon: <FaFigma />, name: "Figma", color: "#F24E1E" },
+  // DevOps & Tools
+  { name: "Git", badge: "https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white" },
+  { name: "GitHub", badge: "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" },
+  { name: "Docker", badge: "https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" },
+  { name: "Kubernetes", badge: "https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white" },
+  { name: "Linux", badge: "https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" },
+  { name: "Figma", badge: "https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" },
+  { name: "JWT", badge: "https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens" },
+  { name: "Data Science", badge: "https://img.shields.io/badge/Data%20Science-4EA94B?style=for-the-badge" },
 ];
 
 const TechStackSlider = () => {
@@ -119,7 +83,7 @@ const TechStackSlider = () => {
 
         {/* Horizontal scrolling container */}
         <div 
-          className="relative h-24"
+          className="relative h-16"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
@@ -133,7 +97,7 @@ const TechStackSlider = () => {
           <motion.div
             className="flex gap-6 items-center h-full"
             animate={{
-              x: [0, -85 * techStack.length],
+              x: [0, -150 * techStack.length],
             }}
             transition={{
               x: {
@@ -149,50 +113,13 @@ const TechStackSlider = () => {
                 key={`tech-${index}`}
                 className="flex-shrink-0 group cursor-pointer relative"
               >
-                {/* Square box with icon */}
-                <div
-                  className="w-20 h-20 rounded-lg flex items-center justify-center
-                  bg-charcoal/80 border-2 transition-all duration-300
-                  group-hover:bg-charcoal group-hover:scale-110
-                  shadow-lg group-hover:shadow-2xl relative"
-                  style={{
-                    borderColor: tech.color,
-                    boxShadow: `0 0 20px ${tech.color}20`,
-                  }}
-                >
-                  <div
-                    className="text-4xl transition-all duration-300 group-hover:scale-110"
-                    style={{ color: tech.color }}
-                  >
-                    {tech.icon}
-                  </div>
-
-                  {/* Glow effect on hover */}
-                  <div
-                    className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-30 transition-opacity duration-300 blur-lg"
-                    style={{ backgroundColor: tech.color }}
-                  />
-                </div>
-                
-                {/* Tooltip - only shows on hover */}
-                <div
-                  className="absolute -bottom-10 left-1/2 transform -translate-x-1/2
-                  opacity-0 group-hover:opacity-100 transition-all duration-300
-                  pointer-events-none whitespace-nowrap z-20"
-                >
-                  <div
-                    className="px-3 py-1.5 rounded-md text-sm font-bold shadow-xl"
-                    style={{
-                      backgroundColor: tech.color,
-                      color: tech.color === "#FFFFFF" || tech.color === "#F7DF1E" ? "#000000" : "#FFFFFF",
-                    }}
-                  >
-                    {tech.name}
-                  </div>
-                  {/* Arrow pointing up */}
-                  <div
-                    className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 rotate-45"
-                    style={{ backgroundColor: tech.color }}
+                {/* Badge image */}
+                <div className="transition-all duration-300 group-hover:scale-110 group-hover:brightness-110">
+                  <img
+                    src={tech.badge}
+                    alt={tech.name}
+                    className="h-8 w-auto object-contain"
+                    loading="lazy"
                   />
                 </div>
               </div>
