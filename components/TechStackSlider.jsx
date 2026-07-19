@@ -59,10 +59,10 @@ const techStack = [
   
   // Web Frameworks
   { icon: <SiFastapi />, name: "FastAPI", color: "#009688" },
-  { icon: <SiFlask />, name: "Flask", color: "#000000" },
+  { icon: <SiFlask />, name: "Flask", color: "#FFFFFF" },
   { icon: <SiSpringboot />, name: "Spring Boot", color: "#6DB33F" },
   { icon: <FaReact />, name: "React", color: "#61DAFB" },
-  { icon: <SiNextdotjs />, name: "Next.js", color: "#000000" },
+  { icon: <SiNextdotjs />, name: "Next.js", color: "#FFFFFF" },
   { icon: <FaNodeJs />, name: "Node.js", color: "#339933" },
   { icon: <SiTailwindcss />, name: "Tailwind CSS", color: "#06B6D4" },
   { icon: <SiGraphql />, name: "GraphQL", color: "#E10098" },
@@ -75,7 +75,7 @@ const techStack = [
   
   // Tools & Cloud
   { icon: <FaGit />, name: "Git", color: "#F05032" },
-  { icon: <FaGithub />, name: "GitHub", color: "#181717" },
+  { icon: <FaGithub />, name: "GitHub", color: "#FFFFFF" },
   { icon: <FaDocker />, name: "Docker", color: "#2496ED" },
   { icon: <SiKubernetes />, name: "Kubernetes", color: "#326CE5" },
   { icon: <SiPostman />, name: "Postman", color: "#FF6C37" },
@@ -87,150 +87,101 @@ const techStack = [
 ];
 
 const TechStackSlider = () => {
-  // Duplicate the array for seamless infinite scroll
-  const duplicatedTechStack = [...techStack, ...techStack];
+  // Duplicate for seamless loop
+  const duplicatedTechStack = [...techStack, ...techStack, ...techStack];
 
   return (
-    <div className="w-full py-12 overflow-hidden bg-gradient-to-r from-primary via-charcoal/30 to-primary">
-      <div className="container mx-auto mb-6">
-        <div className="flex items-center justify-center gap-4">
-          <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-steel" />
-          <h3 className="text-steel text-sm font-semibold tracking-wider uppercase">
-            Tech Stack
-          </h3>
-          <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-steel" />
-        </div>
-      </div>
+    <div className="w-full py-16 overflow-hidden relative">
+      {/* Background with border effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-primary via-charcoal/20 to-primary" />
+      
+      {/* Top border line */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-steel to-transparent" />
+      
+      {/* Bottom border line */}
+      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-steel to-transparent" />
 
-      {/* Scrolling container */}
+      {/* Content */}
       <div className="relative">
-        {/* Left fade overlay */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-primary to-transparent z-10 pointer-events-none" />
-        
-        {/* Right fade overlay */}
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-primary to-transparent z-10 pointer-events-none" />
+        {/* Title */}
+        <div className="container mx-auto mb-8">
+          <div className="flex items-center justify-center gap-4">
+            <div className="h-[1px] w-20 bg-gradient-to-r from-transparent to-accent" />
+            <h3 className="text-accent text-base font-bold tracking-widest uppercase">
+              Tech Stack
+            </h3>
+            <div className="h-[1px] w-20 bg-gradient-to-l from-transparent to-accent" />
+          </div>
+        </div>
 
-        {/* Scrolling content - Left to Right */}
-        <motion.div
-          className="flex gap-8 mb-6"
-          animate={{
-            x: [0, -50 * techStack.length],
-          }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 40,
-              ease: "linear",
-            },
-          }}
-        >
-          {duplicatedTechStack.map((tech, index) => (
-            <div
-              key={`tech-1-${index}`}
-              className="flex-shrink-0 group"
-              style={{ width: "80px" }}
-            >
-              <div className="relative">
-                <div
-                  className="w-16 h-16 rounded-xl flex items-center justify-center
-                  bg-charcoal/50 border border-steel/20
-                  group-hover:border-steel/60 group-hover:bg-charcoal
-                  transition-all duration-300 group-hover:scale-110
-                  shadow-lg group-hover:shadow-2xl"
-                  style={{
-                    boxShadow: `0 0 20px ${tech.color}15`,
-                  }}
-                >
+        {/* Horizontal scrolling container */}
+        <div className="relative h-24">
+          {/* Left fade overlay */}
+          <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-primary via-primary/80 to-transparent z-10 pointer-events-none" />
+          
+          {/* Right fade overlay */}
+          <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-primary via-primary/80 to-transparent z-10 pointer-events-none" />
+
+          {/* Scrolling content */}
+          <motion.div
+            className="flex gap-12 items-center h-full"
+            animate={{
+              x: [0, -100 * techStack.length],
+            }}
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 60,
+                ease: "linear",
+              },
+            }}
+          >
+            {duplicatedTechStack.map((tech, index) => (
+              <div
+                key={`tech-${index}`}
+                className="flex-shrink-0 group cursor-pointer"
+              >
+                <div className="relative flex items-center gap-4">
+                  {/* Icon container */}
                   <div
-                    className="text-3xl transition-all duration-300"
-                    style={{ color: tech.color }}
-                  >
-                    {tech.icon}
-                  </div>
-                </div>
-                
-                {/* Tooltip on hover */}
-                <div
-                  className="absolute -bottom-8 left-1/2 transform -translate-x-1/2
-                  opacity-0 group-hover:opacity-100 transition-opacity duration-300
-                  pointer-events-none whitespace-nowrap"
-                >
-                  <div
-                    className="px-2 py-1 rounded text-xs font-medium"
+                    className="w-16 h-16 rounded-lg flex items-center justify-center
+                    bg-charcoal/60 border-2 border-steel/30
+                    group-hover:border-[2px] group-hover:bg-charcoal
+                    transition-all duration-300 group-hover:scale-125
+                    shadow-md group-hover:shadow-xl relative z-10"
                     style={{
-                      backgroundColor: tech.color,
-                      color: "#ffffff",
+                      borderColor: tech.color,
+                      boxShadow: `0 0 30px ${tech.color}30`,
                     }}
+                  >
+                    <div
+                      className="text-3xl transition-all duration-300 group-hover:scale-110"
+                      style={{ color: tech.color }}
+                    >
+                      {tech.icon}
+                    </div>
+                  </div>
+                  
+                  {/* Name label (always visible) */}
+                  <div
+                    className="opacity-70 group-hover:opacity-100 transition-opacity duration-300
+                    text-sm font-semibold whitespace-nowrap tracking-wide"
+                    style={{ color: tech.color }}
                   >
                     {tech.name}
                   </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </motion.div>
 
-        {/* Scrolling content - Right to Left (opposite direction) */}
-        <motion.div
-          className="flex gap-8"
-          animate={{
-            x: [-50 * techStack.length, 0],
-          }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 40,
-              ease: "linear",
-            },
-          }}
-        >
-          {duplicatedTechStack.map((tech, index) => (
-            <div
-              key={`tech-2-${index}`}
-              className="flex-shrink-0 group"
-              style={{ width: "80px" }}
-            >
-              <div className="relative">
-                <div
-                  className="w-16 h-16 rounded-xl flex items-center justify-center
-                  bg-charcoal/50 border border-steel/20
-                  group-hover:border-steel/60 group-hover:bg-charcoal
-                  transition-all duration-300 group-hover:scale-110
-                  shadow-lg group-hover:shadow-2xl"
-                  style={{
-                    boxShadow: `0 0 20px ${tech.color}15`,
-                  }}
-                >
+                  {/* Hover glow effect */}
                   <div
-                    className="text-3xl transition-all duration-300"
-                    style={{ color: tech.color }}
-                  >
-                    {tech.icon}
-                  </div>
-                </div>
-                
-                {/* Tooltip on hover */}
-                <div
-                  className="absolute -bottom-8 left-1/2 transform -translate-x-1/2
-                  opacity-0 group-hover:opacity-100 transition-opacity duration-300
-                  pointer-events-none whitespace-nowrap z-20"
-                >
-                  <div
-                    className="px-2 py-1 rounded text-xs font-medium"
-                    style={{
-                      backgroundColor: tech.color,
-                      color: "#ffffff",
-                    }}
-                  >
-                    {tech.name}
-                  </div>
+                    className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl"
+                    style={{ backgroundColor: tech.color }}
+                  />
                 </div>
               </div>
-            </div>
-          ))}
-        </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </div>
   );
