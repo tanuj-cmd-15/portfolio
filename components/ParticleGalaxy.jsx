@@ -11,155 +11,153 @@ export default function ParticleGalaxy() {
 
     const ctx = canvas.getContext("2d");
     let animationFrameId;
-    let particles = [];
-    let mouseX = 0;
-    let mouseY = 0;
+    let stars = [];
     let burst = false;
+    let burstX = 0;
+    let burstY = 0;
+    let burstParticles = [];
 
     // Set canvas size
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      createStars();
     };
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Particle class
-    class Particle {
-      constructor(x, y, angle, speed, size, color, distance) {
-        this.baseX = x;
-        this.baseY = y;
-        this.x = x;
-        this.y = y;
-        this.angle = angle;
-        this.speed = speed;
-        this.size = size;
-        this.color = color;
-        this.distance = distance;
-        this.rotation = 0;
+    // Star class
+    class Star {
+      constructor() {
+        this.reset();
+        this.y = Math.random() * canvas.height;
         this.opacity = Math.random() * 0.5 + 0.3;
+        this.twinkleSpeed = Math.random() * 0.02 + 0.005;
+        this.twinkleDirection = Math.random() > 0.5 ? 1 : -1;
       }
 
-      update(burstActive) {
-        // Spiral galaxy rotation
-        this.rotation += this.speed * 0.001;
-        
-        if (burstActive) {
-          // Burst effect - particles explode outward
-          this.distance += 2;
-          this.opacity -= 0.02;
-        } else {
-          // Normal rotation
-          this.distance = Math.max(this.distance * 0.99, this.distance - 0.5);
-          this.opacity = Math.min(this.opacity + 0.01, 0.8);
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.vx = (Math.random() - 0.5) * 0.2;
+        this.vy = (Math.random() - 0.5) * 0.2;
+        this.originalOpacity = Math.random() * 0.5 + 0.3;
+        this.opacity = this.originalOpacity;
+      }
+
+      update() {
+        // Slow drift
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Twinkling effect
+        this.opacity += this.twinkleSpeed * this.twinkleDirection;
+        if (this.opacity > 1 || this.opacity < 0.1) {
+          this.twinkleDirection *= -1;
         }
 
-        // Calculate spiral position
-        const spiralAngle = this.angle + this.rotation;
-        this.x = this.baseX + Math.cos(spiralAngle) * this.distance;
-        this.y = this.baseY + Math.sin(spiralAngle) * this.distance;
+        // Wrap around edges
+        if (this.x < 0) this.x = canvas.width;
+        if (this.x > canvas.width) this.x = 0;
+        if (this.y < 0) this.y = canvas.height;
+        if (this.y > canvas.height) this.y = 0;
       }
 
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = this.color.replace(")", `, ${this.opacity})`).replace("rgb", "rgba");
+        
+        // Color variation - mostly white/blue/accent tints
+        const colorChoice = Math.floor(this.originalOpacity * 10) % 3;
+        let color;
+        if (colorChoice === 0) {
+          color = `rgba(207, 220, 219, ${this.opacity})`; // accent color
+        } else if (colorChoice === 1) {
+          color = `rgba(180, 200, 220, ${this.opacity})`; // light blue
+        } else {
+          color = `rgba(255, 255, 255, ${this.opacity})`; // white
+        }
+        
+        ctx.fillStyle = color;
         ctx.fill();
         
-        // Glow effect
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = this.color;
-        ctx.fill();
-        ctx.shadowBlur = 0;
+        // Subtle glow for larger stars
+        if (this.size > 1.5) {
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = color;
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
       }
     }
 
-    // Create spiral galaxy particles
-    const createGalaxy = () => {
-      particles = [];
-      const centerX = canvas.width / 2;
-      const centerY = canvas.height / 2;
-      const arms = 4;
-      const particlesPerArm = 1250;
-
-      for (let arm = 0; arm < arms; arm++) {
-        for (let i = 0; i < particlesPerArm; i++) {
-          const distance = (i / particlesPerArm) * Math.min(canvas.width, canvas.height) * 0.4;
-          const angle = (arm / arms) * Math.PI * 2 + (i / particlesPerArm) * Math.PI * 6;
-          const spread = (Math.random() - 0.5) * 30;
-          
-          const x = centerX + Math.cos(angle) * distance;
-          const y = centerY + Math.sin(angle) * distance;
-          
-          // Color gradient from center (accent) to edge (steel)
-          const ratio = distance / (Math.min(canvas.width, canvas.height) * 0.4);
-          const r = Math.floor(207 + (75 - 207) * ratio);
-          const g = Math.floor(220 + (90 - 220) * ratio);
-          const b = Math.floor(219 + (102 - 219) * ratio);
-          const color = `rgb(${r}, ${g}, ${b})`;
-          
-          const size = Math.random() * 1.5 + 0.5;
-          const speed = 0.5 + Math.random() * 0.5;
-          
-          particles.push(new Particle(
-            centerX,
-            centerY,
-            angle + spread * 0.01,
-            speed,
-            size,
-            color,
-            distance
-          ));
-        }
+    // Burst particle class
+    class BurstParticle {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 5 + 2;
+        this.vx = Math.cos(angle) * speed;
+        this.vy = Math.sin(angle) * speed;
+        this.size = Math.random() * 3 + 1;
+        this.opacity = 1;
+        this.decay = Math.random() * 0.02 + 0.01;
+        this.color = `rgba(207, 220, 219, ${this.opacity})`; // accent color
       }
 
-      // Add ambient stars
-      for (let i = 0; i < 500; i++) {
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height;
-        const size = Math.random() * 1 + 0.3;
-        const color = "rgb(128, 144, 155)";
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.vx *= 0.98; // Slow down
+        this.vy *= 0.98;
+        this.opacity -= this.decay;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(207, 220, 219, ${this.opacity})`;
+        ctx.fill();
         
-        particles.push({
-          x,
-          y,
-          size,
-          color,
-          opacity: Math.random() * 0.5 + 0.2,
-          twinkle: Math.random() * 0.02,
-          update() {
-            this.opacity += this.twinkle;
-            if (this.opacity > 0.7 || this.opacity < 0.1) {
-              this.twinkle = -this.twinkle;
-            }
-          },
-          draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fillStyle = this.color.replace(")", `, ${this.opacity})`).replace("rgb", "rgba");
-            ctx.fill();
-          }
-        });
+        // Glow effect
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = `rgba(207, 220, 219, ${this.opacity})`;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+
+      isDead() {
+        return this.opacity <= 0;
+      }
+    }
+
+    // Create stars
+    const createStars = () => {
+      stars = [];
+      for (let i = 0; i < 3000; i++) {
+        stars.push(new Star());
       }
     };
 
-    createGalaxy();
+    createStars();
 
-    // Mouse interaction
-    const handleMouseMove = (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    };
-
-    const handleClick = () => {
+    // Click handler for burst effect
+    const handleClick = (e) => {
+      const rect = canvas.getBoundingClientRect();
+      burstX = e.clientX - rect.left;
+      burstY = e.clientY - rect.top;
+      
+      // Create burst particles
+      burstParticles = [];
+      for (let i = 0; i < 100; i++) {
+        burstParticles.push(new BurstParticle(burstX, burstY));
+      }
+      
       burst = true;
-      setTimeout(() => {
-        burst = false;
-        createGalaxy(); // Reset galaxy after burst
-      }, 1500);
     };
 
-    canvas.addEventListener("mousemove", handleMouseMove);
     canvas.addEventListener("click", handleClick);
 
     // Animation loop
@@ -167,11 +165,11 @@ export default function ParticleGalaxy() {
       // Create gradient background
       const gradient = ctx.createRadialGradient(
         canvas.width / 2,
-        canvas.height,
+        canvas.height / 2,
         0,
         canvas.width / 2,
-        canvas.height,
-        canvas.height
+        canvas.height / 2,
+        Math.max(canvas.width, canvas.height) / 2
       );
       gradient.addColorStop(0, "#0e1116");
       gradient.addColorStop(1, "#000000");
@@ -179,11 +177,24 @@ export default function ParticleGalaxy() {
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Update and draw particles
-      particles.forEach((particle) => {
-        particle.update(burst);
-        particle.draw();
+      // Update and draw stars
+      stars.forEach((star) => {
+        star.update();
+        star.draw();
       });
+
+      // Update and draw burst particles
+      if (burst) {
+        burstParticles = burstParticles.filter(particle => !particle.isDead());
+        burstParticles.forEach((particle) => {
+          particle.update();
+          particle.draw();
+        });
+        
+        if (burstParticles.length === 0) {
+          burst = false;
+        }
+      }
 
       animationFrameId = requestAnimationFrame(animate);
     };
@@ -193,7 +204,6 @@ export default function ParticleGalaxy() {
     // Cleanup
     return () => {
       window.removeEventListener("resize", resizeCanvas);
-      canvas.removeEventListener("mousemove", handleMouseMove);
       canvas.removeEventListener("click", handleClick);
       cancelAnimationFrame(animationFrameId);
     };
@@ -202,8 +212,8 @@ export default function ParticleGalaxy() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 -z-10"
-      style={{ background: "radial-gradient(ellipse at bottom, #0e1116 0%, #000000 100%)" }}
+      className="fixed inset-0 -z-10 cursor-pointer"
+      style={{ background: "radial-gradient(ellipse at center, #0e1116 0%, #000000 100%)" }}
     />
   );
 }
