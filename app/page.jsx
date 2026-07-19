@@ -213,17 +213,38 @@ const aboutInfo = [
 /* ───────────────── ANIMATION VARIANTS ───────────────── */
 
 const fadeInUp = {
-  initial: { opacity: 0, y: 40 },
+  initial: { opacity: 0, y: 60 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-50px" },
-  transition: { duration: 0.6, ease: "easeOut" },
+  viewport: { once: true, margin: "-100px", amount: 0.3 },
+  transition: { duration: 0.8, ease: "easeOut" },
 };
 
 const staggerChild = {
-  initial: { opacity: 0, y: 30 },
+  initial: { opacity: 0, y: 40 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-  transition: { duration: 0.5 },
+  viewport: { once: true, amount: 0.2 },
+  transition: { duration: 0.6, ease: "easeOut" },
+};
+
+const fadeInLeft = {
+  initial: { opacity: 0, x: -60 },
+  whileInView: { opacity: 1, x: 0 },
+  viewport: { once: true, margin: "-100px", amount: 0.3 },
+  transition: { duration: 0.8, ease: "easeOut" },
+};
+
+const fadeInRight = {
+  initial: { opacity: 0, x: 60 },
+  whileInView: { opacity: 1, x: 0 },
+  viewport: { once: true, margin: "-100px", amount: 0.3 },
+  transition: { duration: 0.8, ease: "easeOut" },
+};
+
+const scaleIn = {
+  initial: { opacity: 0, scale: 0.8 },
+  whileInView: { opacity: 1, scale: 1 },
+  viewport: { once: true, margin: "-100px", amount: 0.3 },
+  transition: { duration: 0.7, ease: "easeOut" },
 };
 
 /* ────────────────── SECTION COMPONENTS ────────────────── */
@@ -319,7 +340,7 @@ const AboutSection = () => {
 
         <div className="flex flex-col xl:flex-row gap-12">
           {/* Description */}
-          <motion.div className="xl:w-1/2" {...fadeInUp}>
+          <motion.div className="xl:w-1/2" {...fadeInLeft}>
             <p className="text-slate leading-relaxed mb-8">
               I&apos;m a passionate M.Tech candidate specializing in Deep
               Learning and applied ML. With hands-on experience in building and
@@ -337,13 +358,16 @@ const AboutSection = () => {
           </motion.div>
 
           {/* Info Grid */}
-          <motion.div className="xl:w-1/2" {...fadeInUp}>
+          <motion.div className="xl:w-1/2" {...fadeInRight}>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
               {aboutInfo.map((item, index) => (
                 <motion.li
                   key={index}
                   className="flex flex-col gap-1 p-4 rounded-xl bg-charcoal/50 border border-steel/20 hover:border-steel/50 transition-colors duration-300"
-                  {...staggerChild}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <span className="text-steel text-sm">{item.fieldName}</span>
                   <span className="text-accent text-base">
