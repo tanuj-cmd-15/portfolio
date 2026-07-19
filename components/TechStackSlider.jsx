@@ -133,13 +133,13 @@ const TechStackSlider = () => {
           <motion.div
             className="flex gap-6 items-center h-full"
             animate={{
-              x: isPaused ? undefined : [0, -85 * techStack.length],
+              x: [0, -85 * techStack.length],
             }}
             transition={{
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 60,
+                duration: isPaused ? 120 : 60, // Slower on hover (120s), normal when not (60s)
                 ease: "linear",
               },
             }}
@@ -204,7 +204,7 @@ const TechStackSlider = () => {
         {isPaused && (
           <div className="text-center mt-6">
             <span className="text-steel text-xs uppercase tracking-wider opacity-50">
-              ⏸ Paused
+              🐌 Slow Mode
             </span>
           </div>
         )}
