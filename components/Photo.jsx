@@ -2,9 +2,12 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useState } from "react";
 
 
 const Photo = () => {
+  const [imageError, setImageError] = useState(false);
+
   return (
     <div className="w-full h-full relative">
       <motion.div
@@ -23,14 +26,25 @@ const Photo = () => {
             transition: { delay: 0.8, duration: 0.4, ease: "easeInOut" },
           }}
         >
-          <Image
-            src="/photo.png"
-            priority
-            quality={100}
-            fill
-            alt="Tushar Pawar"
-            className="object-contain"
-          />
+          {!imageError ? (
+            <Image
+              src="/photo.png"
+              priority
+              quality={100}
+              fill
+              alt="Tushar Pawar"
+              className="object-contain"
+              sizes="(max-width: 768px) 298px, 498px"
+              unoptimized
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            <img
+              src="/photo.png"
+              alt="Tushar Pawar"
+              className="w-full h-full object-contain"
+            />
+          )}
         </motion.div>
 
         {/* outer circle — steel blue, slower rotation */}
