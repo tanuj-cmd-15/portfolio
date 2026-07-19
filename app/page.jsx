@@ -231,13 +231,13 @@ const staggerChild = {
 /* ── 1. HERO ── */
 const HeroSection = () => {
   return (
-    <section id="hero" className="min-h-[calc(100vh-72px)] flex items-center relative overflow-hidden pt-8">
+    <section id="hero" className="min-h-[calc(100vh-72px)] flex items-center relative overflow-hidden pt-2">
       {/* Subtle background gradient orbs using steel & charcoal */}
       <div className="absolute top-20 -left-40 w-[500px] h-[500px] rounded-full bg-steel/5 blur-[120px]" />
       <div className="absolute bottom-20 -right-40 w-[600px] h-[600px] rounded-full bg-charcoal/30 blur-[120px]" />
 
       <div className="container mx-auto relative z-10">
-        <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-2 xl:pb-20">
+        <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-0 xl:pb-16">
           {/* Text */}
           <motion.div
             className="text-center xl:text-left order-2 xl:order-none"
