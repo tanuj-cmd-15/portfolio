@@ -17,15 +17,6 @@ export default function ParticleGalaxy() {
     let burstY = 0;
     let burstParticles = [];
 
-    // Set canvas size
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      createStars();
-    };
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-
     // Star class
     class Star {
       constructor() {
@@ -141,7 +132,14 @@ export default function ParticleGalaxy() {
       }
     };
 
-    createStars();
+    // Set canvas size
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      createStars();
+    };
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
 
     // Click handler for burst effect
     const handleClick = (e) => {
