@@ -1,12 +1,13 @@
 {
-  "name": "prathameshportfoliowebsite",
+  "name": "tushar-pawar-portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postbuild": "echo 'Build completed successfully!'"
   },
   "dependencies": {
     "@formspree/react": "^2.5.1",

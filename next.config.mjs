@@ -3,8 +3,11 @@ const nextConfig = {
   images: {
     unoptimized: true,
     remotePatterns: [],
+    formats: ['image/webp', 'image/avif'],
   },
-  output: 'standalone',
+  // Ensure public files are copied correctly
+  assetPrefix: process.env.NODE_ENV === 'production' ? '' : '',
+  trailingSlash: false,
 };
 
 export default nextConfig;
