@@ -231,7 +231,7 @@ const staggerChild = {
 /* ── 1. HERO ── */
 const HeroSection = () => {
   return (
-    <section id="hero" className="min-h-[calc(100vh-104px)] flex items-center relative overflow-hidden">
+    <section id="hero" className="min-h-[calc(100vh-72px)] flex items-center relative overflow-hidden pt-20">
       {/* Subtle background gradient orbs using steel & charcoal */}
       <div className="absolute top-20 -left-40 w-[500px] h-[500px] rounded-full bg-steel/5 blur-[120px]" />
       <div className="absolute bottom-20 -right-40 w-[600px] h-[600px] rounded-full bg-charcoal/30 blur-[120px]" />

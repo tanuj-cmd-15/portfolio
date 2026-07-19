@@ -4,11 +4,11 @@ import MobileNav from "./MobileNav";
 
 const Header = () => {
   return (
-    <header className="py-8 xl:py-12 text-white fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-md border-b border-steel/10">
+    <header className="py-4 xl:py-5 text-white fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-md border-b border-steel/10">
       <div className="container mx-auto flex justify-between items-center">
         {/* logo*/}
         <a href="#hero">
-          <h1 className="text-4xl font-semibold">
+          <h1 className="text-3xl xl:text-4xl font-semibold">
             Tushar
             <span className="text-accent">.</span>
           </h1>
