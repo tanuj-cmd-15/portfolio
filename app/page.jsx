@@ -274,18 +274,18 @@ const HeroSection = () => {
               Hello I&apos;m
               <br />{" "}
               <span className="text-accent animated-name">
-                Tushar Pawar
-                <span className="banter-loader">
-                  <span className="banter-loader__box"></span>
-                  <span className="banter-loader__box"></span>
-                  <span className="banter-loader__box"></span>
-                  <span className="banter-loader__box"></span>
-                  <span className="banter-loader__box"></span>
-                  <span className="banter-loader__box"></span>
-                  <span className="banter-loader__box"></span>
-                  <span className="banter-loader__box"></span>
-                  <span className="banter-loader__box"></span>
-                </span>
+                <span className="letter">T</span>
+                <span className="letter">u</span>
+                <span className="letter">s</span>
+                <span className="letter">h</span>
+                <span className="letter">a</span>
+                <span className="letter">r</span>
+                <span className="letter"> </span>
+                <span className="letter">P</span>
+                <span className="letter">a</span>
+                <span className="letter">w</span>
+                <span className="letter">a</span>
+                <span className="letter">r</span>
               </span>
             </h1>
             <p className="max-w-[540px] mb-9 text-slate text-base leading-relaxed">
