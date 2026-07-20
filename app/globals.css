@@ -8,23 +8,23 @@ html {
 
 @layer base {
   body {
-    @apply font-primary bg-primary text-white leading-loose;
+    @apply font-primary bg-black text-white leading-loose;
   }
   .h1{
-    @apply text-[48px] xl:text-[80px] leading-[1.1] font-semibold;
+    @apply text-[48px] xl:text-[80px] leading-[1.1] font-light;
   }
   .h2{
-    @apply text-[36px] xl:text-[48px] leading-[1.1] font-semibold;
+    @apply text-[36px] xl:text-[48px] leading-[1.1] font-light;
   }
   .h3{
-    @apply text-[20px] xl:text-[24px] leading-[1.1] font-semibold;
+    @apply text-[20px] xl:text-[24px] leading-[1.1] font-light;
   }
   .text-outline{
-    -webkit-text-stroke: 1px #4b5a66;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
   }
   
   .text-outline-hover{
-    -webkit-text-stroke: 1px #cfdcdb;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.6);
   }
 }
 
@@ -77,19 +77,19 @@ html {
   background: linear-gradient(180deg, rgba(41, 52, 62, 0.2) 0%, rgba(14, 17, 22, 0) 100%);
 }
 
-/* Custom scrollbar using palette */
+/* Custom scrollbar using Squarespace palette */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0e1116;
+  background: #000000;
 }
 ::-webkit-scrollbar-thumb {
-  background: #4b5a66;
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #80909b;
+  background: rgba(255, 255, 255, 0.4);
 }
 
 /* 3D Social Icons Effect */
@@ -1380,4 +1380,83 @@ html {
 
 .rotating-border-wrapper:hover .border-glow-layer {
   animation: borderPulse 2s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SQUARESPACE-STYLE BUTTONS
+   ═══════════════════════════════════════════════════════════ */
+
+/* Primary Button - Bold, filled */
+.squarespace-btn-primary {
+  position: relative;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #000000;
+  background: #ffffff;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.squarespace-btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #e5e5e5;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.squarespace-btn-primary:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.squarespace-btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+/* Secondary Button - Outlined */
+.squarespace-btn-secondary {
+  position: relative;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.squarespace-btn-secondary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.squarespace-btn-secondary:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.squarespace-btn-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
 }

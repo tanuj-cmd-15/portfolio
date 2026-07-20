@@ -28,7 +28,7 @@ const Nav = () => {
             href={link.path}
             key={index}
             onClick={(e) => handleClick(e, link.path)}
-            className="nav-btn"
+            className="text-sm uppercase tracking-wider text-white/60 hover:text-white transition-colors duration-300 font-light"
           >
             {link.name}
           </a>

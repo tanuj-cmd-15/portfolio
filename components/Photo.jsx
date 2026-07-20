@@ -47,7 +47,7 @@ const Photo = () => {
           )}
         </motion.div>
 
-        {/* outer circle — steel blue, slower rotation */}
+        {/* outer circle — white with low opacity, slower rotation */}
         <motion.svg
           className="w-[300px] xl:w-[506px] h-[300px] xl:h-[506px]"
           fill="transparent"
@@ -58,7 +58,7 @@ const Photo = () => {
             cx="253"
             cy="253"
             r="250"
-            stroke="#4b5a66"
+            stroke="rgba(255, 255, 255, 0.2)"
             strokeWidth="4"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -73,12 +73,12 @@ const Photo = () => {
                 repeatType: "reverse"
             }}
           />
-          {/* inner circle — accent, faster rotation */}
+          {/* inner circle — white with very low opacity, faster rotation */}
           <motion.circle
             cx="253"
             cy="253"
             r="235"
-            stroke="#80909b"
+            stroke="rgba(255, 255, 255, 0.15)"
             strokeWidth="1"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -93,12 +93,12 @@ const Photo = () => {
                 repeatType: "reverse"
             }}
           />
-          {/* outermost subtle ring — charcoal */}
+          {/* outermost subtle ring — white with minimal opacity */}
           <circle
             cx="253"
             cy="253"
             r="252"
-            stroke="#29343e"
+            stroke="rgba(255, 255, 255, 0.1)"
             strokeWidth="1"
             fill="none"
           />

@@ -64,7 +64,6 @@ import {
 } from "@/components/ui/select";
 import { useForm, ValidationError } from "@formspree/react";
 import Link from "next/link";
-import TechStackSlider from "@/components/TechStackSlider";
 
 /* ───────────────────────── DATA ───────────────────────── */
 
@@ -250,85 +249,47 @@ const scaleIn = {
 
 /* ────────────────── SECTION COMPONENTS ────────────────── */
 
-/* ── 1. HERO ── */
+/* ── 1. HERO - MINIMAL STYLE WITH PHOTO ── */
 const HeroSection = () => {
   return (
-    <section id="hero" className="min-h-[calc(100vh-72px)] flex items-center relative overflow-hidden pt-2">
-      {/* Subtle background gradient orbs using steel & charcoal */}
-      <div className="absolute top-20 -left-40 w-[500px] h-[500px] rounded-full bg-steel/5 blur-[120px]" />
-      <div className="absolute bottom-20 -right-40 w-[600px] h-[600px] rounded-full bg-charcoal/30 blur-[120px]" />
-
-      <div className="container mx-auto relative z-10">
-        <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-0 xl:pb-16">
-          {/* Text */}
-          <motion.div
-            className="text-center xl:text-left order-2 xl:order-none"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <span className="text-xl text-slate">
+    <section id="hero" className="min-h-screen flex items-center justify-center py-24 xl:py-0 bg-black">
+      <div className="container mx-auto">
+        <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-24 gap-8">
+          {/* Text Content */}
+          <div className="text-center xl:text-left order-2 xl:order-none flex-1">
+            <span className="text-sm md:text-base text-white/60 uppercase tracking-wider font-light">
               Machine Learning Engineer & Data Scientist
             </span>
-            <h1 className="h1 mb-6">
-              Hello I&apos;m
-              <br />{" "}
-              <span className="text-accent animated-name">
-                <span className="letter">T</span>
-                <span className="letter">u</span>
-                <span className="letter">s</span>
-                <span className="letter">h</span>
-                <span className="letter">a</span>
-                <span className="letter">r</span>
-                <span className="letter"> </span>
-                <span className="letter">P</span>
-                <span className="letter">a</span>
-                <span className="letter">w</span>
-                <span className="letter">a</span>
-                <span className="letter">r</span>
-              </span>
+            <h1 className="h1 mb-6 mt-4">
+              Hello I'm <br />
+              <span className="text-white">Tushar Pawar</span>
             </h1>
-            <p className="max-w-[540px] mb-9 text-slate text-base leading-relaxed">
-              M.Tech (CGPA 9.15) candidate specializing in Deep Learning and
-              applied ML, with hands-on experience building CNN-BiLSTM-Attention
-              architectures on a 34,700+ sample audio dataset (0.91% EER,
-              98.77% accuracy). Proficient in Python, PyTorch, SQL, and
-              building end-to-end ML pipelines.
+            <p className="max-w-[500px] mb-9 text-white/70 text-base md:text-lg font-light leading-relaxed">
+              M.Tech candidate specializing in Deep Learning with 98.77% accuracy 
+              on 34,700+ sample models. Building production-grade ML pipelines 
+              and full-stack applications.
             </p>
-
-            {/* Buttons and socials */}
+            
+            {/* Buttons and Social */}
             <div className="flex flex-col xl:flex-row items-center gap-8">
               <a href="#contact">
-                <button className="liquid-button">
+                <button className="squarespace-btn-primary">
                   Hire Me
                 </button>
               </a>
-
               <div className="mb-8 xl:mb-0">
                 <Social
                   containerStyles="flex gap-6"
-                  iconStyles="social-3d w-9 h-9 border border-steel rounded-full flex justify-center items-center text-slate text-base hover:bg-accent hover:text-primary hover:border-accent hover:transition-all duration-500"
+                  iconStyles="w-9 h-9 border border-white/20 flex justify-center items-center text-white text-base hover:border-white/60 hover:bg-white/10 hover:text-white transition-all duration-300"
                 />
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Image */}
-          <motion.div
-            className="order-1 xl:order-none mb-8 xl:mb-0"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
+          {/* Photo */}
+          <div className="order-1 xl:order-none mb-8 xl:mb-0">
             <Photo />
-          </motion.div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="hidden xl:flex justify-center -mt-12">
-          <a href="#about" className="scroll-indicator text-steel hover:text-accent transition-colors">
-            <BsArrowDown className="text-2xl" />
-          </a>
+          </div>
         </div>
       </div>
     </section>
@@ -338,53 +299,48 @@ const HeroSection = () => {
 /* ── 2. ABOUT ── */
 const AboutSection = () => {
   return (
-    <section id="about" className="section-padding">
-      <div className="container mx-auto">
+    <section id="about" className="section-padding bg-black">
+      <div className="container mx-auto max-w-6xl">
         <motion.div {...fadeInUp}>
-          <h2 className="h2 text-center mb-4">
-            About <span className="text-accent">Me</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white text-center mb-6">
+            About Me
           </h2>
-          <div className="section-divider mb-12" />
+          <div className="w-24 h-[1px] bg-white/20 mx-auto mb-16" />
         </motion.div>
 
-        <div className="flex flex-col xl:flex-row gap-12">
+        <div className="flex flex-col xl:flex-row gap-16">
           {/* Description */}
           <motion.div className="xl:w-1/2" {...fadeInLeft}>
-            <p className="text-slate leading-relaxed mb-8">
-              I&apos;m a passionate M.Tech candidate specializing in Deep
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-8 font-light">
+              I'm a passionate M.Tech candidate specializing in Deep
               Learning and applied ML. With hands-on experience in building and
               evaluating CNN-BiLSTM-Attention architectures, I thrive on solving
-              complex problems with data-driven approaches. Proficient in Python,
-              PyTorch, SQL, and building end-to-end ML pipelines from data
-              preprocessing through model evaluation.
+              complex problems with data-driven approaches.
             </p>
-            <p className="text-steel leading-relaxed">
-              I bring strong skills in problem solving, analytical thinking, and
-              team collaboration. Currently seeking Machine Learning Engineer,
-              Data Scientist, or Data Engineer roles where I can apply my
-              expertise to impactful projects.
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed font-light">
+              Proficient in Python, PyTorch, SQL, and building end-to-end ML 
+              pipelines from data preprocessing through model evaluation. 
+              Currently seeking Machine Learning Engineer, Data Scientist, or 
+              Data Engineer roles.
             </p>
           </motion.div>
 
           {/* Info Grid */}
-          <motion.div className="xl:w-1/2 relative" {...fadeInRight}>
-            {/* Grid background */}
-            <div className="grid-background"></div>
-            
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 relative z-10">
+          <motion.div className="xl:w-1/2" {...fadeInRight}>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {aboutInfo.map((item, index) => (
                 <motion.li
                   key={index}
-                  className="rotating-border-card flex flex-col gap-2"
+                  className="border border-white/10 p-5 hover:border-white/30 transition-all duration-300"
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  style={{ animationDelay: `${index * 0.3}s` }}
                 >
-                  <div className="pink-mask"></div>
-                  <span className="text-slate text-xs uppercase tracking-wider font-semibold opacity-70">{item.fieldName}</span>
-                  <span className="text-white text-base font-semibold">
+                  <span className="text-white/50 text-xs uppercase tracking-wider block mb-2">
+                    {item.fieldName}
+                  </span>
+                  <span className="text-white text-base font-normal">
                     {item.fieldValue}
                   </span>
                 </motion.li>
@@ -397,24 +353,20 @@ const AboutSection = () => {
   );
 };
 
-/* ── 3. SKILLS - REDESIGNED ── */
+/* ── 3. SKILLS - SQUARESPACE MINIMAL STYLE ── */
 const SkillCategory = ({ title, skillList, delay = 0 }) => (
   <motion.div 
-    className="mb-12"
+    className="mb-16"
     initial={{ opacity: 0, y: 40 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.6, delay }}
   >
-    <div className="flex items-center gap-4 mb-6">
-      <div className="skill-category-line flex-grow h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-50" />
-      <h4 className="text-xl font-bold text-white skill-title-glow">
-        {title}
-      </h4>
-      <div className="skill-category-line flex-grow h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-50" />
-    </div>
+    <h4 className="text-xl md:text-2xl font-light text-white/90 mb-8 text-center">
+      {title}
+    </h4>
     
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
       {skillList.map((skill, index) => (
         <motion.div
           key={index}
@@ -425,19 +377,18 @@ const SkillCategory = ({ title, skillList, delay = 0 }) => (
         >
           <TooltipProvider delayDuration={100}>
             <Tooltip>
-              <TooltipTrigger className="skill-card group">
-                <div className="skill-icon-wrapper">
-                  <div className="text-4xl skill-icon">
+              <TooltipTrigger className="w-full h-full group">
+                <div className="border border-white/10 p-6 hover:border-white/30 transition-all duration-300 flex flex-col items-center justify-center gap-4 min-h-[140px]">
+                  <div className="text-4xl text-white/80 group-hover:text-white transition-colors duration-300">
                     {skill.icon}
                   </div>
-                  <div className="skill-glow"></div>
-                </div>
-                <div className="skill-name">
-                  {skill.name}
+                  <div className="text-sm text-white/60 group-hover:text-white/90 transition-colors duration-300 font-light">
+                    {skill.name}
+                  </div>
                 </div>
               </TooltipTrigger>
               <TooltipContent>
-                <p className="capitalize font-semibold">{skill.name}</p>
+                <p className="capitalize font-normal">{skill.name}</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
@@ -449,47 +400,37 @@ const SkillCategory = ({ title, skillList, delay = 0 }) => (
 
 const SkillsSection = () => {
   return (
-    <section id="skills" className="section-padding skills-section">
-      <div className="container mx-auto relative">
-        {/* Animated background gradient orbs */}
-        <div className="skill-bg-orb skill-bg-orb-1"></div>
-        <div className="skill-bg-orb skill-bg-orb-2"></div>
-        <div className="skill-bg-orb skill-bg-orb-3"></div>
-        
-        <motion.div {...fadeInUp} className="relative z-10">
-          <h2 className="h2 text-center mb-4">
-            Technical <span className="gradient-text-animated">Skills</span>
+    <section id="skills" className="section-padding bg-black">
+      <div className="container mx-auto max-w-6xl">
+        <motion.div {...fadeInUp}>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white text-center mb-6">
+            Technical Skills
           </h2>
-          <div className="section-divider mb-8" />
-          <p className="max-w-[800px] text-slate mx-auto text-center mb-16 text-lg leading-relaxed">
-            Proficient in building <span className="text-accent font-semibold">end-to-end ML pipelines</span> and 
-            <span className="text-accent font-semibold"> full-stack applications</span>, from data preprocessing 
-            through model evaluation and deployment.
+          <div className="w-24 h-[1px] bg-white/20 mx-auto mb-8" />
+          <p className="max-w-3xl text-lg md:text-xl text-white/70 mx-auto text-center mb-20 font-light leading-relaxed">
+            Proficient in building end-to-end ML pipelines and full-stack applications, 
+            from data preprocessing through model evaluation and deployment.
           </p>
         </motion.div>
 
-        <div className="relative z-10">
+        <div>
           <SkillCategory title="Programming Languages" skillList={skills.languages} delay={0} />
           <SkillCategory title="AI/ML & Libraries" skillList={skills.aiml} delay={0.1} />
           <SkillCategory title="Web & Frameworks" skillList={skills.webFrameworks} delay={0.2} />
           <SkillCategory title="Tools & Platforms" skillList={skills.tools} delay={0.3} />
         </div>
 
-        {/* Soft Skills - Enhanced Design */}
+        {/* Soft Skills */}
         <motion.div 
-          className="mt-16 relative z-10"
+          className="mt-20"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <div className="flex items-center gap-4 mb-6">
-            <div className="skill-category-line flex-grow h-[2px] bg-gradient-to-r from-transparent via-purple to-transparent opacity-50" />
-            <h4 className="text-xl font-bold text-white skill-title-glow">
-              Soft Skills & Expertise
-            </h4>
-            <div className="skill-category-line flex-grow h-[2px] bg-gradient-to-r from-transparent via-purple to-transparent opacity-50" />
-          </div>
+          <h4 className="text-xl md:text-2xl font-light text-white/90 mb-8 text-center">
+            Soft Skills & Expertise
+          </h4>
           
           <div className="flex flex-wrap justify-center gap-4">
             {[
@@ -501,14 +442,13 @@ const SkillsSection = () => {
             ].map((skill, i) => (
               <motion.span
                 key={i}
-                className="soft-skill-badge"
+                className="border border-white/20 px-6 py-3 hover:border-white/40 hover:bg-white/5 transition-all duration-300 text-white/70 hover:text-white text-sm font-light"
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
-                whileHover={{ scale: 1.05, y: -2 }}
+                whileHover={{ scale: 1.05 }}
               >
-                <span className="soft-skill-icon">✦</span>
                 {skill}
               </motion.span>
             ))}
@@ -522,36 +462,36 @@ const SkillsSection = () => {
 /* ── 4. PROJECTS ── */
 const ProjectsSection = () => {
   return (
-    <section id="projects" className="section-padding">
-      <div className="container mx-auto">
+    <section id="projects" className="section-padding bg-black">
+      <div className="container mx-auto max-w-6xl">
         <motion.div {...fadeInUp}>
-          <h2 className="h2 text-center mb-4">
-            My <span className="text-accent">Projects</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white text-center mb-6">
+            Projects
           </h2>
-          <div className="section-divider mb-12" />
+          <div className="w-24 h-[1px] bg-white/20 mx-auto mb-16" />
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-10">
+        <div className="grid grid-cols-1 gap-12">
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              className="bg-charcoal/60 rounded-2xl p-8 xl:p-10 border border-steel/15 hover:border-steel/40 card-glow transition-all duration-500 group"
+              className="border border-white/10 p-8 xl:p-12 hover:border-white/30 transition-all duration-500 group"
               {...fadeInUp}
             >
               <div className="flex flex-col xl:flex-row gap-8">
                 {/* Left: Number + Title */}
                 <div className="xl:w-1/3">
-                  <span className="text-6xl font-extrabold text-steel/30 group-hover:text-steel/60 transition-all duration-500">
+                  <span className="text-5xl md:text-6xl font-light text-white/20 group-hover:text-white/40 transition-all duration-500">
                     {project.num}
                   </span>
-                  <h3 className="text-2xl font-bold mt-2 mb-4 text-white group-hover:text-accent transition-all duration-500">
+                  <h3 className="text-2xl md:text-3xl font-light mt-4 mb-6 text-white">
                     {project.title}
                   </h3>
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-2 mb-6">
                     {project.stack.map((tech, i) => (
                       <span
                         key={i}
-                        className="text-sm text-accent bg-steel/20 px-3 py-1 rounded-full border border-steel/20"
+                        className="text-xs text-white/60 border border-white/20 px-3 py-1.5 hover:border-white/40 hover:text-white/80 transition-colors"
                       >
                         {tech}
                       </span>
@@ -560,25 +500,25 @@ const ProjectsSection = () => {
                   <Link
                     href={project.github}
                     target="_blank"
-                    className="inline-flex items-center gap-2 text-steel hover:text-accent transition-colors"
+                    className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors text-sm"
                   >
-                    <BsArrowUpRight className="text-lg" />
-                    <span className="text-sm">View on GitHub</span>
+                    <BsArrowUpRight className="text-base" />
+                    <span>View on GitHub</span>
                   </Link>
                 </div>
 
                 {/* Right: Description + Highlights */}
                 <div className="xl:w-2/3">
-                  <p className="text-slate leading-relaxed mb-6">
+                  <p className="text-lg text-white/70 leading-relaxed mb-6 font-light">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-4">
                     {project.highlights.map((h, i) => (
                       <span
                         key={i}
-                        className="flex items-center gap-2 text-sm text-accent/90 bg-primary/50 px-3 py-1.5 rounded-lg border border-steel/20"
+                        className="flex items-center gap-2 text-sm text-white/60 border border-white/10 px-4 py-2"
                       >
-                        <span className="w-2 h-2 rounded-full bg-accent" />
+                        <span className="w-1.5 h-1.5 bg-white/60" />
                         {h}
                       </span>
                     ))}
@@ -596,21 +536,21 @@ const ProjectsSection = () => {
 /* ── 5. EDUCATION, CERTIFICATIONS, ACHIEVEMENTS ── */
 const EducationSection = () => {
   return (
-    <section id="education" className="section-padding section-alt">
-      <div className="container mx-auto">
+    <section id="education" className="section-padding bg-black">
+      <div className="container mx-auto max-w-6xl">
         <motion.div {...fadeInUp}>
-          <h2 className="h2 text-center mb-4">
-            Education & <span className="text-accent">Achievements</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white text-center mb-6">
+            Education & Achievements
           </h2>
-          <div className="section-divider mb-12" />
+          <div className="w-24 h-[1px] bg-white/20 mx-auto mb-16" />
         </motion.div>
 
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-10">
           {/* Education */}
           <motion.div {...fadeInUp}>
-            <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
-              <div className="w-10 h-10 bg-charcoal rounded-lg flex items-center justify-center border border-steel/30">
-                <FaGraduationCap className="text-accent" />
+            <h3 className="text-xl md:text-2xl font-light mb-8 flex items-center gap-3 text-white">
+              <div className="w-10 h-10 border border-white/20 flex items-center justify-center">
+                <FaGraduationCap className="text-white/70" />
               </div>
               <span>Education</span>
             </h3>
@@ -618,15 +558,19 @@ const EducationSection = () => {
               {education.map((item, index) => (
                 <div
                   key={index}
-                  className="bg-charcoal p-6 rounded-xl border border-steel/20 hover:border-steel/50 card-glow transition-all duration-300"
+                  className="border border-white/10 p-6 hover:border-white/30 transition-all duration-300"
                 >
-                  <span className="text-accent text-sm font-medium px-2 py-0.5 rounded bg-steel/15">{item.duration}</span>
-                  <h4 className="text-lg font-semibold mt-3 text-white">{item.degree}</h4>
-                  <p className="text-steel text-sm mt-1">
+                  <span className="text-white/50 text-xs font-light px-2 py-1 border border-white/10 inline-block mb-4">
+                    {item.duration}
+                  </span>
+                  <h4 className="text-lg font-normal mt-3 text-white leading-tight">
+                    {item.degree}
+                  </h4>
+                  <p className="text-white/50 text-sm mt-2 font-light">
                     {item.institution}
                   </p>
-                  <div className="mt-3 pt-3 border-t border-steel/15">
-                    <p className="text-accent text-sm font-medium">
+                  <div className="mt-4 pt-4 border-t border-white/10">
+                    <p className="text-white/70 text-sm font-light">
                       {item.result}
                     </p>
                   </div>
@@ -637,9 +581,9 @@ const EducationSection = () => {
 
           {/* Certifications */}
           <motion.div {...fadeInUp}>
-            <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
-              <div className="w-10 h-10 bg-charcoal rounded-lg flex items-center justify-center border border-steel/30">
-                <FaCertificate className="text-accent" />
+            <h3 className="text-xl md:text-2xl font-light mb-8 flex items-center gap-3 text-white">
+              <div className="w-10 h-10 border border-white/20 flex items-center justify-center">
+                <FaCertificate className="text-white/70" />
               </div>
               <span>Certifications</span>
             </h3>
@@ -647,11 +591,17 @@ const EducationSection = () => {
               {certifications.map((item, index) => (
                 <div
                   key={index}
-                  className="bg-charcoal p-6 rounded-xl border border-steel/20 hover:border-steel/50 card-glow transition-all duration-300"
+                  className="border border-white/10 p-6 hover:border-white/30 transition-all duration-300"
                 >
-                  <span className="text-slate text-sm font-medium px-2 py-0.5 rounded bg-steel/15">{item.date}</span>
-                  <h4 className="text-lg font-semibold mt-3 text-white">{item.title}</h4>
-                  <p className="text-steel text-sm mt-2">{item.details}</p>
+                  <span className="text-white/50 text-xs font-light px-2 py-1 border border-white/10 inline-block mb-4">
+                    {item.date}
+                  </span>
+                  <h4 className="text-lg font-normal mt-3 text-white">
+                    {item.title}
+                  </h4>
+                  <p className="text-white/50 text-sm mt-2 font-light">
+                    {item.details}
+                  </p>
                 </div>
               ))}
             </div>
@@ -659,9 +609,9 @@ const EducationSection = () => {
 
           {/* Achievements */}
           <motion.div {...fadeInUp}>
-            <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
-              <div className="w-10 h-10 bg-charcoal rounded-lg flex items-center justify-center border border-steel/30">
-                <FaTrophy className="text-accent" />
+            <h3 className="text-xl md:text-2xl font-light mb-8 flex items-center gap-3 text-white">
+              <div className="w-10 h-10 border border-white/20 flex items-center justify-center">
+                <FaTrophy className="text-white/70" />
               </div>
               <span>Leadership</span>
             </h3>
@@ -669,12 +619,12 @@ const EducationSection = () => {
               {achievements.map((item, index) => (
                 <div
                   key={index}
-                  className="bg-charcoal p-6 rounded-xl border border-steel/20 hover:border-steel/50 card-glow transition-all duration-300"
+                  className="border border-white/10 p-6 hover:border-white/30 transition-all duration-300"
                 >
-                  <h4 className="text-lg font-semibold text-accent">
+                  <h4 className="text-lg font-normal text-white">
                     {item.title}
                   </h4>
-                  <p className="text-slate text-sm mt-2">
+                  <p className="text-white/50 text-sm mt-3 font-light leading-relaxed">
                     {item.description}
                   </p>
                 </div>
@@ -694,32 +644,28 @@ const ContactSection = () => {
 
   if (state.succeeded) {
     return (
-      <section id="contact" className="section-padding">
-        <div className="container mx-auto flex flex-col items-center">
-          <div className="max-w-lg w-full bg-charcoal rounded-xl border border-accent/30 p-6 mb-6 flex items-center space-x-4 glow-accent">
-            <div className="text-accent text-3xl">
+      <section id="contact" className="section-padding bg-black">
+        <div className="container mx-auto flex flex-col items-center max-w-2xl">
+          <div className="w-full border border-white/20 p-8 mb-8 flex items-center space-x-4">
+            <div className="text-white text-3xl">
               <FaCheckCircle />
             </div>
-            <p className="text-center text-accent">
+            <p className="text-center text-white font-light">
               Thanks for contacting me! I will get back to you soon.
             </p>
           </div>
 
-          <div className="flex flex-col xl:flex-col gap-6 mt-5">
+          <div className="flex flex-col gap-6 mt-5 w-full">
             {contactInfo.map((item, index) => (
-              <div key={index} className="flex items-center gap-4">
-                <div
-                  className="w-12 h-12 xl:w-16 xl:h-16
-                 bg-charcoal text-accent rounded-xl border border-steel/20
-                 flex items-center justify-center"
-                >
-                  <div className="text-xl xl:text-2xl">{item.icon}</div>
+              <div key={index} className="flex items-center gap-4 border border-white/10 p-5 hover:border-white/30 transition-colors">
+                <div className="w-12 h-12 border border-white/20 flex items-center justify-center">
+                  <div className="text-xl text-white/70">{item.icon}</div>
                 </div>
                 <div className="flex flex-col">
-                  <p className="text-steel text-sm xl:text-base">
+                  <p className="text-white/50 text-xs uppercase tracking-wider mb-1 font-light">
                     {item.title}
                   </p>
-                  <p className="text-white text-sm xl:text-base">
+                  <p className="text-white text-sm font-light">
                     {item.description}
                   </p>
                 </div>
@@ -732,29 +678,29 @@ const ContactSection = () => {
   }
 
   return (
-    <section id="contact" className="section-padding">
-      <div className="container mx-auto">
+    <section id="contact" className="section-padding bg-black">
+      <div className="container mx-auto max-w-6xl">
         <motion.div {...fadeInUp}>
-          <h2 className="h2 text-center mb-4">
-            Get In <span className="text-accent">Touch</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white text-center mb-6">
+            Get In Touch
           </h2>
-          <div className="section-divider mb-12" />
+          <div className="w-24 h-[1px] bg-white/20 mx-auto mb-16" />
         </motion.div>
 
         <motion.div
-          className="flex flex-col xl:flex-row gap-[30px]"
+          className="flex flex-col xl:flex-row gap-12"
           {...fadeInUp}
         >
           {/* form */}
-          <div className="xl:w-[54%] order-2 xl:order-none">
+          <div className="xl:w-[60%] order-2 xl:order-none">
             <form
               onSubmit={handleSubmit}
-              className="flex flex-col gap-6 p-10 bg-charcoal rounded-xl border border-steel/20"
+              className="flex flex-col gap-6 border border-white/10 p-10"
             >
-              <h3 className="text-2xl xl:text-3xl text-accent">
-                Let&apos;s Work Together
+              <h3 className="text-2xl xl:text-3xl text-white font-light">
+                Let's Work Together
               </h3>
-              <p className="text-steel text-sm xl:text-md">
+              <p className="text-white/50 text-sm xl:text-base font-light">
                 Interested in collaboration or have a role in mind? Drop me a
                 message.
               </p>
@@ -840,7 +786,7 @@ const ContactSection = () => {
                 <Button
                   type="submit"
                   size="md"
-                  className="w-full md:w-1/2 h-12"
+                  className="w-full md:w-1/2 h-12 squarespace-btn-primary"
                   disabled={state.submitting}
                 >
                   {state.submitting ? "Sending..." : "Send Message"}
@@ -849,7 +795,7 @@ const ContactSection = () => {
               
               {/* Error message */}
               {state.errors && state.errors.length > 0 && (
-                <div className="text-red-500 text-sm text-center">
+                <div className="text-red-500 text-sm text-center font-light">
                   Oops! There was an error submitting the form. Please try again.
                 </div>
               )}
@@ -858,17 +804,17 @@ const ContactSection = () => {
 
           {/* Info */}
           <div className="flex-1 flex items-center xl:justify-end order-1 xl:order-none mb-8 xl:mb-0">
-            <ul className="flex flex-col gap-10">
+            <ul className="flex flex-col gap-8">
               {contactInfo.map((item, index) => (
-                <li key={index} className="flex items-center gap-6">
-                  <div className="w-[52px] h-[52px] xl:w-[72px] xl:h-[72px] bg-charcoal text-accent rounded-xl border border-steel/20 flex items-center justify-center hover:border-steel/50 transition-colors">
-                    <div className="text-[28px]">{item.icon}</div>
+                <li key={index} className="flex items-center gap-6 border border-white/10 p-6 hover:border-white/30 transition-colors">
+                  <div className="w-[52px] h-[52px] xl:w-[60px] xl:h-[60px] border border-white/20 flex items-center justify-center">
+                    <div className="text-[24px] text-white/70">{item.icon}</div>
                   </div>
                   <div className="flex-1">
-                    <p className="text-steel text-sm xl:text-base">
+                    <p className="text-white/50 text-xs uppercase tracking-wider mb-1 font-light">
                       {item.title}
                     </p>
-                    <p className="text-accent text-sm xl:text-lg">
+                    <p className="text-white text-sm xl:text-base font-light">
                       {item.description}
                     </p>
                   </div>
@@ -884,9 +830,9 @@ const ContactSection = () => {
 
 /* ── FOOTER ── */
 const Footer = () => (
-  <footer className="py-8 border-t border-steel/20">
+  <footer className="py-12 border-t border-white/10 bg-black">
     <div className="container mx-auto text-center">
-      <p className="text-steel text-sm">
+      <p className="text-white/40 text-sm font-light">
         © {new Date().getFullYear()} Tushar Pawar. Built with Next.js &
         Framer Motion.
       </p>
@@ -901,40 +847,37 @@ const Home = () => {
     <>
       <HeroSection />
 
-      <div className="container mx-auto">
+      <div className="container mx-auto max-w-6xl py-12">
         <Stats />
       </div>
 
-      {/* Tech Stack Slider - Infinite horizontal scroll */}
-      <TechStackSlider />
-
-      {/* Gradient line separator */}
-      <div className="container mx-auto">
-        <div className="gradient-border h-[1px] rounded-full opacity-30" />
+      {/* Minimal divider */}
+      <div className="container mx-auto max-w-6xl">
+        <div className="h-[1px] bg-white/10" />
       </div>
 
       <AboutSection />
 
-      <div className="container mx-auto">
-        <div className="gradient-border h-[1px] rounded-full opacity-30" />
+      <div className="container mx-auto max-w-6xl">
+        <div className="h-[1px] bg-white/10" />
       </div>
 
       <SkillsSection />
 
-      <div className="container mx-auto">
-        <div className="gradient-border h-[1px] rounded-full opacity-30" />
+      <div className="container mx-auto max-w-6xl">
+        <div className="h-[1px] bg-white/10" />
       </div>
 
       <ProjectsSection />
 
-      <div className="container mx-auto">
-        <div className="gradient-border h-[1px] rounded-full opacity-30" />
+      <div className="container mx-auto max-w-6xl">
+        <div className="h-[1px] bg-white/10" />
       </div>
 
       <EducationSection />
 
-      <div className="container mx-auto">
-        <div className="gradient-border h-[1px] rounded-full opacity-30" />
+      <div className="container mx-auto max-w-6xl">
+        <div className="h-[1px] bg-white/10" />
       </div>
 
       <ContactSection />
