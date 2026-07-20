@@ -271,7 +271,7 @@ const HeroSection = () => {
               Machine Learning Engineer & Data Scientist
             </span>
             <h1 className="h1 mb-6">
-              Hello I&apos;m
+              <span className="liquid-button">Hello I&apos;m</span>
               <br />{" "}
               <span className="text-accent animated-name">
                 <span className="letter">T</span>
