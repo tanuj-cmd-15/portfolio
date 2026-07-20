@@ -392,67 +392,104 @@ const AboutSection = () => {
   );
 };
 
-/* ── 3. SKILLS ── */
-const SkillCategory = ({ title, skillList }) => (
-  <div className="mb-8">
-    <h4 className="text-lg font-semibold text-slate mb-4 flex items-center gap-3">
-      <span className="w-8 h-[2px] bg-steel inline-block" />
-      {title}
-    </h4>
-    <ul className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
+/* ── 3. SKILLS - REDESIGNED ── */
+const SkillCategory = ({ title, skillList, delay = 0 }) => (
+  <motion.div 
+    className="mb-12"
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6, delay }}
+  >
+    <div className="flex items-center gap-4 mb-6">
+      <div className="skill-category-line flex-grow h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-50" />
+      <h4 className="text-xl font-bold text-white skill-title-glow">
+        {title}
+      </h4>
+      <div className="skill-category-line flex-grow h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-50" />
+    </div>
+    
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
       {skillList.map((skill, index) => (
-        <li key={index}>
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: delay + index * 0.05 }}
+        >
           <TooltipProvider delayDuration={100}>
             <Tooltip>
-              <TooltipTrigger className="w-full h-[100px] bg-charcoal rounded-xl flex justify-center items-center group border border-steel/10 hover:border-accent/40 hover:bg-charcoal/80 card-glow transition-all duration-300">
-                <div className="text-4xl text-steel group-hover:text-accent transition-all duration-300">
-                  {skill.icon}
+              <TooltipTrigger className="skill-card group">
+                <div className="skill-icon-wrapper">
+                  <div className="text-4xl skill-icon">
+                    {skill.icon}
+                  </div>
+                  <div className="skill-glow"></div>
+                </div>
+                <div className="skill-name">
+                  {skill.name}
                 </div>
               </TooltipTrigger>
               <TooltipContent>
-                <p className="capitalize">{skill.name}</p>
+                <p className="capitalize font-semibold">{skill.name}</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
-        </li>
+        </motion.div>
       ))}
-    </ul>
-  </div>
+    </div>
+  </motion.div>
 );
 
 const SkillsSection = () => {
   return (
-    <section id="skills" className="section-padding section-alt">
-      <div className="container mx-auto">
-        <motion.div {...fadeInUp}>
+    <section id="skills" className="section-padding skills-section">
+      <div className="container mx-auto relative">
+        {/* Animated background gradient orbs */}
+        <div className="skill-bg-orb skill-bg-orb-1"></div>
+        <div className="skill-bg-orb skill-bg-orb-2"></div>
+        <div className="skill-bg-orb skill-bg-orb-3"></div>
+        
+        <motion.div {...fadeInUp} className="relative z-10">
           <h2 className="h2 text-center mb-4">
-            Technical <span className="text-accent">Skills</span>
+            Technical <span className="gradient-text-animated">Skills</span>
           </h2>
-          <div className="section-divider mb-12" />
-          <p className="max-w-[700px] text-slate mx-auto text-center mb-12">
-            My core expertise lies in building ML pipelines and full-stack
-            applications, from data preprocessing through model evaluation and
-            deployment.
+          <div className="section-divider mb-8" />
+          <p className="max-w-[800px] text-slate mx-auto text-center mb-16 text-lg leading-relaxed">
+            Proficient in building <span className="text-accent font-semibold">end-to-end ML pipelines</span> and 
+            <span className="text-accent font-semibold"> full-stack applications</span>, from data preprocessing 
+            through model evaluation and deployment.
           </p>
         </motion.div>
 
-        <motion.div {...fadeInUp}>
-          <SkillCategory title="Languages" skillList={skills.languages} />
-          <SkillCategory title="AI/ML & Libraries" skillList={skills.aiml} />
-          <SkillCategory
-            title="Web & Frameworks"
+        <div className="relative z-10">
+          <SkillCategory title="Programming Languages" skillList={skills.languages} delay={0} />
+          <SkillCategory title="AI/ML & Libraries" skillList={skills.aiml} delay={0.1} />
+          <SkillCategory title="Web & Frameworks" skillList={skills.webFrameworks} delay={0.2} />
+          <SkillCategory title="Tools & Platforms" skillList={skills.tools} delay={0.3} />
             skillList={skills.webFrameworks}
           />
           <SkillCategory title="Tools & Platforms" skillList={skills.tools} />
-        </motion.div>
+        </div>
 
-        {/* Soft Skills */}
-        <motion.div className="mt-8" {...fadeInUp}>
-          <h4 className="text-lg font-semibold text-slate mb-4 flex items-center gap-3">
-            <span className="w-8 h-[2px] bg-steel inline-block" />
-            Soft Skills
-          </h4>
-          <div className="flex flex-wrap gap-3">
+        {/* Soft Skills - Enhanced Design */}
+        <motion.div 
+          className="mt-16 relative z-10"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <div className="flex items-center gap-4 mb-6">
+            <div className="skill-category-line flex-grow h-[2px] bg-gradient-to-r from-transparent via-purple to-transparent opacity-50" />
+            <h4 className="text-xl font-bold text-white skill-title-glow">
+              Soft Skills & Expertise
+            </h4>
+            <div className="skill-category-line flex-grow h-[2px] bg-gradient-to-r from-transparent via-purple to-transparent opacity-50" />
+          </div>
+          
+          <div className="flex flex-wrap justify-center gap-4">
             {[
               "Problem Solving",
               "Analytical Thinking",
@@ -460,13 +497,21 @@ const SkillsSection = () => {
               "Adaptive Learning",
               "Decision Making",
             ].map((skill, i) => (
-              <span
+              <motion.span
                 key={i}
-                className="px-4 py-2 rounded-full border border-steel text-slate text-sm hover:bg-steel/20 hover:text-accent hover:border-accent/30 transition-all duration-300"
+                className="soft-skill-badge"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
+                whileHover={{ scale: 1.05, y: -2 }}
               >
+                <span className="soft-skill-icon">✦</span>
                 {skill}
-              </span>
+              </motion.span>
             ))}
+          </div>
+        </motion.div>
           </div>
         </motion.div>
       </div>

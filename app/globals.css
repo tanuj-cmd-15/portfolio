@@ -895,3 +895,255 @@ html {
 .liquid-button:active {
   transform: translateY(0) scale(0.98);
 }
+
+/* ═══════════════════════════════════════════════════════════
+   ENHANCED SKILLS SECTION DESIGN
+   ═══════════════════════════════════════════════════════════ */
+
+/* Skills Section Background */
+.skills-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated Background Orbs */
+.skill-bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.15;
+  animation: floatOrb 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.skill-bg-orb-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #00f5ff 0%, transparent 70%);
+  top: -250px;
+  left: -250px;
+  animation-delay: 0s;
+}
+
+.skill-bg-orb-2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #a855f7 0%, transparent 70%);
+  bottom: -300px;
+  right: -300px;
+  animation-delay: 7s;
+}
+
+.skill-bg-orb-3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #ec4899 0%, transparent 70%);
+  top: 50%;
+  right: -200px;
+  animation-delay: 14s;
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(50px, -50px) scale(1.1); }
+  66% { transform: translate(-30px, 30px) scale(0.9); }
+}
+
+/* Skill Category Title Glow */
+.skill-title-glow {
+  text-shadow: 0 0 20px rgba(0, 245, 255, 0.5), 0 0 40px rgba(168, 85, 247, 0.3);
+  animation: titlePulse 3s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+  0%, 100% { text-shadow: 0 0 20px rgba(0, 245, 255, 0.5), 0 0 40px rgba(168, 85, 247, 0.3); }
+  50% { text-shadow: 0 0 30px rgba(0, 245, 255, 0.8), 0 0 60px rgba(168, 85, 247, 0.5); }
+}
+
+/* Skill Card - Advanced Design */
+.skill-card {
+  position: relative;
+  width: 100%;
+  min-height: 140px;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%);
+  border-radius: 20px;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #00f5ff 0%, #a855f7 25%, #ec4899 50%, #fb923c 75%, #10b981 100%);
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: borderGradient 4s ease infinite;
+}
+
+@keyframes borderGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.skill-card:hover::before {
+  opacity: 1;
+}
+
+.skill-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 1) 100%);
+  box-shadow: 
+    0 10px 40px rgba(0, 245, 255, 0.2),
+    0 20px 60px rgba(168, 85, 247, 0.15),
+    0 30px 80px rgba(236, 72, 153, 0.1);
+}
+
+/* Skill Icon Wrapper */
+.skill-icon-wrapper {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skill-icon {
+  position: relative;
+  z-index: 2;
+  color: #94a3b8;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 0 8px rgba(148, 163, 184, 0.3));
+}
+
+.skill-card:hover .skill-icon {
+  color: #00f5ff;
+  transform: scale(1.15) rotate(5deg);
+  filter: 
+    drop-shadow(0 0 15px rgba(0, 245, 255, 0.8))
+    drop-shadow(0 0 30px rgba(168, 85, 247, 0.5));
+  animation: iconFloat 2s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+  0%, 100% { transform: scale(1.15) rotate(5deg) translateY(0); }
+  50% { transform: scale(1.15) rotate(-5deg) translateY(-5px); }
+}
+
+/* Skill Glow Effect */
+.skill-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 245, 255, 0.4) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: glowPulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.skill-card:hover .skill-glow {
+  opacity: 1;
+}
+
+@keyframes glowPulse {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.2); opacity: 0.6; }
+}
+
+/* Skill Name */
+.skill-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 2;
+  text-transform: capitalize;
+}
+
+.skill-card:hover .skill-name {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+}
+
+/* Animated Gradient Text */
+.gradient-text-animated {
+  background: linear-gradient(135deg, #00f5ff 0%, #a855f7 25%, #ec4899 50%, #fb923c 75%, #10b981 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientTextFlow 5s ease infinite;
+}
+
+@keyframes gradientTextFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Soft Skills Badge */
+.soft-skill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+  border: 1px solid rgba(0, 245, 255, 0.3);
+  border-radius: 100px;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 20px rgba(0, 245, 255, 0.1);
+}
+
+.soft-skill-badge:hover {
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+  border-color: rgba(0, 245, 255, 0.6);
+  box-shadow: 
+    0 0 30px rgba(0, 245, 255, 0.4),
+    0 0 60px rgba(168, 85, 247, 0.2);
+  transform: scale(1.05) translateY(-2px);
+}
+
+.soft-skill-icon {
+  font-size: 1rem;
+  background: linear-gradient(135deg, #00f5ff 0%, #a855f7 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: iconSpin 4s linear infinite;
+}
+
+@keyframes iconSpin {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+}
+
+/* Skill Category Line Animation */
+.skill-category-line {
+  animation: linePulse 3s ease-in-out infinite;
+}
+
+@keyframes linePulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+}
