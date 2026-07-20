@@ -960,12 +960,12 @@ html {
   50% { text-shadow: 0 0 30px rgba(0, 245, 255, 0.8), 0 0 60px rgba(168, 85, 247, 0.5); }
 }
 
-/* Advanced Skill Card - With Rotating Gradient Border */
+/* Skill Card - Advanced Design - Always Animated */
 .skill-card {
   position: relative;
   width: 100%;
   min-height: 140px;
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%);
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
   border-radius: 20px;
   padding: 1.5rem 1rem;
   display: flex;
@@ -973,76 +973,48 @@ html {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  border: 1px solid transparent;
+  border: 1px solid rgba(148, 163, 184, 0.2);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
   cursor: pointer;
-  isolation: isolate;
+  box-shadow: 
+    0 4px 20px rgba(0, 245, 255, 0.1),
+    0 8px 30px rgba(168, 85, 247, 0.08),
+    0 12px 40px rgba(236, 72, 153, 0.05);
 }
 
-/* Rotating Gradient Border Effect */
 .skill-card::before {
   content: '';
   position: absolute;
-  inset: -2px;
+  inset: 0;
   border-radius: inherit;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0%,
-    #00f5ff 10%,
-    transparent 20%,
-    transparent 40%,
-    #a855f7 50%,
-    transparent 60%,
-    transparent 80%,
-    #ec4899 90%,
-    transparent 100%
-  );
-  animation: rotateBorder 4s linear infinite;
-  z-index: -2;
-  filter: blur(2px);
+  padding: 2px;
+  background: linear-gradient(135deg, #00f5ff 0%, #a855f7 25%, #ec4899 50%, #fb923c 75%, #10b981 100%);
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.6;
+  animation: borderGradient 4s ease infinite;
 }
 
-/* Inner darker border */
-.skill-card::after {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: conic-gradient(
-    from 60deg,
-    #0a0118 0%,
-    #3b82f6 8%,
-    #0a0118 16%,
-    #0a0118 40%,
-    #a855f7 50%,
-    #0a0118 58%,
-    #0a0118 82%,
-    #ec4899 90%,
-    #0a0118 98%
-  );
-  animation: rotateBorder 4s 0.5s linear infinite;
-  z-index: -1;
-  filter: blur(1px);
+@keyframes borderGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
-@keyframes rotateBorder {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.skill-card:hover::before,
-.skill-card:hover::after {
-  animation-duration: 2s;
+.skill-card:hover::before {
+  opacity: 1;
+  padding: 2px;
 }
 
 .skill-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 1) 100%);
+  transform: translateY(-12px) scale(1.05);
+  background: linear-gradient(135deg, rgba(30, 41, 59, 1) 0%, rgba(15, 23, 42, 1) 100%);
   box-shadow: 
-    0 10px 40px rgba(0, 245, 255, 0.3),
-    0 20px 60px rgba(168, 85, 247, 0.2),
-    0 30px 80px rgba(236, 72, 153, 0.15);
+    0 15px 50px rgba(0, 245, 255, 0.3),
+    0 25px 70px rgba(168, 85, 247, 0.25),
+    0 35px 90px rgba(236, 72, 153, 0.2);
 }
 
 /* Skill Icon Wrapper */
@@ -1055,54 +1027,61 @@ html {
   justify-content: center;
 }
 
+/* Skill Icon - Always Glowing */
 .skill-icon {
   position: relative;
   z-index: 2;
-  color: #94a3b8;
+  color: #00f5ff;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: drop-shadow(0 0 8px rgba(148, 163, 184, 0.3));
+  filter: drop-shadow(0 0 10px rgba(0, 245, 255, 0.5));
+  animation: iconFloatIdle 3s ease-in-out infinite;
+}
+
+@keyframes iconFloatIdle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 
 .skill-card:hover .skill-icon {
-  color: #00f5ff;
-  transform: scale(1.15) rotate(5deg);
+  color: #ffffff;
+  transform: scale(1.2) rotate(5deg);
   filter: 
-    drop-shadow(0 0 15px rgba(0, 245, 255, 0.8))
-    drop-shadow(0 0 30px rgba(168, 85, 247, 0.5));
+    drop-shadow(0 0 20px rgba(0, 245, 255, 1))
+    drop-shadow(0 0 40px rgba(168, 85, 247, 0.7));
   animation: iconFloat 2s ease-in-out infinite;
 }
 
 @keyframes iconFloat {
-  0%, 100% { transform: scale(1.15) rotate(5deg) translateY(0); }
-  50% { transform: scale(1.15) rotate(-5deg) translateY(-5px); }
+  0%, 100% { transform: scale(1.2) rotate(5deg) translateY(0); }
+  50% { transform: scale(1.2) rotate(-5deg) translateY(-8px); }
 }
 
-/* Skill Glow Effect */
+/* Skill Glow Effect - Always Active */
 .skill-glow {
   position: absolute;
   inset: -20px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 245, 255, 0.4) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
+  background: radial-gradient(circle, rgba(0, 245, 255, 0.3) 0%, transparent 70%);
+  opacity: 0.5;
   animation: glowPulse 3s ease-in-out infinite;
   pointer-events: none;
 }
 
 .skill-card:hover .skill-glow {
   opacity: 1;
+  background: radial-gradient(circle, rgba(0, 245, 255, 0.5) 0%, rgba(168, 85, 247, 0.3) 50%, transparent 70%);
 }
 
 @keyframes glowPulse {
-  0%, 100% { transform: scale(1); opacity: 0.4; }
-  50% { transform: scale(1.2); opacity: 0.6; }
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 0.7; }
 }
 
-/* Skill Name */
+/* Skill Name - Always Colored */
 .skill-name {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #94a3b8;
+  color: #cbd5e1;
   text-align: center;
   transition: all 0.4s ease;
   position: relative;
@@ -1112,7 +1091,8 @@ html {
 
 .skill-card:hover .skill-name {
   color: #ffffff;
-  text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+  text-shadow: 0 0 15px rgba(0, 245, 255, 0.8);
+  transform: scale(1.05);
 }
 
 /* Animated Gradient Text */
@@ -1181,10 +1161,197 @@ html {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   GRID BACKGROUND & ROTATING BORDER CARDS
+   ROTATING BORDER ANIMATION (Conic Gradient)
    ═══════════════════════════════════════════════════════════ */
 
-/* Animated Grid Background */
+/* Wrapper for cards with rotating border */
+.rotating-border-wrapper {
+  position: relative;
+  padding: 2px;
+  border-radius: 16px;
+  background: transparent;
+  overflow: visible;
+}
+
+/* Rotating border layers */
+.rotating-border-layer {
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Glow layer - outermost */
+.border-glow-layer {
+  inset: -10px;
+  filter: blur(30px);
+  opacity: 0.4;
+}
+
+.border-glow-layer::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(60deg);
+  width: 800px;
+  height: 800px;
+  background: conic-gradient(
+    #000,
+    #00f5ff 5%,
+    #000 14%,
+    #000 50%,
+    #a855f7 60%,
+    #000 69%,
+    #000 100%
+  );
+  animation: rotateBorder 4s linear infinite;
+}
+
+/* Dark border background */
+.border-dark-layer {
+  inset: -3px;
+  filter: blur(3px);
+}
+
+.border-dark-layer::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(82deg);
+  width: 800px;
+  height: 800px;
+  background: conic-gradient(
+    rgba(0, 0, 0, 0),
+    #18116a,
+    rgba(0, 0, 0, 0) 10%,
+    rgba(0, 0, 0, 0) 50%,
+    #6e1b60,
+    rgba(0, 0, 0, 0) 60%
+  );
+  animation: rotateBorder 4s 0.1s linear infinite;
+}
+
+/* White/bright layer */
+.border-white-layer {
+  inset: -2px;
+  filter: blur(2px);
+}
+
+.border-white-layer::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(83deg);
+  width: 800px;
+  height: 800px;
+  background: conic-gradient(
+    rgba(0, 0, 0, 0) 0%,
+    #a099d8,
+    rgba(0, 0, 0, 0) 8%,
+    rgba(0, 0, 0, 0) 50%,
+    #dfa2da,
+    rgba(0, 0, 0, 0) 58%
+  );
+  filter: brightness(1.4);
+  animation: rotateBorder 4s 0.2s linear infinite;
+}
+
+/* Main border layer */
+.border-main-layer {
+  inset: -1px;
+  filter: blur(0.5px);
+}
+
+.border-main-layer::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(70deg);
+  width: 800px;
+  height: 800px;
+  background: conic-gradient(
+    #1c191c,
+    #402fb5 5%,
+    #1c191c 14%,
+    #1c191c 50%,
+    #cf30aa 60%,
+    #1c191c 64%
+  );
+  filter: brightness(1.3);
+  animation: rotateBorder 4s 0.3s linear infinite;
+}
+
+@keyframes rotateBorder {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Hover effects - speed up rotation */
+.rotating-border-wrapper:hover .border-glow-layer::before,
+.rotating-border-wrapper:hover .border-dark-layer::before,
+.rotating-border-wrapper:hover .border-white-layer::before,
+.rotating-border-wrapper:hover .border-main-layer::before {
+  animation-duration: 2s;
+}
+
+/* Card content inside rotating border */
+.rotating-border-content {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
+  border-radius: 14px;
+  padding: 1.5rem;
+  height: 100%;
+}
+
+/* Apply to About cards */
+.about-card-rotating {
+  position: relative;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.about-card-rotating .rotating-border-content {
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Project cards with rotating border */
+.project-card-rotating {
+  position: relative;
+  background: transparent !important;
+  border: none !important;
+}
+
+.project-card-rotating .rotating-border-content {
+  padding: 2rem;
+}
+
+/* Education cards with rotating border */
+.education-card-rotating {
+  position: relative;
+  background: transparent !important;
+  border: none !important;
+}
+
+.education-card-rotating .rotating-border-content {
+  padding: 1.5rem;
+}
+
+/* Grid background for futuristic effect */
 .grid-background {
   position: absolute;
   inset: 0;
@@ -1193,131 +1360,24 @@ html {
     linear-gradient(to bottom, rgba(15, 15, 16, 0.3) 1px, transparent 1px);
   background-size: 1rem 1rem;
   background-position: center center;
-  z-index: 0;
+  z-index: -2;
   filter: blur(0.5px);
   opacity: 0.5;
   pointer-events: none;
 }
 
-/* Rotating Border Card - Reusable */
-.rotating-border-card {
-  position: relative;
-  background: linear-gradient(180deg, #161329, #0a0118, #1d1b4b);
-  border-radius: 16px;
-  padding: 1.5rem;
-  isolation: isolate;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+/* Pulse animation on hover for extra effect */
+@keyframes borderPulse {
+  0%, 100% {
+    opacity: 0.4;
+    filter: blur(30px);
+  }
+  50% {
+    opacity: 0.6;
+    filter: blur(35px);
+  }
 }
 
-.rotating-border-card::before {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border-radius: inherit;
-  background: conic-gradient(
-    from 0deg,
-    rgba(0, 0, 0, 0) 0%,
-    #00f5ff 8%,
-    rgba(0, 0, 0, 0) 18%,
-    rgba(0, 0, 0, 0) 48%,
-    #a855f7 58%,
-    rgba(0, 0, 0, 0) 68%,
-    rgba(0, 0, 0, 0) 88%,
-    #ec4899 98%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  animation: rotateBorder 6s linear infinite;
-  filter: blur(4px);
-  opacity: 0.6;
-  z-index: -2;
-}
-
-.rotating-border-card::after {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  background: conic-gradient(
-    from 90deg,
-    #0a0118 0%,
-    #3b82f6 10%,
-    #0a0118 20%,
-    #0a0118 45%,
-    #a855f7 55%,
-    #0a0118 65%,
-    #0a0118 85%,
-    #ec4899 95%,
-    #0a0118 100%
-  );
-  animation: rotateBorder 6s 1s linear infinite;
-  filter: blur(2px);
-  z-index: -1;
-}
-
-.rotating-border-card:hover::before,
-.rotating-border-card:hover::after {
-  animation-duration: 3s;
-}
-
-.rotating-border-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 
-    0 10px 40px rgba(0, 245, 255, 0.25),
-    0 20px 60px rgba(168, 85, 247, 0.2),
-    0 30px 80px rgba(236, 72, 153, 0.15);
-}
-
-/* White/Light border variant for special emphasis */
-.rotating-border-card.variant-white::before {
-  background: conic-gradient(
-    from 83deg,
-    rgba(0, 0, 0, 0) 0%,
-    #a099d8 5%,
-    rgba(0, 0, 0, 0) 13%,
-    rgba(0, 0, 0, 0) 50%,
-    #dfa2da 58%,
-    rgba(0, 0, 0, 0) 66%
-  );
-  filter: blur(3px) brightness(1.4);
-}
-
-/* Glow effect for cards */
-.card-outer-glow {
-  position: absolute;
-  inset: -20px;
-  border-radius: inherit;
-  background: conic-gradient(
-    from 60deg,
-    #000 0%,
-    #3b82f6 8%,
-    #000 38%,
-    #000 50%,
-    #a855f7 60%,
-    #000 87%
-  );
-  filter: blur(30px);
-  opacity: 0.3;
-  animation: rotateBorder 6s 1.5s linear infinite;
-  z-index: -3;
-  pointer-events: none;
-}
-
-/* Pink accent mask (optional decorative element) */
-.pink-mask {
-  pointer-events: none;
-  width: 30px;
-  height: 20px;
-  position: absolute;
-  background: #ec4899;
-  top: 10px;
-  left: 10px;
-  filter: blur(20px);
-  opacity: 0.6;
-  transition: all 2s ease;
-}
-
-.rotating-border-card:hover .pink-mask {
-  opacity: 0;
-  transform: translateX(100px);
+.rotating-border-wrapper:hover .border-glow-layer {
+  animation: borderPulse 2s ease-in-out infinite;
 }
