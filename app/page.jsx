@@ -468,9 +468,6 @@ const SkillsSection = () => {
           <SkillCategory title="AI/ML & Libraries" skillList={skills.aiml} delay={0.1} />
           <SkillCategory title="Web & Frameworks" skillList={skills.webFrameworks} delay={0.2} />
           <SkillCategory title="Tools & Platforms" skillList={skills.tools} delay={0.3} />
-            skillList={skills.webFrameworks}
-          />
-          <SkillCategory title="Tools & Platforms" skillList={skills.tools} />
         </div>
 
         {/* Soft Skills - Enhanced Design */}
@@ -510,8 +507,6 @@ const SkillsSection = () => {
                 {skill}
               </motion.span>
             ))}
-          </div>
-        </motion.div>
           </div>
         </motion.div>
       </div>
