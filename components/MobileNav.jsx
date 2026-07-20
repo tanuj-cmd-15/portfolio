@@ -43,7 +43,7 @@ const MobileNav = () => {
                 href={link.path}
                 key={index}
                 onClick={(e) => handleClick(e, link.path)}
-                className="text-xl capitalize hover:text-accent transition-all cursor-pointer"
+                className="nav-btn text-xl"
               >
                 {link.name}
               </a>

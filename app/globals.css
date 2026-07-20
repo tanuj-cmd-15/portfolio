@@ -512,3 +512,330 @@ html {
   border-radius: 2px;
   box-shadow: 0 0 10px rgba(207, 220, 219, 0.5);
 }
+
+/* ═══════════════════════════════════════════════════════════
+   ADVANCED BUTTON & TEXT ANIMATIONS
+   ═══════════════════════════════════════════════════════════ */
+
+/* Animated Button with Expanding Circle Effect */
+.animated-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 36px;
+  border: 4px solid;
+  border-color: transparent;
+  font-size: 16px;
+  background-color: inherit;
+  border-radius: 100px;
+  font-weight: 600;
+  color: #cfdcdb;
+  box-shadow: 0 0 0 2px #cfdcdb;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button svg {
+  position: absolute;
+  width: 24px;
+  fill: #cfdcdb;
+  z-index: 9;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .arr-1 {
+  right: 16px;
+}
+
+.animated-button .arr-2 {
+  left: -25%;
+}
+
+.animated-button .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: #cfdcdb;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .text {
+  position: relative;
+  z-index: 1;
+  transform: translateX(-12px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button:hover {
+  box-shadow: 0 0 0 12px transparent;
+  color: #0e1116;
+  border-radius: 12px;
+}
+
+.animated-button:hover .arr-1 {
+  right: -25%;
+}
+
+.animated-button:hover .arr-2 {
+  left: 16px;
+}
+
+.animated-button:hover .text {
+  transform: translateX(12px);
+}
+
+.animated-button:hover svg {
+  fill: #0e1116;
+}
+
+.animated-button:active {
+  scale: 0.95;
+  box-shadow: 0 0 0 4px #cfdcdb;
+}
+
+.animated-button:hover .circle {
+  width: 220px;
+  height: 220px;
+  opacity: 1;
+}
+
+/* Animated Name with Moving Boxes */
+.animated-name {
+  position: relative;
+  display: inline-block;
+}
+
+.banter-loader {
+  display: inline-grid;
+  grid-template-columns: repeat(3, 8px);
+  gap: 3px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.banter-loader__box {
+  width: 8px;
+  height: 8px;
+  background: #cfdcdb;
+  border-radius: 2px;
+}
+
+@keyframes moveBox-1 {
+  9.09% { transform: translate(-11px, 0); }
+  18.18% { transform: translate(0px, 0); }
+  27.27% { transform: translate(0px, 0); }
+  36.36% { transform: translate(11px, 0); }
+  45.45% { transform: translate(11px, 11px); }
+  54.55% { transform: translate(11px, 11px); }
+  63.64% { transform: translate(11px, 11px); }
+  72.73% { transform: translate(11px, 0px); }
+  81.82% { transform: translate(0px, 0px); }
+  90.91% { transform: translate(-11px, 0px); }
+  100% { transform: translate(0px, 0px); }
+}
+
+.banter-loader__box:nth-child(1) {
+  animation: moveBox-1 4s infinite;
+}
+
+@keyframes moveBox-2 {
+  9.09% { transform: translate(0, 0); }
+  18.18% { transform: translate(11px, 0); }
+  27.27% { transform: translate(0px, 0); }
+  36.36% { transform: translate(11px, 0); }
+  45.45% { transform: translate(11px, 11px); }
+  54.55% { transform: translate(11px, 11px); }
+  63.64% { transform: translate(11px, 11px); }
+  72.73% { transform: translate(11px, 11px); }
+  81.82% { transform: translate(0px, 11px); }
+  90.91% { transform: translate(0px, 11px); }
+  100% { transform: translate(0px, 0px); }
+}
+
+.banter-loader__box:nth-child(2) {
+  animation: moveBox-2 4s infinite;
+}
+
+@keyframes moveBox-3 {
+  9.09% { transform: translate(-11px, 0); }
+  18.18% { transform: translate(-11px, 0); }
+  27.27% { transform: translate(0px, 0); }
+  36.36% { transform: translate(-11px, 0); }
+  45.45% { transform: translate(-11px, 0); }
+  54.55% { transform: translate(-11px, 0); }
+  63.64% { transform: translate(-11px, 0); }
+  72.73% { transform: translate(-11px, 0); }
+  81.82% { transform: translate(-11px, -11px); }
+  90.91% { transform: translate(0px, -11px); }
+  100% { transform: translate(0px, 0px); }
+}
+
+.banter-loader__box:nth-child(3) {
+  animation: moveBox-3 4s infinite;
+}
+
+@keyframes moveBox-4 {
+  9.09% { transform: translate(-11px, 0); }
+  18.18% { transform: translate(-11px, 0); }
+  27.27% { transform: translate(-11px, -11px); }
+  36.36% { transform: translate(0px, -11px); }
+  45.45% { transform: translate(0px, 0px); }
+  54.55% { transform: translate(0px, -11px); }
+  63.64% { transform: translate(0px, -11px); }
+  72.73% { transform: translate(0px, -11px); }
+  81.82% { transform: translate(-11px, -11px); }
+  90.91% { transform: translate(-11px, 0px); }
+  100% { transform: translate(0px, 0px); }
+}
+
+.banter-loader__box:nth-child(4) {
+  animation: moveBox-4 4s infinite;
+}
+
+@keyframes moveBox-5 {
+  9.09% { transform: translate(0, 0); }
+  18.18% { transform: translate(0, 0); }
+  27.27% { transform: translate(0, 0); }
+  36.36% { transform: translate(11px, 0); }
+  45.45% { transform: translate(11px, 0); }
+  54.55% { transform: translate(11px, 0); }
+  63.64% { transform: translate(11px, 0); }
+  72.73% { transform: translate(11px, 0); }
+  81.82% { transform: translate(11px, -11px); }
+  90.91% { transform: translate(0px, -11px); }
+  100% { transform: translate(0px, 0px); }
+}
+
+.banter-loader__box:nth-child(5) {
+  animation: moveBox-5 4s infinite;
+}
+
+@keyframes moveBox-6 {
+  9.09% { transform: translate(0, 0); }
+  18.18% { transform: translate(-11px, 0); }
+  27.27% { transform: translate(-11px, 0); }
+  36.36% { transform: translate(0px, 0); }
+  45.45% { transform: translate(0px, 0); }
+  54.55% { transform: translate(0px, 0); }
+  63.64% { transform: translate(0px, 0); }
+  72.73% { transform: translate(0px, 11px); }
+  81.82% { transform: translate(-11px, 11px); }
+  90.91% { transform: translate(-11px, 0px); }
+  100% { transform: translate(0px, 0px); }
+}
+
+.banter-loader__box:nth-child(6) {
+  animation: moveBox-6 4s infinite;
+}
+
+@keyframes moveBox-7 {
+  9.09% { transform: translate(11px, 0); }
+  18.18% { transform: translate(11px, 0); }
+  27.27% { transform: translate(11px, 0); }
+  36.36% { transform: translate(0px, 0); }
+  45.45% { transform: translate(0px, -11px); }
+  54.55% { transform: translate(11px, -11px); }
+  63.64% { transform: translate(0px, -11px); }
+  72.73% { transform: translate(0px, -11px); }
+  81.82% { transform: translate(0px, 0px); }
+  90.91% { transform: translate(11px, 0px); }
+  100% { transform: translate(0px, 0px); }
+}
+
+.banter-loader__box:nth-child(7) {
+  animation: moveBox-7 4s infinite;
+}
+
+@keyframes moveBox-8 {
+  9.09% { transform: translate(0, 0); }
+  18.18% { transform: translate(-11px, 0); }
+  27.27% { transform: translate(-11px, -11px); }
+  36.36% { transform: translate(0px, -11px); }
+  45.45% { transform: translate(0px, -11px); }
+  54.55% { transform: translate(0px, -11px); }
+  63.64% { transform: translate(0px, -11px); }
+  72.73% { transform: translate(0px, -11px); }
+  81.82% { transform: translate(11px, -11px); }
+  90.91% { transform: translate(11px, 0px); }
+  100% { transform: translate(0px, 0px); }
+}
+
+.banter-loader__box:nth-child(8) {
+  animation: moveBox-8 4s infinite;
+}
+
+@keyframes moveBox-9 {
+  9.09% { transform: translate(-11px, 0); }
+  18.18% { transform: translate(-11px, 0); }
+  27.27% { transform: translate(0px, 0); }
+  36.36% { transform: translate(-11px, 0); }
+  45.45% { transform: translate(0px, 0); }
+  54.55% { transform: translate(0px, 0); }
+  63.64% { transform: translate(-11px, 0); }
+  72.73% { transform: translate(-11px, 0); }
+  81.82% { transform: translate(-22px, 0); }
+  90.91% { transform: translate(-11px, 0); }
+  100% { transform: translate(0px, 0); }
+}
+
+.banter-loader__box:nth-child(9) {
+  animation: moveBox-9 4s infinite;
+}
+
+/* Animated Nav Button with Fill Effect */
+.nav-btn {
+  font-size: 17px;
+  background: transparent;
+  border: none;
+  padding: 0.5em 1em;
+  color: #cfdcdb;
+  text-transform: capitalize;
+  position: relative;
+  transition: 0.5s ease;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.nav-btn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background-color: #cfdcdb;
+  transition: 0.5s ease;
+}
+
+.nav-btn:hover {
+  color: #0e1116;
+  transition-delay: 0.5s;
+}
+
+.nav-btn:hover::before {
+  width: 100%;
+}
+
+.nav-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 0;
+  width: 100%;
+  background-color: #cfdcdb;
+  transition: 0.4s ease;
+  z-index: -1;
+}
+
+.nav-btn:hover::after {
+  height: 100%;
+  transition-delay: 0.4s;
+}

@@ -28,7 +28,7 @@ const Nav = () => {
             href={link.path}
             key={index}
             onClick={(e) => handleClick(e, link.path)}
-            className="capitalize font-medium hover:text-accent transition-all cursor-pointer"
+            className="nav-btn"
           >
             {link.name}
           </a>

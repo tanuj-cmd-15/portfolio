@@ -273,7 +273,20 @@ const HeroSection = () => {
             <h1 className="h1 mb-6">
               Hello I&apos;m
               <br />{" "}
-              <span className="text-accent">Tushar Pawar</span>
+              <span className="text-accent animated-name">
+                Tushar Pawar
+                <span className="banter-loader">
+                  <span className="banter-loader__box"></span>
+                  <span className="banter-loader__box"></span>
+                  <span className="banter-loader__box"></span>
+                  <span className="banter-loader__box"></span>
+                  <span className="banter-loader__box"></span>
+                  <span className="banter-loader__box"></span>
+                  <span className="banter-loader__box"></span>
+                  <span className="banter-loader__box"></span>
+                  <span className="banter-loader__box"></span>
+                </span>
+              </span>
             </h1>
             <p className="max-w-[540px] mb-9 text-slate text-base leading-relaxed">
               M.Tech (CGPA 9.15) candidate specializing in Deep Learning and
@@ -286,14 +299,24 @@ const HeroSection = () => {
             {/* Buttons and socials */}
             <div className="flex flex-col xl:flex-row items-center gap-8">
               <a href="#contact">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="uppercase flex items-center gap-2"
-                >
-                  <span>Get In Touch</span>
-                  <FiDownload className="text-xl" />
-                </Button>
+                <button className="animated-button">
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="arr-2"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                  </svg>
+                  <span className="text">Hire Me</span>
+                  <span className="circle"></span>
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="arr-1"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                  </svg>
+                </button>
               </a>
 
               <div className="mb-8 xl:mb-0">
