@@ -55,18 +55,25 @@ export default function ParticleGalaxy() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         
-        // Vibrant gradient stars
+        // Multi-color gradient stars
         const colorPhase = this.twinklePhase;
-        const r = 0 + Math.sin(colorPhase) * 100;
-        const g = 217 + Math.sin(colorPhase + 2) * 38;
-        const b = 255;
-        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${this.opacity})`;
+        const colors = [
+          { r: 0, g: 245, b: 255 },    // cyan
+          { r: 168, g: 85, b: 247 },   // purple
+          { r: 236, g: 72, b: 153 },   // pink
+          { r: 251, g: 146, b: 60 },   // orange
+          { r: 16, g: 185, b: 129 }    // green
+        ];
+        const idx = Math.floor(Math.abs(Math.sin(colorPhase)) * colors.length) % colors.length;
+        const color = colors[idx];
+        
+        ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${this.opacity})`;
         ctx.fill();
         
-        // Enhanced glow for larger stars
+        // Enhanced rainbow glow
         if (this.size > 1) {
-          ctx.shadowBlur = 8;
-          ctx.shadowColor = `rgba(${r}, ${g}, ${b}, ${this.opacity * 0.8})`;
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = `rgba(${color.r}, ${color.g}, ${color.b}, ${this.opacity * 0.8})`;
           ctx.fill();
           ctx.shadowBlur = 0;
         }
@@ -98,13 +105,15 @@ export default function ParticleGalaxy() {
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 2);
-        gradient.addColorStop(0, `rgba(0, 217, 255, ${this.opacity})`);
-        gradient.addColorStop(0.5, `rgba(199, 125, 255, ${this.opacity * 0.8})`);
-        gradient.addColorStop(1, `rgba(255, 110, 199, ${this.opacity * 0.5})`);
+        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 3);
+        gradient.addColorStop(0, `rgba(0, 245, 255, ${this.opacity})`);
+        gradient.addColorStop(0.25, `rgba(168, 85, 247, ${this.opacity * 0.9})`);
+        gradient.addColorStop(0.5, `rgba(236, 72, 153, ${this.opacity * 0.7})`);
+        gradient.addColorStop(0.75, `rgba(251, 146, 60, ${this.opacity * 0.5})`);
+        gradient.addColorStop(1, `rgba(16, 185, 129, ${this.opacity * 0.3})`);
         ctx.fillStyle = gradient;
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = `rgba(0, 217, 255, ${this.opacity})`;
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = `rgba(0, 245, 255, ${this.opacity * 0.8})`;
         ctx.fill();
         ctx.shadowBlur = 0;
       }
