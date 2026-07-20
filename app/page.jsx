@@ -367,19 +367,24 @@ const AboutSection = () => {
           </motion.div>
 
           {/* Info Grid */}
-          <motion.div className="xl:w-1/2" {...fadeInRight}>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
+          <motion.div className="xl:w-1/2 relative" {...fadeInRight}>
+            {/* Grid background */}
+            <div className="grid-background"></div>
+            
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 relative z-10">
               {aboutInfo.map((item, index) => (
                 <motion.li
                   key={index}
-                  className="flex flex-col gap-1 p-4 rounded-xl bg-charcoal/50 border border-steel/20 hover:border-steel/50 transition-colors duration-300"
+                  className="rotating-border-card flex flex-col gap-2"
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
+                  style={{ animationDelay: `${index * 0.3}s` }}
                 >
-                  <span className="text-steel text-sm">{item.fieldName}</span>
-                  <span className="text-accent text-base">
+                  <div className="pink-mask"></div>
+                  <span className="text-slate text-xs uppercase tracking-wider font-semibold opacity-70">{item.fieldName}</span>
+                  <span className="text-white text-base font-semibold">
                     {item.fieldValue}
                   </span>
                 </motion.li>
