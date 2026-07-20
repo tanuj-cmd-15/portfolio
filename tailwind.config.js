@@ -25,14 +25,31 @@ module.exports = {
     extend: {
 
       colors:{
-        primary: "#0e1116",
+        primary: "#0a0e27",
+        secondary: "#1a1f3a",
         accent:{
-          DEFAULT:"#cfdcdb",
-          hover: "#80909b"
+          DEFAULT:"#00d9ff",
+          hover: "#00b8d4",
+          light: "#5ce1e6"
         },
-        slate: "#80909b",
-        steel: "#4b5a66",
-        charcoal: "#29343e",
+        purple: {
+          DEFAULT: "#c77dff",
+          dark: "#9d4edd",
+          light: "#e0aaff"
+        },
+        pink: {
+          DEFAULT: "#ff6ec7",
+          light: "#ff9eda"
+        },
+        blue: {
+          DEFAULT: "#4361ee",
+          dark: "#3a0ca3",
+          light: "#7209b7"
+        },
+        slate: "#94a3b8",
+        steel: "#475569",
+        charcoal: "#1e293b",
+        dark: "#0f172a",
       },
 
       keyframes: {

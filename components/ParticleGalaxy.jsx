@@ -55,15 +55,18 @@ export default function ParticleGalaxy() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         
-        // Elegant white stars with subtle blue tint
-        const blueShift = Math.sin(this.twinklePhase) * 20;
-        ctx.fillStyle = `rgba(${220 + blueShift}, ${230 + blueShift}, 255, ${this.opacity})`;
+        // Vibrant gradient stars
+        const colorPhase = this.twinklePhase;
+        const r = 0 + Math.sin(colorPhase) * 100;
+        const g = 217 + Math.sin(colorPhase + 2) * 38;
+        const b = 255;
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${this.opacity})`;
         ctx.fill();
         
-        // Soft glow for larger stars
+        // Enhanced glow for larger stars
         if (this.size > 1) {
-          ctx.shadowBlur = 4;
-          ctx.shadowColor = `rgba(207, 220, 219, ${this.opacity * 0.5})`;
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = `rgba(${r}, ${g}, ${b}, ${this.opacity * 0.8})`;
           ctx.fill();
           ctx.shadowBlur = 0;
         }
@@ -95,9 +98,13 @@ export default function ParticleGalaxy() {
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(207, 220, 219, ${this.opacity})`;
-        ctx.shadowBlur = 12;
-        ctx.shadowColor = `rgba(207, 220, 219, ${this.opacity * 0.8})`;
+        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 2);
+        gradient.addColorStop(0, `rgba(0, 217, 255, ${this.opacity})`);
+        gradient.addColorStop(0.5, `rgba(199, 125, 255, ${this.opacity * 0.8})`);
+        gradient.addColorStop(1, `rgba(255, 110, 199, ${this.opacity * 0.5})`);
+        ctx.fillStyle = gradient;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = `rgba(0, 217, 255, ${this.opacity})`;
         ctx.fill();
         ctx.shadowBlur = 0;
       }
