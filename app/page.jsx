@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 import Photo from "@/components/Photo";
 import Social from "@/components/Social";
 import Stats from "@/components/Stats";
@@ -636,6 +637,7 @@ const EducationSection = () => {
 /* ── 6. CONTACT ── */
 const ContactSection = () => {
   const [state, handleSubmit] = useForm("myzgzjwz");
+  const [selectedService, setSelectedService] = useState("");
 
   if (state.succeeded) {
     return (
@@ -741,7 +743,8 @@ const ContactSection = () => {
               </div>
 
               {/* Select */}
-              <Select name="service" required>
+              <input type="hidden" name="service" value={selectedService} />
+              <Select name="service-display" required onValueChange={(value) => setSelectedService(value)}>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="What are you looking for?" />
                 </SelectTrigger>
@@ -787,9 +790,16 @@ const ContactSection = () => {
                   className="w-full md:w-1/2 h-12"
                   disabled={state.submitting}
                 >
-                  Send Message
+                  {state.submitting ? "Sending..." : "Send Message"}
                 </Button>
               </div>
+              
+              {/* Error message */}
+              {state.errors && state.errors.length > 0 && (
+                <div className="text-red-500 text-sm text-center">
+                  Oops! There was an error submitting the form. Please try again.
+                </div>
+              )}
             </form>
           </div>
 
