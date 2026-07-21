@@ -124,6 +124,15 @@ const projects = [
   },
   {
     num: "03",
+    title: "Artsoll Website — UI/UX Case Study",
+    description:
+      "Designed an intuitive art e-commerce platform bridging artists and art enthusiasts with a minimalist interface that lets artwork be the primary focus. Implemented distraction-free gallery grids, interactive artwork views with room-preview context, and streamlined checkout with authenticity certification badges.",
+    stack: ["Figma", "Adobe CC", "UI/UX Design", "Prototyping"],
+    github: "https://www.behance.net/gallery/156272515/Artsoll-Website",
+    highlights: ["Minimalist art gallery", "Enhanced visual storytelling", "Seamless navigation"],
+  },
+  {
+    num: "04",
     title: "OCR Document Intelligence System",
     description:
       "Developed an end-to-end OCR pipeline utilizing OpenCV for advanced image preprocessing (noise reduction, binarization, deskewing), improving text extraction accuracy by 25% on low-quality scanned documents. Engineered a high-performance backend with FastAPI and optimized PostgreSQL CRUD operations.",
@@ -132,7 +141,7 @@ const projects = [
     highlights: ["25% accuracy improvement", "Reduced latency", "Automated workflows"],
   },
   {
-    num: "04",
+    num: "05",
     title: "Audio Deepfake Detection (SwarParikshak)",
     description:
       "Built a CNN-BiLSTM-Attention model fusing LFCC and Mel-spectrogram features → reduced Equal Error Rate to 0.91% and hit 98.77% validation accuracy. Benchmarked 34,700+ TTS-generated audio files (43.8 hrs, 11 engines) across Marathi, Hindi, and Bengali.",
@@ -511,15 +520,42 @@ const SkillsSection = () => {
 };
 
 /* ── 4. PROJECTS - VERTICAL CARDS SLIDER ── */
+
+/* Infinite Scroll Gallery Component for Portfolio Previews */
+const InfiniteScrollGallery = ({ images, direction = "left" }) => {
+  return (
+    <div className="overflow-hidden py-8">
+      <div 
+        className={`flex gap-6 ${direction === "left" ? "animate-scroll-left" : "animate-scroll-right"}`}
+        style={{ width: "max-content" }}
+      >
+        {/* Duplicate images for seamless loop */}
+        {[...images, ...images].map((img, index) => (
+          <div
+            key={index}
+            className="flex-shrink-0 w-[400px] h-[280px] bg-[#252941] rounded-lg overflow-hidden border border-white/10 hover:border-white/30 transition-all duration-500 hover:scale-110 hover:z-10 relative group"
+          >
+            <img 
+              src={img} 
+              alt={`Preview ${index + 1}`}
+              className="w-full h-full object-cover transition-transform duration-500"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const ProjectsSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const cardsToShow = 4;
   
-  // Add 5th project (AI Interview Platform) with custom color shades
+  // Add 6th project (AI Interview Platform) with custom color shades
   const allProjects = [
     ...projects,
     {
-      num: "05",
+      num: "06",
       title: "AI-Powered Interview Platform",
       description:
         "Built an AI recruitment platform with LLM-based semantic answer scoring and emotion detection for automated HR and technical interview evaluation. Built a resume-parsing ATS pipeline and JWT-secured REST APIs with WebSocket-based live feedback for real-time candidate assessment.",
@@ -533,10 +569,11 @@ const ProjectsSection = () => {
   // Update existing projects with custom color gradients
   allProjects[0].customGradient = "linear-gradient(135deg, #1a1d29 0%, #2d3142 100%)"; // Dark navy/charcoal
   allProjects[1].customGradient = "linear-gradient(135deg, #6B5B4F 0%, #9C8B7E 100%)"; // Beige/tan
-  allProjects[2].customGradient = "linear-gradient(135deg, #2C2416 0%, #3d3426 100%)"; // Dark brown
-  allProjects[3].customGradient = "linear-gradient(135deg, #4A3728 0%, #6B5447 100%)"; // Warm brown
+  allProjects[2].customGradient = "linear-gradient(135deg, #8B5A8B 0%, #A67BA6 100%)"; // Purple/Mauve for UI/UX
+  allProjects[3].customGradient = "linear-gradient(135deg, #2C2416 0%, #3d3426 100%)"; // Dark brown
+  allProjects[4].customGradient = "linear-gradient(135deg, #4A3728 0%, #6B5447 100%)"; // Warm brown
 
-  const maxSlide = allProjects.length - cardsToShow; // For 5 projects: 5 - 4 = 1 (positions 0 and 1)
+  const maxSlide = allProjects.length - cardsToShow; // For 6 projects: 6 - 4 = 2 (positions 0, 1, 2)
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev >= maxSlide ? 0 : prev + 1));
@@ -683,6 +720,52 @@ const ProjectsSection = () => {
             ))}
           </div>
         </div>
+
+        {/* Artsoll UI/UX Portfolio Showcase - Infinite Scroll Gallery */}
+        <motion.div 
+          className="mt-24"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="text-center mb-12">
+            <h3 className="text-2xl md:text-3xl font-light text-white mb-4">
+              Artsoll UI/UX Portfolio Showcase
+            </h3>
+            <p className="text-white/60 text-sm font-light">
+              SCROLL
+            </p>
+          </div>
+
+          {/* First row - Scrolling Left */}
+          <InfiniteScrollGallery 
+            images={[
+              "/slider/101.png",
+              "/slider/102.png",
+              "/slider/103.png",
+              "/slider/104.png",
+              "/slider/106.png",
+              "/slider/107.png",
+              "/slider/108.png",
+            ]}
+            direction="left"
+          />
+
+          {/* Second row - Scrolling Right */}
+          <InfiniteScrollGallery 
+            images={[
+              "/slider/109.png",
+              "/slider/110.png",
+              "/slider/111.png",
+              "/slider/112.png",
+              "/slider/113.png",
+              "/slider/115.png",
+              "/slider/116.png",
+            ]}
+            direction="right"
+          />
+        </motion.div>
       </div>
     </section>
   );
@@ -867,7 +950,42 @@ const ContactSection = () => {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white text-center mb-6">
             Get In Touch
           </h2>
-          <div className="w-24 h-[1px] bg-white/20 mx-auto mb-16" />
+          <div className="w-24 h-[1px] bg-white/20 mx-auto mb-8" />
+          
+          {/* Connect with me - Social Icons */}
+          <div className="text-center mb-16">
+            <h3 className="text-xl font-light text-white/90 mb-6">Connect with me</h3>
+            <div className="flex justify-center gap-4">
+              <a 
+                href="https://github.com/tanuj-cmd-15" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-14 h-14 bg-[#252941] rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all duration-300 group"
+              >
+                <FaGithub className="text-2xl text-white/70 group-hover:text-white transition-colors" />
+              </a>
+              <a 
+                href="mailto:pawartushar8485@gmail.com"
+                className="w-14 h-14 bg-[#252941] rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all duration-300 group"
+              >
+                <FaEnvelope className="text-2xl text-white/70 group-hover:text-white transition-colors" />
+              </a>
+              <a 
+                href="tel:+918485833673"
+                className="w-14 h-14 bg-[#252941] rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all duration-300 group"
+              >
+                <FaPhoneAlt className="text-2xl text-white/70 group-hover:text-white transition-colors" />
+              </a>
+              <a 
+                href="https://maps.google.com/?q=Pune+Maharashtra+411007"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-14 h-14 bg-[#252941] rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all duration-300 group"
+              >
+                <FaMapMarkerAlt className="text-2xl text-white/70 group-hover:text-white transition-colors" />
+              </a>
+            </div>
+          </div>
         </motion.div>
 
         <motion.div
@@ -1015,39 +1133,6 @@ const ContactSection = () => {
                 </div>
               </li>
             </ul>
-
-            {/* Social Connect */}
-            <div className="mt-10">
-              <h4 className="text-lg font-light text-white mb-4">Connect with me</h4>
-              <div className="flex gap-4">
-                <a 
-                  href="https://github.com/tanuj-cmd-15" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 bg-[#252941] rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
-                >
-                  <FaGithub className="text-xl text-white" />
-                </a>
-                <a 
-                  href="mailto:pawartushar8485@gmail.com"
-                  className="w-12 h-12 bg-[#252941] rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
-                >
-                  <FaEnvelope className="text-xl text-white" />
-                </a>
-                <a 
-                  href="tel:+918485833673"
-                  className="w-12 h-12 bg-[#252941] rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
-                >
-                  <FaPhoneAlt className="text-xl text-white" />
-                </a>
-                <a 
-                  href="#"
-                  className="w-12 h-12 bg-[#252941] rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
-                >
-                  <FaMapMarkerAlt className="text-xl text-white" />
-                </a>
-              </div>
-            </div>
           </div>
         </motion.div>
       </div>

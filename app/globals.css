@@ -2654,3 +2654,57 @@ html {
     height: 240px;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   INFINITE SCROLL GALLERY - PORTFOLIO SHOWCASE
+   ═══════════════════════════════════════════════════════════ */
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 40s linear infinite;
+}
+
+.animate-scroll-right {
+  animation: scroll-right 40s linear infinite;
+}
+
+/* Pause on hover - when any image in the row is hovered */
+.animate-scroll-left:hover,
+.animate-scroll-right:hover {
+  animation-play-state: paused;
+}
+
+/* Individual image hover effect */
+.animate-scroll-left > div,
+.animate-scroll-right > div {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-scroll-left > div:hover,
+.animate-scroll-right > div:hover {
+  transform: scale(1.15);
+  z-index: 10;
+}
+
+/* Add shadow on hover for better depth */
+.animate-scroll-left > div:hover,
+.animate-scroll-right > div:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
