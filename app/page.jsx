@@ -721,7 +721,7 @@ const ProjectsSection = () => {
           </div>
         </div>
 
-        {/* Artsoll UI/UX Portfolio Showcase - Infinite Scroll Gallery */}
+        {/* Project Visuals - Infinite Scroll Gallery */}
         <motion.div 
           className="mt-24"
           initial={{ opacity: 0, y: 40 }}
@@ -731,7 +731,7 @@ const ProjectsSection = () => {
         >
           <div className="text-center mb-12">
             <h3 className="text-2xl md:text-3xl font-light text-white mb-4">
-              Artsoll UI/UX Portfolio Showcase
+              Project Visuals
             </h3>
             <p className="text-white/60 text-sm font-light">
               SCROLL
