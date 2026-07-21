@@ -2659,6 +2659,17 @@ html {
    INFINITE SCROLL GALLERY - PORTFOLIO SHOWCASE
    ═══════════════════════════════════════════════════════════ */
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 @keyframes scroll-left {
   0% {
     transform: translateX(0);
@@ -2707,4 +2718,13 @@ html {
 .animate-scroll-left > div:hover,
 .animate-scroll-right > div:hover {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* Cursor styles for dragging */
+.cursor-grab {
+  cursor: grab;
+}
+
+.cursor-grab:active {
+  cursor: grabbing;
 }

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import React from "react";
 import Photo from "@/components/Photo";
 import Social from "@/components/Social";
 import { Button } from "@/components/ui/button";
@@ -523,10 +524,52 @@ const SkillsSection = () => {
 
 /* Infinite Scroll Gallery Component for Portfolio Previews */
 const InfiniteScrollGallery = ({ images, direction = "left" }) => {
+  const scrollRef = React.useRef(null);
+  const [isDragging, setIsDragging] = React.useState(false);
+  const [startX, setStartX] = React.useState(0);
+  const [scrollLeft, setScrollLeft] = React.useState(0);
+
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setStartX(e.pageX - scrollRef.current.offsetLeft);
+    setScrollLeft(scrollRef.current.scrollLeft);
+    scrollRef.current.style.cursor = 'grabbing';
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+    if (scrollRef.current) {
+      scrollRef.current.style.cursor = 'grab';
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    if (scrollRef.current) {
+      scrollRef.current.style.cursor = 'grab';
+    }
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX) * 2; // Scroll speed multiplier
+    scrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+
   return (
-    <div className="overflow-hidden py-8">
+    <div 
+      ref={scrollRef}
+      className="overflow-x-auto py-8 cursor-grab scrollbar-hide"
+      onMouseDown={handleMouseDown}
+      onMouseLeave={handleMouseLeave}
+      onMouseUp={handleMouseUp}
+      onMouseMove={handleMouseMove}
+      style={{ scrollBehavior: isDragging ? 'auto' : 'smooth' }}
+    >
       <div 
-        className={`flex gap-6 ${direction === "left" ? "animate-scroll-left" : "animate-scroll-right"}`}
+        className={`flex gap-6 ${!isDragging ? (direction === "left" ? "animate-scroll-left" : "animate-scroll-right") : ""}`}
         style={{ width: "max-content" }}
       >
         {/* Duplicate images for seamless loop */}
@@ -534,11 +577,13 @@ const InfiniteScrollGallery = ({ images, direction = "left" }) => {
           <div
             key={index}
             className="flex-shrink-0 w-[400px] h-[280px] bg-[#252941] rounded-lg overflow-hidden border border-white/10 hover:border-white/30 transition-all duration-500 hover:scale-110 hover:z-10 relative group"
+            style={{ pointerEvents: isDragging ? 'none' : 'auto' }}
           >
             <img 
               src={img} 
               alt={`Preview ${index + 1}`}
-              className="w-full h-full object-cover transition-transform duration-500"
+              className="w-full h-full object-cover transition-transform duration-500 select-none"
+              draggable="false"
             />
           </div>
         ))}
@@ -748,13 +793,6 @@ const ProjectsSection = () => {
               "/slider/106.png",
               "/slider/107.png",
               "/slider/108.png",
-            ]}
-            direction="left"
-          />
-
-          {/* Second row - Scrolling Right */}
-          <InfiniteScrollGallery 
-            images={[
               "/slider/109.png",
               "/slider/110.png",
               "/slider/111.png",
@@ -762,6 +800,40 @@ const ProjectsSection = () => {
               "/slider/113.png",
               "/slider/115.png",
               "/slider/116.png",
+              "/slider/118.png",
+              "/slider/119.png",
+            ]}
+            direction="left"
+          />
+
+          {/* Second row - Scrolling Right */}
+          <InfiniteScrollGallery 
+            images={[
+              "/slider/121.jpeg",
+              "/slider/122.jpeg",
+              "/slider/123.jpeg",
+              "/slider/124.jpeg",
+              "/slider/125.jpeg",
+              "/slider/131.jpeg",
+              "/slider/132.jpeg",
+              "/slider/133.jpeg",
+              "/slider/134.jpeg",
+              "/slider/135.jpeg",
+              "/slider/136.jpeg",
+              "/slider/1001.jpeg",
+              "/slider/1002.jpeg",
+              "/slider/1003.jpeg",
+              "/slider/1004.jpeg",
+              "/slider/1005.jpeg",
+              "/slider/1006.jpeg",
+              "/slider/1007.jpeg",
+              "/slider/1011.jpeg",
+              "/slider/1012.jpeg",
+              "/slider/1013.jpeg",
+              "/slider/1014.jpeg",
+              "/slider/1015.jpeg",
+              "/slider/1016.jpeg",
+              "/slider/1017.jpeg",
             ]}
             direction="right"
           />
