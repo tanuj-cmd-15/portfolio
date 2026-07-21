@@ -33,7 +33,7 @@ const Stats = () => {
           {stats.map((item, index) => {
             return (
               <div
-                className="flex-1 flex gap-4 items-center justify-center xl:justify-start p-6 border border-white/10 hover:border-white/30 transition-colors"
+                className="flex-1 flex gap-4 items-center justify-center xl:justify-start p-6 border border-white/10 hover:border-white/30 transition-colors spotlight-card scale-lift parallax-card stagger-item"
                 key={index}
               >
                 <CountUp
