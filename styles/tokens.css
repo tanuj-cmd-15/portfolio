@@ -1,0 +1,204 @@
+/**
+ * Design Tokens for Tushar Pawar Portfolio
+ * Based on CoffeeTech® Design System Principles
+ * Implementation-ready, accessibility-first tokens
+ */
+
+:root {
+  /* ── Typography Foundation ── */
+  --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family-stack: Inter, sans-serif;
+  
+  /* Font Sizes - Modular Scale */
+  --font-size-xs: 12.24px;    /* 0.9rem */
+  --font-size-sm: 13.6px;     /* 1rem - base */
+  --font-size-md: 14.69px;    /* 1.08rem */
+  --font-size-lg: 16px;       /* 1.18rem */
+  --font-size-xl: 18.51px;    /* 1.36rem */
+  --font-size-2xl: 24.24px;   /* 1.78rem */
+  --font-size-3xl: 47.8px;    /* 3.51rem */
+  --font-size-4xl: 59.84px;   /* 4.4rem */
+  
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-base: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  /* ── Color Palette - Semantic Tokens ── */
+  /* Surface */
+  --color-surface-base: #000000;
+  --color-surface-muted: #e5e2dd;
+  --color-surface-strong: #c8603d;
+  --color-surface-elevated: #0d0e13;
+  --color-surface-card: #1a1d2e;
+  
+  /* Text */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #6f6f73;
+  --color-text-tertiary: #f3ede3;
+  --color-text-inverse: #67625e;
+  --color-text-muted: rgba(255, 255, 255, 0.6);
+  --color-text-disabled: rgba(255, 255, 255, 0.38);
+  
+  /* Border */
+  --color-border-default: #0d0e13;
+  --color-border-subtle: rgba(255, 255, 255, 0.1);
+  --color-border-strong: rgba(255, 255, 255, 0.3);
+  --color-border-interactive: rgba(255, 255, 255, 0.2);
+  
+  /* Interactive States */
+  --color-interactive-default: #ffffff;
+  --color-interactive-hover: #f3ede3;
+  --color-interactive-active: #e5e2dd;
+  --color-interactive-focus: #c8603d;
+  
+  /* Status Colors */
+  --color-status-success: #10b981;
+  --color-status-error: #ef4444;
+  --color-status-warning: #f59e0b;
+  --color-status-info: #3b82f6;
+  
+  /* ── Spacing Scale ── */
+  --space-1: 6.8px;    /* 0.5rem */
+  --space-2: 10px;     /* 0.735rem */
+  --space-3: 10.88px;  /* 0.8rem */
+  --space-4: 13.6px;   /* 1rem - base */
+  --space-5: 20.4px;   /* 1.5rem */
+  --space-6: 27.2px;   /* 2rem */
+  --space-7: 62.97px;  /* 4.63rem */
+  --space-8: 95.2px;   /* 7rem */
+  
+  /* ── Border Radius ── */
+  --radius-xs: 3.4px;
+  --radius-sm: 6.8px;
+  --radius-md: 10px;
+  --radius-lg: 13.6px;
+  --radius-full: 50px;
+  
+  /* ── Motion Tokens ── */
+  --motion-duration-instant: 100ms;
+  --motion-duration-fast: 300ms;
+  --motion-duration-normal: 500ms;
+  --motion-duration-slow: 600ms;
+  --motion-duration-slower: 1000ms;
+  
+  --motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --motion-easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
+  
+  /* ── Shadows ── */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  
+  /* ── Z-Index Scale ── */
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1020;
+  --z-index-fixed: 1030;
+  --z-index-modal-backdrop: 1040;
+  --z-index-modal: 1050;
+  --z-index-popover: 1060;
+  --z-index-tooltip: 1070;
+}
+
+/* ── Focus Visible States (WCAG 2.2 AA Required) ── */
+:focus-visible {
+  outline: 2px solid var(--color-interactive-focus);
+  outline-offset: 2px;
+  transition: outline-offset var(--motion-duration-instant) var(--motion-easing-standard);
+}
+
+/* ── Reduced Motion Support ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── High Contrast Mode Support ── */
+@media (prefers-contrast: high) {
+  :root {
+    --color-border-subtle: rgba(255, 255, 255, 0.3);
+    --color-text-muted: rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* ── Utility Classes for Consistent Implementation ── */
+.text-primary { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-tertiary { color: var(--color-text-tertiary); }
+.text-muted { color: var(--color-text-muted); }
+
+.bg-base { background-color: var(--color-surface-base); }
+.bg-elevated { background-color: var(--color-surface-elevated); }
+.bg-card { background-color: var(--color-surface-card); }
+.bg-muted { background-color: var(--color-surface-muted); }
+
+.border-default { border-color: var(--color-border-default); }
+.border-subtle { border-color: var(--color-border-subtle); }
+.border-strong { border-color: var(--color-border-strong); }
+
+/* Component State Classes */
+.interactive {
+  transition: all var(--motion-duration-fast) var(--motion-easing-standard);
+  cursor: pointer;
+}
+
+.interactive:hover {
+  color: var(--color-interactive-hover);
+  border-color: var(--color-border-strong);
+}
+
+.interactive:active {
+  color: var(--color-interactive-active);
+  transform: scale(0.98);
+}
+
+.interactive:disabled,
+.interactive[aria-disabled="true"] {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  animation: loading-shimmer var(--motion-duration-slower) infinite;
+}
+
+@keyframes loading-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Error State */
+.error {
+  border-color: var(--color-status-error);
+  color: var(--color-status-error);
+}
+
+.error:focus-visible {
+  outline-color: var(--color-status-error);
+}
