@@ -1,14 +1,16 @@
-import { JetBrains_Mono } from "next/font/google";
+import { Jost } from "next/font/google";
 import "./globals.css";
+import "../styles/tokens.css";
 
 //components
 import Header from "@/components/Header";
 import ParticleGalaxy from "@/components/ParticleGalaxy";
 
-const jetbrainsMono = JetBrains_Mono({
+const jost = Jost({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
-  variable: "--font-jetbrainsMono",
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-jost",
+  display: "swap",
 });
 
 export const metadata = {
@@ -23,11 +25,14 @@ export default function RootLayout({ children }) {
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className={jetbrainsMono.variable}>
+      <body className={jost.variable} style={{ fontFamily: 'var(--font-jost), var(--font-family-primary)' }}>
+        <a href="#main-content" className="skip-to-content">Skip to main content</a>
         <ParticleGalaxy />
         <Header />
-        <main className="pt-[88px] xl:pt-[104px]">
+        <main id="main-content" className="pt-[88px] xl:pt-[104px]">
           {children}
         </main>
       </body>
