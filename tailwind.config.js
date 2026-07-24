@@ -23,8 +23,17 @@ module.exports = {
       primary: "var(--font-jost)",
     },
     extend: {
-
       colors:{
+        // RS Design System Colors
+        'rs-bg-primary': '#F3F3F3',
+        'rs-bg-secondary': '#FFFFFF',
+        'rs-text-primary': '#0A0A0A',
+        'rs-text-muted': '#666666',
+        'rs-border': '#D8D8D8',
+        'rs-accent-orange': '#FF4D00',
+        'rs-accent-red': '#E50000',
+        
+        // Original colors
         primary: "#0a0118",
         secondary: "#1a1030",
         accent:{
@@ -59,7 +68,6 @@ module.exports = {
         charcoal: "#1e293b",
         dark: "#0f172a",
       },
-
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -69,10 +77,15 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "marquee-scroll": {
+          "0%": { transform: "translate3d(0, 0, 0)" },
+          "100%": { transform: "translate3d(-50%, 0, 0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "marquee": "marquee-scroll 30s linear infinite",
       },
     },
   },
