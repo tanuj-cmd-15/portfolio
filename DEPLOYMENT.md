@@ -24,7 +24,7 @@ NODE_ENV=production
 ### Step 2: Deploy
 1. Click **"Add new site"** → **"Import an existing project"**
 2. Choose **"Deploy with GitHub"**
-3. Select repository: **`tanuj-cmd-15/portfolio`**
+3. Select repository: **`tusharpawar1217/portfolio`**
 
 ### Step 3: Configure Build Settings
 ```
@@ -62,7 +62,7 @@ Your site will be live at: `https://your-site-name.netlify.app`
 
 **Deploy Steps:**
 1. Sign up with GitHub at [vercel.com](https://vercel.com)
-2. Import `tanuj-cmd-15/portfolio` repository
+2. Import `tusharpawar1217/portfolio` repository
 3. Add environment variables in Project Settings
 4. Deploy automatically
 
@@ -98,7 +98,7 @@ Your site will be live at: `https://your-site-name.netlify.app`
 **Deploy Steps:**
 1. Sign up at [pages.cloudflare.com](https://pages.cloudflare.com)
 2. Connect GitHub account
-3. Select `tanuj-cmd-15/portfolio`
+3. Select `tusharpawar1217/portfolio`
 4. Framework preset: **Next.js**
 5. Add environment variables
 6. Deploy
@@ -143,7 +143,7 @@ If you want to change the form or email:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/tanuj-cmd-15/portfolio.git
+git clone https://github.com/tusharpawar1217/portfolio.git
 cd portfolio
 ```
 
@@ -201,7 +201,7 @@ After deployment, you can add a custom domain:
 
 For issues or questions:
 - **Email:** pawartushar1215@gmail.com
-- **GitHub:** [tanuj-cmd-15](https://github.com/tanuj-cmd-15)
+- **GitHub:** [tusharpawar1217](https://github.com/tusharpawar1217)
 - **LinkedIn:** [Tushar Pawar](https://www.linkedin.com/in/tushar-pawar-0524a7213/)
 
 ---

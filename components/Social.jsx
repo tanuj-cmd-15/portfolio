@@ -7,7 +7,7 @@ import { SiLeetcode } from "react-icons/si";
 const socials = [
     {
         icon: <FaGithub/>, 
-        path: 'https://github.com/tanuj-cmd-15',
+        path: 'https://github.com/tusharpawar1217',
         label: 'GitHub',
         color: '#000000'
     },

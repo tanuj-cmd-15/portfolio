@@ -111,7 +111,7 @@ const projects = [
     description:
       "Developed a production certificate-management system in Next.js 14, TypeScript, and MongoDB Atlas for SPPU's Department of Technology, automating credential generation, distribution, and public verification end-to-end. Built an asynchronous PDF generation engine using pdf-lib and nanoid with embedded QR-code verification.",
     stack: ["Next.js 14", "TypeScript", "MongoDB", "Supabase", "pdf-lib"],
-    github: "https://github.com/tanuj-cmd-15",
+    github: "https://github.com/tusharpawar1217",
     highlights: ["400+ verified certificates", "JWT session auth", "Bulk email pipeline"],
   },
   {
@@ -120,7 +120,7 @@ const projects = [
     description:
       "Architected a production-ready e-commerce platform in Spring Boot and React with TypeScript on a Domain-Driven Design pattern, exposing 40+ RESTful API endpoints for catalog, cart, and order management. Integrated Stripe and Razorpay payment SDKs with ShipRocket API for shipping-label creation and real-time tracking.",
     stack: ["Spring Boot", "React", "TypeScript", "MySQL", "Stripe"],
-    github: "https://github.com/tanuj-cmd-15",
+    github: "https://github.com/tusharpawar1217",
     highlights: ["40+ REST APIs", "Firebase OAuth", "Complete order lifecycle"],
   },
   {
@@ -138,7 +138,7 @@ const projects = [
     description:
       "Developed an end-to-end OCR pipeline utilizing OpenCV for advanced image preprocessing (noise reduction, binarization, deskewing), improving text extraction accuracy by 25% on low-quality scanned documents. Engineered a high-performance backend with FastAPI and optimized PostgreSQL CRUD operations.",
     stack: ["FastAPI", "Tesseract", "OpenCV", "React", "PostgreSQL"],
-    github: "https://github.com/tanuj-cmd-15",
+    github: "https://github.com/tusharpawar1217",
     highlights: ["25% accuracy improvement", "Reduced latency", "Automated workflows"],
   },
   {
@@ -147,7 +147,7 @@ const projects = [
     description:
       "Built a CNN-BiLSTM-Attention model fusing LFCC and Mel-spectrogram features → reduced Equal Error Rate to 0.91% and hit 98.77% validation accuracy. Benchmarked 34,700+ TTS-generated audio files (43.8 hrs, 11 engines) across Marathi, Hindi, and Bengali.",
     stack: ["PyTorch", "Librosa", "Whisper", "Python"],
-    github: "https://github.com/tanuj-cmd-15",
+    github: "https://github.com/tusharpawar1217",
     highlights: ["0.91% EER", "98.77% accuracy", "34,700+ samples"],
   },
 ];
@@ -605,7 +605,7 @@ const ProjectsSection = () => {
       description:
         "Built an AI recruitment platform with LLM-based semantic answer scoring and emotion detection for automated HR and technical interview evaluation. Built a resume-parsing ATS pipeline and JWT-secured REST APIs with WebSocket-based live feedback for real-time candidate assessment.",
       stack: ["NLP", "FastAPI", "React", "WebSockets", "SQL"],
-      github: "https://github.com/tanuj-cmd-15",
+      github: "https://github.com/tusharpawar1217",
       highlights: ["LLM semantic scoring", "Real-time feedback", "JWT authentication"],
       customGradient: "linear-gradient(135deg, #6B4423 0%, #8B6B47 100%)"
     },
