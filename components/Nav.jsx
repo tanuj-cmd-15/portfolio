@@ -28,9 +28,10 @@ const Nav = () => {
             href={link.path}
             key={index}
             onClick={(e) => handleClick(e, link.path)}
-            className="text-sm uppercase tracking-wider text-white/60 hover:text-white transition-colors duration-300 font-light"
+            className="text-sm uppercase tracking-wider text-[#666666] hover:text-[#FF4D00] transition-colors duration-300 font-light relative group"
           >
             {link.name}
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FF4D00] group-hover:w-full transition-all duration-300"></span>
           </a>
         );
       })}

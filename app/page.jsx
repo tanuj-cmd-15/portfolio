@@ -1214,11 +1214,45 @@ const ContactSection = () => {
 
 /* ── FOOTER ── */
 const Footer = () => (
-  <footer className="py-12 bg-[#1a1d2e] border-t border-white/10">
-    <div className="container mx-auto text-center">
-      <p className="text-white/40 text-sm font-light">
-        © {new Date().getFullYear()} Tushar Pawar. Built with React, Three.js & Tailwind CSS
-      </p>
+  <footer className="py-12 bg-[#FFFFFF] border-t border-[#D8D8D8]">
+    <div className="container mx-auto">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+        {/* Logo/Name */}
+        <div className="text-center md:text-left">
+          <h3 className="text-xl font-light tracking-wider text-[#0A0A0A] mb-2">
+            TUSHAR PAWAR
+          </h3>
+          <p className="text-sm text-[#666666] font-light">
+            Machine Learning Engineer & Data Scientist
+          </p>
+        </div>
+
+        {/* Quick Links */}
+        <div className="flex gap-6">
+          <a href="#hero" className="text-sm text-[#666666] hover:text-[#FF4D00] transition-colors duration-300 font-light uppercase">
+            Home
+          </a>
+          <a href="#about" className="text-sm text-[#666666] hover:text-[#FF4D00] transition-colors duration-300 font-light uppercase">
+            About
+          </a>
+          <a href="#projects" className="text-sm text-[#666666] hover:text-[#FF4D00] transition-colors duration-300 font-light uppercase">
+            Projects
+          </a>
+          <a href="#contact" className="text-sm text-[#666666] hover:text-[#FF4D00] transition-colors duration-300 font-light uppercase">
+            Contact
+          </a>
+        </div>
+
+        {/* Copyright */}
+        <div className="text-center md:text-right">
+          <p className="text-sm text-[#666666] font-light">
+            © {new Date().getFullYear()} Tushar Pawar
+          </p>
+          <p className="text-xs text-[#999999] font-light mt-1">
+            Built with Next.js & Tailwind CSS
+          </p>
+        </div>
+      </div>
     </div>
   </footer>
 );
