@@ -1,3 +1,5 @@
+@import '../styles/tokens.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,8 +10,12 @@ html {
 
 @layer base {
   body {
-    @apply font-primary bg-black text-white leading-loose;
+    @apply font-primary leading-loose;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
   }
+  
+  /* RS Design System Typography */
   .h1{
     @apply text-[48px] xl:text-[80px] leading-[1.1] font-light;
   }
@@ -19,6 +25,16 @@ html {
   .h3{
     @apply text-[20px] xl:text-[24px] leading-[1.1] font-light;
   }
+  
+  /* RS Display Heading Override */
+  .h1-rs {
+    font-size: clamp(3.5rem, 8vw, 8.5rem);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+  }
+  
   .text-outline{
     -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
   }

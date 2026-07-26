@@ -263,22 +263,22 @@ const scaleIn = {
 
 /* ────────────────── SECTION COMPONENTS ────────────────── */
 
-/* ── 1. HERO - MINIMAL STYLE WITH PHOTO ── */
+/* ── 2. HERO - RS DESIGN SYSTEM COLORS ── */
 const HeroSection = () => {
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center py-24 xl:py-0 bg-black">
+    <section id="hero" className="min-h-screen flex items-center justify-center py-24 xl:py-0 bg-[#F3F3F3]">
       <div className="container mx-auto">
         <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-24 gap-8">
           {/* Text Content */}
           <div className="text-center xl:text-left order-2 xl:order-none flex-1">
-            <span className="text-sm md:text-base text-white/60 uppercase tracking-wider font-light">
-              Machine Learning Engineer & Data Scientist
+            <span className="text-sm md:text-base text-[#666666] uppercase tracking-wider font-light mono-tag">
+              [MACHINE LEARNING ENGINEER & DATA SCIENTIST]
             </span>
-            <h1 className="h1 mb-6 mt-4">
+            <h1 className="text-5xl md:text-7xl xl:text-8xl font-bold my-6 text-[#0A0A0A] leading-tight">
               Hello I'm <br />
-              <span className="text-white">Tushar Pawar</span>
+              <span className="text-[#FF4D00]">Tushar Pawar</span>
             </h1>
-            <p className="max-w-[500px] mb-9 text-white/70 text-base md:text-lg font-light leading-relaxed">
+            <p className="max-w-[500px] mb-9 text-[#0A0A0A] text-base md:text-lg font-light leading-relaxed">
               M.Tech candidate specializing in Deep Learning with 98.77% accuracy 
               on 34,700+ sample models. Building production-grade ML pipelines 
               and full-stack applications.
@@ -287,8 +287,8 @@ const HeroSection = () => {
             {/* Buttons and Social */}
             <div className="flex flex-col xl:flex-row items-center gap-8">
               <a href="#contact">
-                <button className="hire-button">
-                  <p>Hire Me</p>
+                <button className="px-8 py-4 bg-[#FF4D00] text-white font-medium hover:bg-[#E50000] transition-all duration-300 interactive-scale">
+                  HIRE ME
                 </button>
               </a>
               <div className="mb-8 xl:mb-0">
@@ -310,13 +310,13 @@ const HeroSection = () => {
 /* ── 2. ABOUT ── */
 const AboutSection = () => {
   return (
-    <section id="about" className="section-padding bg-black">
+    <section id="about" className="section-padding bg-[#F3F3F3]">
       <div className="container mx-auto max-w-6xl">
         <motion.div {...fadeInUp}>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white text-center mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-[#0A0A0A] text-center mb-6">
             About Me
           </h2>
-          <div className="w-24 h-[1px] bg-white/20 mx-auto mb-16" />
+          <div className="w-24 h-[1px] bg-[#0A0A0A]/20 mx-auto mb-16" />
         </motion.div>
 
         <div className="flex flex-col xl:flex-row gap-16 items-center">
@@ -372,13 +372,13 @@ const AboutSection = () => {
 
           {/* Description */}
           <motion.div className="xl:w-1/2" {...fadeInLeft}>
-            <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-8 font-light">
+            <p className="text-lg md:text-xl text-[#666666] leading-relaxed mb-8 font-light">
               I'm a passionate M.Tech candidate specializing in Deep
               Learning and applied ML. With hands-on experience in building and
               evaluating CNN-BiLSTM-Attention architectures, I thrive on solving
               complex problems with data-driven approaches.
             </p>
-            <p className="text-lg md:text-xl text-white/70 leading-relaxed font-light">
+            <p className="text-lg md:text-xl text-[#666666] leading-relaxed font-light">
               Proficient in Python, PyTorch, SQL, and building end-to-end ML 
               pipelines from data preprocessing through model evaluation. 
               Currently seeking Machine Learning Engineer, Data Scientist, or 
@@ -392,16 +392,16 @@ const AboutSection = () => {
               {aboutInfo.map((item, index) => (
                 <motion.li
                   key={index}
-                  className="border border-white/10 p-5 hover:border-white/30 transition-all duration-300 spotlight-card scale-lift parallax-card"
+                  className="border border-[#0A0A0A]/10 p-5 hover:border-[#FF4D00] transition-all duration-300 spotlight-card scale-lift parallax-card"
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <span className="text-white/50 text-xs uppercase tracking-wider block mb-2">
+                  <span className="text-[#666666] text-xs uppercase tracking-wider block mb-2">
                     {item.fieldName}
                   </span>
-                  <span className="text-white text-base font-normal">
+                  <span className="text-[#0A0A0A] text-base font-normal">
                     {item.fieldValue}
                   </span>
                 </motion.li>
@@ -423,7 +423,7 @@ const SkillCategory = ({ title, skillList, delay = 0 }) => (
     viewport={{ once: true }}
     transition={{ duration: 0.6, delay }}
   >
-    <h4 className="text-xl md:text-2xl font-light text-white/90 mb-8 text-center text-shimmer">
+    <h4 className="text-xl md:text-2xl font-light text-[#0A0A0A]/90 mb-8 text-center text-shimmer">
       {title}
     </h4>
     
@@ -439,11 +439,11 @@ const SkillCategory = ({ title, skillList, delay = 0 }) => (
           <TooltipProvider delayDuration={100}>
             <Tooltip>
               <TooltipTrigger className="w-full h-full group">
-                <div className="border border-white/10 p-6 hover:border-white/30 transition-all duration-300 flex flex-col items-center justify-center gap-4 min-h-[140px] spotlight-card tilt-card ripple-effect">
-                  <div className="text-4xl text-white/80 group-hover:text-white transition-colors duration-300 float-animation">
+                <div className="border border-[#D8D8D8] p-6 hover:border-[#FF4D00] transition-all duration-300 flex flex-col items-center justify-center gap-4 min-h-[140px] spotlight-card tilt-card ripple-effect bg-white">
+                  <div className="text-4xl text-[#0A0A0A]/80 group-hover:text-[#FF4D00] transition-colors duration-300 float-animation">
                     {skill.icon}
                   </div>
-                  <div className="text-sm text-white/60 group-hover:text-white/90 transition-colors duration-300 font-light">
+                  <div className="text-sm text-[#666666] group-hover:text-[#0A0A0A] transition-colors duration-300 font-light">
                     {skill.name}
                   </div>
                 </div>
@@ -461,14 +461,14 @@ const SkillCategory = ({ title, skillList, delay = 0 }) => (
 
 const SkillsSection = () => {
   return (
-    <section id="skills" className="section-padding bg-black">
+    <section id="skills" className="section-padding bg-[#FFFFFF]">
       <div className="container mx-auto max-w-6xl">
         <motion.div {...fadeInUp}>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white text-center mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-[#0A0A0A] text-center mb-6">
             Technical Skills
           </h2>
-          <div className="w-24 h-[1px] bg-white/20 mx-auto mb-8" />
-          <p className="max-w-3xl text-lg md:text-xl text-white/70 mx-auto text-center mb-20 font-light leading-relaxed">
+          <div className="w-24 h-[1px] bg-[#0A0A0A]/20 mx-auto mb-8" />
+          <p className="max-w-3xl text-lg md:text-xl text-[#666666] mx-auto text-center mb-20 font-light leading-relaxed">
             Proficient in building end-to-end ML pipelines and full-stack applications, 
             from data preprocessing through model evaluation and deployment.
           </p>
@@ -489,7 +489,7 @@ const SkillsSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <h4 className="text-xl md:text-2xl font-light text-white/90 mb-8 text-center">
+          <h4 className="text-xl md:text-2xl font-light text-[#0A0A0A]/90 mb-8 text-center">
             Soft Skills & Expertise
           </h4>
           
@@ -503,7 +503,7 @@ const SkillsSection = () => {
             ].map((skill, i) => (
               <motion.span
                 key={i}
-                className="border border-white/20 px-6 py-3 hover:border-white/40 hover:bg-white/5 transition-all duration-300 text-white/70 hover:text-white text-sm font-light"
+                className="border border-[#D8D8D8] px-6 py-3 hover:border-[#FF4D00] hover:bg-[#FF4D00]/5 transition-all duration-300 text-[#666666] hover:text-[#0A0A0A] text-sm font-light"
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -607,16 +607,16 @@ const ProjectsSection = () => {
       stack: ["NLP", "FastAPI", "React", "WebSockets", "SQL"],
       github: "https://github.com/tusharpawar1217",
       highlights: ["LLM semantic scoring", "Real-time feedback", "JWT authentication"],
-      customGradient: "linear-gradient(135deg, #6B4423 0%, #8B6B47 100%)"
+      customGradient: "linear-gradient(135deg, #FFF5E6 0%, #FFE0B2 100%)"
     },
   ];
 
   // Update existing projects with custom color gradients
-  allProjects[0].customGradient = "linear-gradient(135deg, #1a1d29 0%, #2d3142 100%)"; // Dark navy/charcoal
-  allProjects[1].customGradient = "linear-gradient(135deg, #6B5B4F 0%, #9C8B7E 100%)"; // Beige/tan
-  allProjects[2].customGradient = "linear-gradient(135deg, #8B5A8B 0%, #A67BA6 100%)"; // Purple/Mauve for UI/UX
-  allProjects[3].customGradient = "linear-gradient(135deg, #2C2416 0%, #3d3426 100%)"; // Dark brown
-  allProjects[4].customGradient = "linear-gradient(135deg, #4A3728 0%, #6B5447 100%)"; // Warm brown
+  allProjects[0].customGradient = "linear-gradient(135deg, #E8EAF6 0%, #C5CAE9 100%)"; // Light indigo
+  allProjects[1].customGradient = "linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%)"; // Light purple
+  allProjects[2].customGradient = "linear-gradient(135deg, #FCE4EC 0%, #F8BBD0 100%)"; // Light pink for UI/UX
+  allProjects[3].customGradient = "linear-gradient(135deg, #E0F2F1 0%, #B2DFDB 100%)"; // Light teal
+  allProjects[4].customGradient = "linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%)"; // Light orange
 
   const maxSlide = allProjects.length - cardsToShow; // For 6 projects: 6 - 4 = 2 (positions 0, 1, 2)
 
@@ -632,13 +632,13 @@ const ProjectsSection = () => {
   const visibleProjects = allProjects.slice(currentSlide, currentSlide + cardsToShow);
 
   return (
-    <section id="projects" className="section-padding bg-black overflow-hidden">
+    <section id="projects" className="section-padding bg-[#F3F3F3] overflow-hidden">
       <div className="container mx-auto max-w-full px-4 xl:px-8">
         <motion.div {...fadeInUp}>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white text-center mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-[#0A0A0A] text-center mb-6">
             Projects
           </h2>
-          <div className="w-24 h-[1px] bg-white/20 mx-auto mb-16" />
+          <div className="w-24 h-[1px] bg-[#0A0A0A]/20 mx-auto mb-16" />
         </motion.div>
 
         {/* Desktop: Slider showing 4 cards at a time */}
@@ -775,10 +775,10 @@ const ProjectsSection = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="text-center mb-12">
-            <h3 className="text-2xl md:text-3xl font-light text-white mb-4">
+            <h3 className="text-2xl md:text-3xl font-light text-[#0A0A0A] mb-4">
               Project Visuals
             </h3>
-            <p className="text-white/60 text-sm font-light">
+            <p className="text-[#666666] text-sm font-light">
               SCROLL
             </p>
           </div>
@@ -846,21 +846,21 @@ const ProjectsSection = () => {
 /* ── 5. EDUCATION, CERTIFICATIONS, ACHIEVEMENTS ── */
 const EducationSection = () => {
   return (
-    <section id="education" className="section-padding bg-black">
+    <section id="education" className="section-padding bg-[#FFFFFF]">
       <div className="container mx-auto max-w-6xl">
         <motion.div {...fadeInUp}>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white text-center mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-[#0A0A0A] text-center mb-6">
             Education & Achievements
           </h2>
-          <div className="w-24 h-[1px] bg-white/20 mx-auto mb-16" />
+          <div className="w-24 h-[1px] bg-[#0A0A0A]/20 mx-auto mb-16" />
         </motion.div>
 
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-10">
           {/* Education */}
           <motion.div {...fadeInUp}>
-            <h3 className="text-xl md:text-2xl font-light mb-8 flex items-center gap-3 text-white">
-              <div className="w-10 h-10 border border-white/20 flex items-center justify-center">
-                <FaGraduationCap className="text-white/70" />
+            <h3 className="text-xl md:text-2xl font-light mb-8 flex items-center gap-3 text-[#0A0A0A]">
+              <div className="w-10 h-10 border border-[#D8D8D8] flex items-center justify-center">
+                <FaGraduationCap className="text-[#666666]" />
               </div>
               <span>Education</span>
             </h3>
@@ -868,19 +868,19 @@ const EducationSection = () => {
               {education.map((item, index) => (
                 <div
                   key={index}
-                  className="border border-white/10 p-6 hover:border-white/30 transition-all duration-300 spotlight-card scale-lift magnetic-hover"
+                  className="border border-[#D8D8D8] p-6 hover:border-[#FF4D00] transition-all duration-300 spotlight-card scale-lift magnetic-hover bg-white"
                 >
-                  <span className="text-white/50 text-xs font-light px-2 py-1 border border-white/10 inline-block mb-4">
+                  <span className="text-[#666666] text-xs font-light px-2 py-1 border border-[#D8D8D8] inline-block mb-4">
                     {item.duration}
                   </span>
-                  <h4 className="text-lg font-normal mt-3 text-white leading-tight">
+                  <h4 className="text-lg font-normal mt-3 text-[#0A0A0A] leading-tight">
                     {item.degree}
                   </h4>
-                  <p className="text-white/50 text-sm mt-2 font-light">
+                  <p className="text-[#666666] text-sm mt-2 font-light">
                     {item.institution}
                   </p>
-                  <div className="mt-4 pt-4 border-t border-white/10">
-                    <p className="text-white/70 text-sm font-light">
+                  <div className="mt-4 pt-4 border-t border-[#D8D8D8]">
+                    <p className="text-[#0A0A0A]/70 text-sm font-light">
                       {item.result}
                     </p>
                   </div>
@@ -891,9 +891,9 @@ const EducationSection = () => {
 
           {/* Certifications */}
           <motion.div {...fadeInUp}>
-            <h3 className="text-xl md:text-2xl font-light mb-8 flex items-center gap-3 text-white">
-              <div className="w-10 h-10 border border-white/20 flex items-center justify-center">
-                <FaCertificate className="text-white/70" />
+            <h3 className="text-xl md:text-2xl font-light mb-8 flex items-center gap-3 text-[#0A0A0A]">
+              <div className="w-10 h-10 border border-[#D8D8D8] flex items-center justify-center">
+                <FaCertificate className="text-[#666666]" />
               </div>
               <span>Certifications</span>
             </h3>
@@ -901,15 +901,15 @@ const EducationSection = () => {
               {certifications.map((item, index) => (
                 <div
                   key={index}
-                  className="border border-white/10 p-6 hover:border-white/30 transition-all duration-300 spotlight-card scale-lift magnetic-hover"
+                  className="border border-[#D8D8D8] p-6 hover:border-[#FF4D00] transition-all duration-300 spotlight-card scale-lift magnetic-hover bg-white"
                 >
-                  <span className="text-white/50 text-xs font-light px-2 py-1 border border-white/10 inline-block mb-4">
+                  <span className="text-[#666666] text-xs font-light px-2 py-1 border border-[#D8D8D8] inline-block mb-4">
                     {item.date}
                   </span>
-                  <h4 className="text-lg font-normal mt-3 text-white">
+                  <h4 className="text-lg font-normal mt-3 text-[#0A0A0A]">
                     {item.title}
                   </h4>
-                  <p className="text-white/50 text-sm mt-2 font-light">
+                  <p className="text-[#666666] text-sm mt-2 font-light">
                     {item.details}
                   </p>
                 </div>
@@ -919,9 +919,9 @@ const EducationSection = () => {
 
           {/* Achievements */}
           <motion.div {...fadeInUp}>
-            <h3 className="text-xl md:text-2xl font-light mb-8 flex items-center gap-3 text-white">
-              <div className="w-10 h-10 border border-white/20 flex items-center justify-center">
-                <FaTrophy className="text-white/70" />
+            <h3 className="text-xl md:text-2xl font-light mb-8 flex items-center gap-3 text-[#0A0A0A]">
+              <div className="w-10 h-10 border border-[#D8D8D8] flex items-center justify-center">
+                <FaTrophy className="text-[#666666]" />
               </div>
               <span>Leadership</span>
             </h3>
@@ -929,12 +929,12 @@ const EducationSection = () => {
               {achievements.map((item, index) => (
                 <div
                   key={index}
-                  className="border border-white/10 p-6 hover:border-white/30 transition-all duration-300 spotlight-card scale-lift magnetic-hover"
+                  className="border border-[#D8D8D8] p-6 hover:border-[#FF4D00] transition-all duration-300 spotlight-card scale-lift magnetic-hover bg-white"
                 >
-                  <h4 className="text-lg font-normal text-white">
+                  <h4 className="text-lg font-normal text-[#0A0A0A]">
                     {item.title}
                   </h4>
-                  <p className="text-white/50 text-sm mt-3 font-light leading-relaxed">
+                  <p className="text-[#666666] text-sm mt-3 font-light leading-relaxed">
                     {item.description}
                   </p>
                 </div>
@@ -1233,25 +1233,25 @@ const Home = () => {
       <AboutSection />
 
       <div className="container mx-auto max-w-6xl">
-        <div className="h-[1px] bg-white/10" />
+        <div className="h-[1px] bg-[#D8D8D8]" />
       </div>
 
       <ProjectsSection />
 
       <div className="container mx-auto max-w-6xl">
-        <div className="h-[1px] bg-white/10" />
+        <div className="h-[1px] bg-[#D8D8D8]" />
       </div>
 
       <SkillsSection />
 
       <div className="container mx-auto max-w-6xl">
-        <div className="h-[1px] bg-white/10" />
+        <div className="h-[1px] bg-[#D8D8D8]" />
       </div>
 
       <EducationSection />
 
       <div className="container mx-auto max-w-6xl">
-        <div className="h-[1px] bg-white/10" />
+        <div className="h-[1px] bg-[#D8D8D8]" />
       </div>
 
       <ContactSection />
