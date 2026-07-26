@@ -2827,3 +2827,36 @@ html {
 #inner1 path[fill="#00FFFF"] {
   fill: #FF4D00 !important;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   FIX ABOUT SECTION TEXT OVERFLOW
+   ═══════════════════════════════════════════════════════════ */
+
+/* Ensure text doesn't overflow in About info cards */
+#about .spotlight-card span {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Specific fix for email and phone in about cards */
+#about li span:last-child {
+  word-break: break-word;
+  max-width: 100%;
+  display: block;
+  line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SMOOTH SCROLL WITH HEADER OFFSET
+   ═══════════════════════════════════════════════════════════ */
+
+/* Add scroll padding to account for fixed header */
+html {
+  scroll-padding-top: 100px;
+}
+
+/* Ensure all sections have proper spacing from header */
+section {
+  scroll-margin-top: 100px;
+}
