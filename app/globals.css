@@ -2744,3 +2744,86 @@ html {
 .cursor-grab:active {
   cursor: grabbing;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   PROJECT CARD TEXT COLOR FIXES FOR LIGHT THEME
+   ═══════════════════════════════════════════════════════════ */
+
+/* Ensure project card text is dark on light backgrounds */
+.project-vertical-card-full .project-vertical-title {
+  color: #0A0A0A !important;
+}
+
+.project-vertical-card-full .project-vertical-description {
+  color: #333333 !important;
+}
+
+.project-vertical-card-full .project-vertical-tech {
+  color: #0A0A0A !important;
+  background: rgba(10, 10, 10, 0.08) !important;
+  border-color: rgba(10, 10, 10, 0.15) !important;
+}
+
+.project-vertical-card-full .project-vertical-highlight {
+  color: #0A0A0A !important;
+}
+
+.project-vertical-card-full .highlight-dot {
+  background: #0A0A0A !important;
+}
+
+.project-vertical-card-full .project-vertical-link {
+  color: #0A0A0A !important;
+  border-color: rgba(10, 10, 10, 0.15) !important;
+}
+
+.project-vertical-card-full .project-badge {
+  background: rgba(10, 10, 10, 0.1) !important;
+  border-color: rgba(10, 10, 10, 0.2) !important;
+  color: #0A0A0A !important;
+}
+
+/* Hover states */
+.project-vertical-card-full .project-vertical-link:hover {
+  color: #FF4D00 !important;
+}
+
+.project-vertical-card-full .project-vertical-tech:hover {
+  background: rgba(255, 77, 0, 0.1) !important;
+  border-color: #FF4D00 !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SVG FRAME COLOR UPDATES - ORANGE/RED ACCENTS
+   ═══════════════════════════════════════════════════════════ */
+
+/* Update SVG stroke colors from cyan to orange/red */
+.svg-frame svg path[stroke="#00FFFF"],
+.svg-frame svg path[fill="#00FFFF"],
+.svg-frame svg circle[stroke="#00FFFF"] {
+  stroke: #FF4D00 !important;
+  fill: #FF4D00 !important;
+}
+
+/* Update center fill */
+#center1 {
+  fill: #E50000 !important;
+}
+
+/* Update stroke colors for all SVG elements */
+#out1 path[stroke="#00FFFF"] {
+  stroke: #FF4D00 !important;
+}
+
+#out2 path[fill="#00FFFF"] {
+  fill: #FF4D00 !important;
+}
+
+#out3 {
+  stroke: #E50000 !important;
+}
+
+#inner3 path[fill="#00FFFF"],
+#inner1 path[fill="#00FFFF"] {
+  fill: #FF4D00 !important;
+}
