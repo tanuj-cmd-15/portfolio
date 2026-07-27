@@ -300,30 +300,13 @@ const HeroSection = () => {
         transition: 'transform 0.1s ease-out',
       }}
     >
-      {/* Background with eye image - Centered */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative w-full h-full flex items-center justify-center">
-          {/* Eye Image - Centered */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] xl:w-[700px] xl:h-[700px] opacity-70">
-            <img 
-              src="/eye-image.png" 
-              alt="Vision" 
-              className="w-full h-full object-contain filter saturate-150 brightness-110"
-              style={{
-                filter: 'contrast(1.2) saturate(1.3) brightness(1.1)',
-              }}
-            />
-          </div>
-        </div>
-      </div>
-
       {/* Content Overlay */}
-      <div className="container mx-auto relative z-10 px-6">
-        <div className="grid grid-cols-1 gap-12 items-center">
-          {/* Left Side - Name */}
-          <div>
+      <div className="container mx-auto relative z-10 px-6 h-screen flex items-center">
+        <div className="w-full flex items-center justify-between gap-12">
+          {/* Left Side - Name and Description */}
+          <div className="flex-shrink-0">
             <motion.h1 
-              className="text-[6rem] xl:text-[10rem] font-bold leading-none tracking-tighter text-white uppercase"
+              className="text-[5rem] md:text-[7rem] xl:text-[10rem] font-bold leading-none tracking-tighter text-white uppercase"
               initial={{ opacity: 0, x: -100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
@@ -334,7 +317,7 @@ const HeroSection = () => {
             </motion.h1>
             
             <motion.p 
-              className="text-lg xl:text-xl text-gray-400 mt-8 max-w-lg font-light leading-relaxed"
+              className="text-base md:text-lg xl:text-xl text-gray-400 mt-8 max-w-lg font-light leading-relaxed"
               initial={{ opacity: 0, x: -100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.4 }}
@@ -344,6 +327,25 @@ const HeroSection = () => {
               precision, innovation and impact.</span>
             </motion.p>
           </div>
+
+          {/* Right Side - Hero Image */}
+          <motion.div 
+            className="hidden xl:block flex-shrink-0"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
+            <div className="w-[500px] h-[500px] 2xl:w-[600px] 2xl:h-[600px] opacity-90">
+              <img 
+                src="/hero-image.png" 
+                alt="Vision" 
+                className="w-full h-full object-contain filter saturate-150 brightness-110"
+                style={{
+                  filter: 'contrast(1.2) saturate(1.3) brightness(1.1)',
+                }}
+              />
+            </div>
+          </motion.div>
         </div>
       </div>
 

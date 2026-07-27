@@ -14,6 +14,27 @@ a[href^="#"] {
   scroll-behavior: smooth;
 }
 
+/* Ensure all sections have smooth scroll margin */
+section {
+  scroll-margin-top: 80px;
+}
+
+/* Enhanced smooth scrolling with CSS */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Smooth scroll on navigation clicks */
+#hero,
+#about,
+#skills,
+#projects,
+#education,
+#contact {
+  scroll-margin-top: 80px;
+  scroll-behavior: smooth;
+}
+
 @layer base {
   body {
     @apply font-primary leading-loose;
