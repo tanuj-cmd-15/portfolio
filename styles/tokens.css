@@ -1,181 +1,264 @@
 /**
- * Design Tokens - RS Design System
- * High-performance, pixel-perfect portfolio
- * Based on studio-grade aesthetics with performance-first architecture
+ * Nakula Design System Tokens
+ * 
+ * Implementation-ready CSS custom properties for consistent styling
+ * across the marketing site. All values are semantic and should be
+ * referenced by their token names, not raw values.
+ * 
+ * Target: WCAG 2.2 AA compliance
+ * Font Family: Geist
  */
 
 :root {
-  /* ── Color Palette ── */
-  --color-bg-primary: #F3F3F3;
-  --color-bg-secondary: #FFFFFF;
-  --color-text-primary: #0A0A0A;
-  --color-text-muted: #666666;
-  --color-border: #D8D8D8;
-  --color-accent-orange: #FF4D00;
-  --color-accent-red: #E50000;
+  /* ═══════════════════════════════════════════════════════════
+     TYPOGRAPHY FOUNDATIONS
+     ═══════════════════════════════════════════════════════════ */
   
-  /* ── Typography ── */
-  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-mono: 'Monaco', 'Courier New', monospace;
+  /* Font Families */
+  --font-family-primary: 'Geist', 'Geist Placeholder', sans-serif;
+  --font-family-stack: 'Geist', 'Geist Placeholder', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   
-  /* Font Sizes - Fluid Scale */
-  --font-size-xs: clamp(0.75rem, 0.8vw, 0.875rem);
-  --font-size-sm: clamp(0.875rem, 1vw, 1rem);
-  --font-size-base: clamp(1rem, 1.2vw, 1.125rem);
-  --font-size-lg: clamp(1.25rem, 2vw, 1.5rem);
-  --font-size-xl: clamp(1.5rem, 3vw, 2rem);
-  --font-size-2xl: clamp(2rem, 4vw, 3rem);
-  --font-size-display: clamp(3.5rem, 8vw, 8.5rem);
+  /* Font Sizes - Scale from xs to 4xl */
+  --font-size-xs: 12px;      /* 0.75rem */
+  --font-size-sm: 13px;      /* 0.8125rem */
+  --font-size-md: 14px;      /* 0.875rem */
+  --font-size-lg: 16px;      /* 1rem */
+  --font-size-xl: 24px;      /* 1.5rem - base size */
+  --font-size-2xl: 32px;     /* 2rem */
+  --font-size-3xl: 56px;     /* 3.5rem */
+  --font-size-4xl: 80px;     /* 5rem */
+  --font-size-base: 24px;    /* Primary base size */
+  
+  /* Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-base: 500;
   
   /* Line Heights */
-  --line-height-tight: 0.9;
-  --line-height-snug: 0.95;
-  --line-height-normal: 1.2;
-  --line-height-relaxed: 1.5;
+  --line-height-tight: 1.05;     /* 25.2px at 24px base = 1.05 */
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-base: 25.2px;    /* Calculated: 24px × 1.05 */
   
   /* Letter Spacing */
-  --letter-spacing-tight: -0.03em;
+  --letter-spacing-tight: -0.02em;
   --letter-spacing-normal: 0;
-  --letter-spacing-wide: 0.05em;
+  --letter-spacing-wide: 0.025em;
+
+
+  /* ═══════════════════════════════════════════════════════════
+     COLOR PALETTE - SEMANTIC TOKENS
+     ═══════════════════════════════════════════════════════════ */
   
-  /* ── Spacing Scale ── */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.5rem;
-  --space-6: 2rem;
-  --space-8: 3rem;
-  --space-12: 4rem;
-  --space-16: 6rem;
-  --space-24: 10rem;
+  /* Text Colors */
+  --color-text-primary: #cacaca;      /* Main text - WCAG AA compliant on black */
+  --color-text-secondary: #8f8f8f;    /* Subdued text */
+  --color-text-tertiary: #ff4925;     /* Accent/emphasis - orange-red */
+  --color-text-inverse: #0000ee;      /* Blue inverse text */
+  --color-text-on-dark: #ffffff;      /* White text on dark surfaces */
+  --color-text-on-light: #000000;     /* Black text on light surfaces */
+  --color-text-disabled: #666666;     /* Disabled state text */
+  --color-text-error: #ff4925;        /* Error state - uses tertiary */
+  --color-text-success: #00ff88;      /* Success feedback */
   
-  /* ── Motion & Transitions ── */
-  --duration-instant: 150ms;
-  --duration-fast: 250ms;
-  --duration-normal: 350ms;
-  --duration-slow: 500ms;
-  --duration-slower: 750ms;
+  /* Surface Colors */
+  --color-surface-base: #000000;      /* Primary background - pure black */
+  --color-surface-muted: #0a0a0a;     /* Subtle elevation */
+  --color-surface-raised: #333333;    /* Elevated surfaces/cards */
+  --color-surface-overlay: rgba(0, 0, 0, 0.8);  /* Modal overlays */
+  --color-surface-hover: #1a1a1a;     /* Interactive hover state */
   
-  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-in: cubic-bezier(0.4, 0, 1, 1);
-  --ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --ease-in-out: cubic-bezier(0.4, 0, 0.6, 1);
-  --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+  /* Border Colors */
+  --color-border-subtle: rgba(202, 202, 202, 0.1);   /* Minimal borders */
+  --color-border-default: rgba(202, 202, 202, 0.2);  /* Standard borders */
+  --color-border-emphasis: #ff4925;                   /* Accent borders */
+  --color-border-focus: #0000ee;                      /* Focus indicator */
   
-  /* ── Z-Index Scale ── */
-  --z-base: 1;
-  --z-dropdown: 100;
-  --z-sticky: 200;
-  --z-fixed: 300;
-  --z-modal-backdrop: 400;
-  --z-modal: 500;
-  --z-popover: 600;
-  --z-tooltip: 700;
+  /* Interactive States */
+  --color-interactive-default: #ff4925;       /* Primary CTA */
+  --color-interactive-hover: #ff6245;         /* Hover state */
+  --color-interactive-active: #cc3a1e;        /* Active/pressed state */
+  --color-interactive-disabled: #666666;      /* Disabled state */
+  --color-interactive-focus: #0000ee;         /* Focus ring */
+
+
+  /* ═══════════════════════════════════════════════════════════
+     SPACING SCALE
+     ═══════════════════════════════════════════════════════════ */
+  
+  --space-1: 1px;
+  --space-2: 4px;
+  --space-3: 10px;
+  --space-4: 12px;
+  --space-5: 16px;
+  --space-6: 20px;
+  --space-7: 24px;
+  --space-8: 150px;  /* Large section spacing */
+  
+  /* Semantic Spacing Aliases */
+  --space-xs: var(--space-2);     /* 4px */
+  --space-sm: var(--space-3);     /* 10px */
+  --space-md: var(--space-5);     /* 16px */
+  --space-lg: var(--space-6);     /* 20px */
+  --space-xl: var(--space-7);     /* 24px */
+  --space-2xl: 32px;
+  --space-3xl: 48px;
+  --space-section: var(--space-8); /* 150px */
+
+
+  /* ═══════════════════════════════════════════════════════════
+     BORDER RADIUS
+     ═══════════════════════════════════════════════════════════ */
+  
+  --radius-none: 0;
+  --radius-xs: 10px;              /* Small elements */
+  --radius-sm: 1000px;            /* Pill shape */
+  --radius-default: var(--radius-xs);
+  --radius-full: 9999px;          /* Perfect circles */
+
+
+  /* ═══════════════════════════════════════════════════════════
+     MOTION & ANIMATION
+     ═══════════════════════════════════════════════════════════ */
+  
+  --motion-duration-instant: 100ms;
+  --motion-duration-fast: 200ms;
+  --motion-duration-base: 300ms;
+  --motion-duration-slow: 500ms;
+  --motion-duration-slower: 800ms;
+  
+  --motion-ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --motion-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --motion-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+
+
+  /* ═══════════════════════════════════════════════════════════
+     SHADOWS & ELEVATION
+     ═══════════════════════════════════════════════════════════ */
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-default: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px -1px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -4px rgba(0, 0, 0, 0.6);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.7), 0 8px 10px -6px rgba(0, 0, 0, 0.7);
+  --shadow-focus: 0 0 0 3px var(--color-interactive-focus);
+
+
+  /* ═══════════════════════════════════════════════════════════
+     Z-INDEX SCALE
+     ═══════════════════════════════════════════════════════════ */
+  
+  --z-base: 0;
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+
+
+  /* ═══════════════════════════════════════════════════════════
+     BREAKPOINTS (for reference in JS/media queries)
+     ═══════════════════════════════════════════════════════════ */
+  
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+
+  /* ═══════════════════════════════════════════════════════════
+     COMPONENT-SPECIFIC TOKENS
+     ═══════════════════════════════════════════════════════════ */
+  
+  /* Buttons */
+  --button-height-sm: 32px;
+  --button-height-md: 40px;
+  --button-height-lg: 48px;
+  --button-padding-x: var(--space-6);
+  --button-padding-y: var(--space-4);
+  --button-font-size: var(--font-size-md);
+  --button-font-weight: var(--font-weight-medium);
+  
+  /* Inputs */
+  --input-height-sm: 32px;
+  --input-height-md: 40px;
+  --input-height-lg: 48px;
+  --input-padding-x: var(--space-5);
+  --input-padding-y: var(--space-4);
+  --input-font-size: var(--font-size-md);
+  --input-border-width: 1px;
+  
+  /* Navigation */
+  --nav-height: 64px;
+  --nav-link-padding: var(--space-5);
+  
+  /* Container */
+  --container-max-width: 1280px;
+  --container-padding: var(--space-6);
 }
 
-/* ── Base Reset & Performance Optimization ── */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+
+/* ═══════════════════════════════════════════════════════════
+   UTILITY CLASSES - TYPOGRAPHY
+   ═══════════════════════════════════════════════════════════ */
+
+.text-xs { font-size: var(--font-size-xs); }
+.text-sm { font-size: var(--font-size-sm); }
+.text-md { font-size: var(--font-size-md); }
+.text-lg { font-size: var(--font-size-lg); }
+.text-xl { font-size: var(--font-size-xl); }
+.text-2xl { font-size: var(--font-size-2xl); }
+.text-3xl { font-size: var(--font-size-3xl); }
+.text-4xl { font-size: var(--font-size-4xl); }
+
+.text-primary { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-tertiary { color: var(--color-text-tertiary); }
+.text-inverse { color: var(--color-text-inverse); }
+
+.font-regular { font-weight: var(--font-weight-regular); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+
+
+/* ═══════════════════════════════════════════════════════════
+   ACCESSIBILITY - FOCUS VISIBLE
+   ═══════════════════════════════════════════════════════════ */
+
+/* Focus-visible must be present on ALL interactive elements */
+*:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+  transition: outline-offset var(--motion-duration-instant) var(--motion-ease-out);
 }
 
-html {
-  font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
+/* Enhanced focus for buttons and links */
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+  box-shadow: var(--shadow-focus);
 }
 
-body {
-  font-family: var(--font-primary);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-relaxed);
-  color: var(--color-text-primary);
-  background-color: var(--color-bg-primary);
-  overflow-x: hidden;
+/* Remove default focus outline (only when focus-visible works) */
+*:focus:not(:focus-visible) {
+  outline: none;
 }
 
-/* GPU Acceleration for transforms */
-.gpu-accelerated {
-  transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
-  perspective: 1000px;
-}
 
-/* ── Typography System ── */
-.display-heading {
-  font-size: var(--font-size-display);
-  font-weight: 700;
-  line-height: var(--line-height-tight);
-  letter-spacing: var(--letter-spacing-tight);
-  text-transform: uppercase;
-  color: var(--color-text-primary);
-}
+/* ═══════════════════════════════════════════════════════════
+   REDUCED MOTION SUPPORT
+   ═══════════════════════════════════════════════════════════ */
 
-.heading-xl {
-  font-size: var(--font-size-2xl);
-  font-weight: 600;
-  line-height: var(--line-height-snug);
-  letter-spacing: var(--letter-spacing-tight);
-}
-
-.heading-lg {
-  font-size: var(--font-size-xl);
-  font-weight: 600;
-  line-height: var(--line-height-normal);
-}
-
-.body-text {
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-relaxed);
-  color: var(--color-text-primary);
-}
-
-.meta-text {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
-  letter-spacing: var(--letter-spacing-wide);
-}
-
-.mono-tag {
-  font-family: var(--font-mono);
-  font-size: var(--font-size-xs);
-  text-transform: uppercase;
-  letter-spacing: var(--letter-spacing-wide);
-  color: var(--color-text-muted);
-}
-
-/* ── Interactive States (GPU-accelerated only) ── */
-.interactive-scale {
-  transition: transform var(--duration-normal) var(--ease-smooth);
-  will-change: transform;
-}
-
-.interactive-scale:hover {
-  transform: scale3d(1.02, 1.02, 1);
-}
-
-.interactive-lift {
-  transition: transform var(--duration-normal) var(--ease-smooth);
-  will-change: transform;
-}
-
-.interactive-lift:hover {
-  transform: translate3d(0, -4px, 0);
-}
-
-/* ── Focus Visible (WCAG 2.2 AA) ── */
-:focus-visible {
-  outline: 2px solid var(--color-accent-orange);
-  outline-offset: 4px;
-  border-radius: 2px;
-}
-
-/* ── Reduced Motion Support ── */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -187,156 +270,23 @@ body {
   }
 }
 
-/* ── Grid System ── */
-.grid-border {
-  border-top: 1px solid var(--color-border);
-}
 
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: var(--space-6);
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 var(--space-6);
-}
+/* ═══════════════════════════════════════════════════════════
+   HIGH CONTRAST MODE SUPPORT
+   ═══════════════════════════════════════════════════════════ */
 
-@media (max-width: 768px) {
-  .grid-container {
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-4);
-    padding: 0 var(--space-4);
+@media (prefers-contrast: high) {
+  :root {
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #e0e0e0;
+    --color-border-default: rgba(255, 255, 255, 0.4);
   }
 }
 
-/* ── Marquee Animation (GPU-accelerated) ── */
-@keyframes marquee-scroll {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
 
-.marquee-container {
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-}
+/* ═══════════════════════════════════════════════════════════
+   DARK MODE (DEFAULT STATE FOR NAKULA)
+   ═══════════════════════════════════════════════════════════ */
 
-.marquee-content {
-  display: flex;
-  animation: marquee-scroll 30s linear infinite;
-  will-change: transform;
-}
-
-.marquee-content:hover {
-  animation-play-state: paused;
-}
-
-/* ── Utility Classes ── */
-.accent-banner {
-  background-color: var(--color-accent-orange);
-  height: 8px;
-  width: 100%;
-}
-
-.accent-indicator {
-  background-color: var(--color-accent-red);
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-}
-
-.card-surface {
-  background-color: var(--color-bg-secondary);
-  border: 1px solid var(--color-border);
-  transition: border-color var(--duration-normal) var(--ease-smooth);
-}
-
-.card-surface:hover {
-  border-color: var(--color-text-muted);
-}
-
-/* ── Loading States ── */
-.skeleton-loader {
-  background: linear-gradient(
-    90deg,
-    var(--color-border) 0%,
-    var(--color-bg-secondary) 50%,
-    var(--color-border) 100%
-  );
-  background-size: 200% 100%;
-  animation: skeleton-loading 1.5s ease-in-out infinite;
-}
-
-@keyframes skeleton-loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
-
-/* ── Smooth Scroll Container ── */
-.smooth-scroll-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.smooth-scroll-content {
-  position: relative;
-  will-change: transform;
-}
-
-/* ── Image Reveal Effect ── */
-.image-reveal-container {
-  overflow: hidden;
-  position: relative;
-}
-
-.image-reveal-img {
-  transition: transform var(--duration-slower) var(--ease-smooth);
-  will-change: transform;
-}
-
-.image-reveal-container:hover .image-reveal-img {
-  transform: scale3d(1.05, 1.05, 1);
-}
-
-/* ── Accessibility Helpers ── */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-.skip-to-content {
-  position: absolute;
-  top: -100px;
-  left: var(--space-4);
-  background: var(--color-accent-orange);
-  color: white;
-  padding: var(--space-3) var(--space-5);
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: 600;
-  z-index: var(--z-tooltip);
-  transition: top var(--duration-fast) var(--ease-out);
-}
-
-.skip-to-content:focus {
-  top: var(--space-4);
-}
+/* Nakula uses dark mode as default - tokens above reflect this */
+/* If light mode variant needed in future, add here with .light-mode class */

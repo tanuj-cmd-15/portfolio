@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import Photo from "@/components/Photo";
 import Social from "@/components/Social";
@@ -16,13 +16,10 @@ import {
   FaCertificate,
   FaTrophy,
   FaGithub,
-} from "react-icons/fa";
-import {
   FaPython,
   FaJava,
   FaReact,
   FaNodeJs,
-  FaGithub,
   FaGit,
   FaDocker,
   FaAws,
@@ -274,46 +271,122 @@ const scaleIn = {
 
 /* ────────────────── SECTION COMPONENTS ────────────────── */
 
-/* ── 2. HERO - RS DESIGN SYSTEM COLORS ── */
+/* ── HERO - CINEMATIC FULL-SCREEN WITH ZOOM SCROLL ── */
 const HeroSection = () => {
-  return (
-    <section id="hero" className="min-h-screen flex items-center justify-center py-24 xl:py-0 bg-[#F3F3F3]">
-      <div className="container mx-auto">
-        <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-24 gap-8">
-          {/* Text Content */}
-          <div className="text-center xl:text-left order-2 xl:order-none flex-1">
-            <span className="text-sm md:text-base text-[#666666] uppercase tracking-wider font-light mono-tag">
-              [MACHINE LEARNING ENGINEER & DATA SCIENTIST]
-            </span>
-            <h1 className="text-5xl md:text-7xl xl:text-8xl font-bold my-6 text-[#0A0A0A] leading-tight">
-              Hello I'm <br />
-              <span className="text-[#FF4D00]">Tushar Pawar</span>
-            </h1>
-            <p className="max-w-[500px] mb-9 text-[#0A0A0A] text-base md:text-lg font-light leading-relaxed">
-              M.Tech candidate specializing in Deep Learning & Production ML Pipelines. 
-              Engineered high-accuracy CNN-BiLSTM-Attention architectures for complex 
-              sequence modeling and deployed scalable full-stack web applications.
-            </p>
-            
-            {/* Buttons and Social */}
-            <div className="flex flex-col xl:flex-row items-center gap-8">
-              <a href="#contact">
-                <button className="px-8 py-4 bg-[#FF4D00] text-white font-medium hover:bg-[#E50000] transition-all duration-300 interactive-scale">
-                  HIRE ME
-                </button>
-              </a>
-              <div className="mb-8 xl:mb-0">
-                <Social />
-              </div>
-            </div>
-          </div>
+  const [scrollProgress, setScrollProgress] = useState(0);
 
-          {/* Photo */}
-          <div className="order-1 xl:order-none mb-8 xl:mb-0">
-            <Photo />
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroHeight = window.innerHeight;
+      const scrolled = window.scrollY;
+      const progress = Math.min(scrolled / heroHeight, 1);
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scale = 1 + scrollProgress * 0.5; // Zoom from 1 to 1.5
+  const opacity = 1 - scrollProgress;
+
+  return (
+    <section 
+      id="hero" 
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black"
+      style={{
+        transform: `scale(${scale})`,
+        opacity: opacity,
+        transition: 'transform 0.1s ease-out',
+      }}
+    >
+      {/* Background with eye image */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="relative w-full h-full flex items-center justify-center">
+          {/* Eye Image */}
+          <div className="absolute right-[10%] top-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-90">
+            <img 
+              src="/eye-image.png" 
+              alt="Vision" 
+              className="w-full h-full object-contain filter saturate-150 brightness-110"
+              style={{
+                filter: 'contrast(1.2) saturate(1.3) brightness(1.1)',
+              }}
+            />
           </div>
         </div>
       </div>
+
+      {/* Content Overlay */}
+      <div className="container mx-auto relative z-10 px-6">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 items-center">
+          {/* Left Side - Name */}
+          <div>
+            <motion.h1 
+              className="text-[8rem] xl:text-[12rem] font-bold leading-none tracking-tighter text-white uppercase"
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+            >
+              TUSHAR
+              <br />
+              PAWAR
+            </motion.h1>
+            
+            <motion.p 
+              className="text-xl xl:text-2xl text-gray-400 mt-8 max-w-lg font-light leading-relaxed"
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.4 }}
+            >
+              We build ML systems, data pipelines,
+              and full-stack applications <span className="text-white">with
+              precision, innovation and impact.</span>
+            </motion.p>
+          </div>
+
+          {/* Right Side - Tagline */}
+          <div className="flex flex-col items-end text-right">
+            <motion.div
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.6 }}
+            >
+              <h2 className="text-5xl xl:text-7xl font-light text-white leading-tight mb-4">
+                Beyond Visuals.
+              </h2>
+              <h2 className="text-5xl xl:text-7xl font-bold text-white leading-tight">
+                Built with Vision.
+              </h2>
+            </motion.div>
+
+            {/* Scroll Indicator */}
+            <motion.div 
+              className="mt-16 flex flex-col items-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 1 }}
+            >
+              <div className="w-[1px] h-24 bg-gradient-to-b from-transparent via-white to-transparent animate-pulse" />
+              <p className="text-white/60 text-sm mt-4 uppercase tracking-widest">Scroll to explore</p>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* Top Right Info */}
+      <motion.div 
+        className="absolute top-8 right-8 text-right text-white"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.8 }}
+      >
+        <div className="flex items-center gap-2 justify-end mb-2">
+          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+          <p className="text-sm">Available for opportunities</p>
+        </div>
+        <p className="text-sm text-gray-400">Machine Learning Engineer</p>
+      </motion.div>
     </section>
   );
 };
