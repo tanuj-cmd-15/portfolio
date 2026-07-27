@@ -300,11 +300,11 @@ const HeroSection = () => {
         transition: 'transform 0.1s ease-out',
       }}
     >
-      {/* Background with eye image */}
+      {/* Background with eye image - Centered */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="relative w-full h-full flex items-center justify-center">
-          {/* Eye Image */}
-          <div className="absolute right-[10%] top-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-90">
+          {/* Eye Image - Centered */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] xl:w-[700px] xl:h-[700px] opacity-70">
             <img 
               src="/eye-image.png" 
               alt="Vision" 
@@ -319,11 +319,11 @@ const HeroSection = () => {
 
       {/* Content Overlay */}
       <div className="container mx-auto relative z-10 px-6">
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 gap-12 items-center">
           {/* Left Side - Name */}
           <div>
             <motion.h1 
-              className="text-[8rem] xl:text-[12rem] font-bold leading-none tracking-tighter text-white uppercase"
+              className="text-[6rem] xl:text-[10rem] font-bold leading-none tracking-tighter text-white uppercase"
               initial={{ opacity: 0, x: -100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
@@ -334,7 +334,7 @@ const HeroSection = () => {
             </motion.h1>
             
             <motion.p 
-              className="text-xl xl:text-2xl text-gray-400 mt-8 max-w-lg font-light leading-relaxed"
+              className="text-lg xl:text-xl text-gray-400 mt-8 max-w-lg font-light leading-relaxed"
               initial={{ opacity: 0, x: -100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.4 }}
@@ -344,35 +344,23 @@ const HeroSection = () => {
               precision, innovation and impact.</span>
             </motion.p>
           </div>
-
-          {/* Right Side - Tagline */}
-          <div className="flex flex-col items-end text-right">
-            <motion.div
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.6 }}
-            >
-              <h2 className="text-5xl xl:text-7xl font-light text-white leading-tight mb-4">
-                Beyond Visuals.
-              </h2>
-              <h2 className="text-5xl xl:text-7xl font-bold text-white leading-tight">
-                Built with Vision.
-              </h2>
-            </motion.div>
-
-            {/* Scroll Indicator */}
-            <motion.div 
-              className="mt-16 flex flex-col items-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1 }}
-            >
-              <div className="w-[1px] h-24 bg-gradient-to-b from-transparent via-white to-transparent animate-pulse" />
-              <p className="text-white/60 text-sm mt-4 uppercase tracking-widest">Scroll to explore</p>
-            </motion.div>
-          </div>
         </div>
       </div>
+
+      {/* Right Bottom - Tagline (Line by Line) */}
+      <motion.div 
+        className="absolute bottom-12 right-12 text-right"
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1, delay: 0.6 }}
+      >
+        <h2 className="text-3xl xl:text-5xl font-light text-white leading-tight">
+          Beyond Visuals.
+        </h2>
+        <h2 className="text-3xl xl:text-5xl font-bold text-white leading-tight">
+          Built with Vision.
+        </h2>
+      </motion.div>
 
       {/* Top Right Info */}
       <motion.div 
@@ -386,6 +374,17 @@ const HeroSection = () => {
           <p className="text-sm">Available for opportunities</p>
         </div>
         <p className="text-sm text-gray-400">Machine Learning Engineer</p>
+      </motion.div>
+
+      {/* Center Bottom - Scroll Indicator */}
+      <motion.div 
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 1 }}
+      >
+        <div className="w-[1px] h-16 bg-gradient-to-b from-transparent via-white to-transparent animate-pulse" />
+        <p className="text-white/60 text-xs mt-2 uppercase tracking-widest">Scroll</p>
       </motion.div>
     </section>
   );
