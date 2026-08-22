@@ -8,190 +8,101 @@ export default function ParticleGalaxy() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext("2d");
     let animationFrameId;
-    let stars = [];
-    let burstParticles = [];
+    let time = 0;
 
-    // Set canvas size
-    const resizeCanvas = () => {
+    /* ── Noise texture canvas (half-res for perf) ── */
+    const noiseCanvas = document.createElement("canvas");
+    const noiseCtx = noiseCanvas.getContext("2d");
+
+    const generateNoise = () => {
+      const w = noiseCanvas.width;
+      const h = noiseCanvas.height;
+      const imageData = noiseCtx.createImageData(w, h);
+      const d = imageData.data;
+      for (let i = 0; i < d.length; i += 4) {
+        const v = Math.random() * 255;
+        d[i] = v;
+        d[i + 1] = v;
+        d[i + 2] = v;
+        d[i + 3] = 14;
+      }
+      noiseCtx.putImageData(imageData, 0, 0);
+    };
+
+    const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      createStars();
+      noiseCanvas.width = Math.ceil(canvas.width / 2);
+      noiseCanvas.height = Math.ceil(canvas.height / 2);
+      generateNoise();
     };
 
-    // Star class - elegant and subtle
-    class Star {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 1.5 + 0.5;
-        this.vx = (Math.random() - 0.5) * 0.1;
-        this.vy = (Math.random() - 0.5) * 0.1;
-        this.baseOpacity = Math.random() * 0.4 + 0.3;
-        this.opacity = this.baseOpacity;
-        this.twinkleSpeed = Math.random() * 0.015 + 0.005;
-        this.twinklePhase = Math.random() * Math.PI * 2;
-      }
+    resize();
+    window.addEventListener("resize", resize);
 
-      update() {
-        // Subtle drift
-        this.x += this.vx;
-        this.y += this.vy;
+    /* ── Ambient gradient orbs ── */
+    const orbs = [
+      { x: 0.10, y: 0.20, r: 0.50, color: [184, 115, 51], opacity: 0.14, sx: 0.25, sy: 0.40 },
+      { x: 0.80, y: 0.60, r: 0.40, color: [212, 165, 116], opacity: 0.09, sx: 0.45, sy: 0.25 },
+      { x: 0.45, y: 0.02, r: 0.35, color: [140, 90, 40],  opacity: 0.07, sx: 0.60, sy: 0.35 },
+      { x: 0.65, y: 0.85, r: 0.30, color: [184, 115, 51], opacity: 0.06, sx: 0.35, sy: 0.55 },
+      { x: 0.25, y: 0.55, r: 0.20, color: [220, 140, 60], opacity: 0.05, sx: 0.50, sy: 0.30 },
+    ];
 
-        // Smooth twinkling with sine wave
-        this.twinklePhase += this.twinkleSpeed;
-        this.opacity = this.baseOpacity + Math.sin(this.twinklePhase) * 0.3;
+    let noiseTimer = 0;
 
-        // Wrap around edges
-        if (this.x < 0) this.x = canvas.width;
-        if (this.x > canvas.width) this.x = 0;
-        if (this.y < 0) this.y = canvas.height;
-        if (this.y > canvas.height) this.y = 0;
-      }
-
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        
-        // Multi-color gradient stars
-        const colorPhase = this.twinklePhase;
-        const colors = [
-          { r: 0, g: 245, b: 255 },    // cyan
-          { r: 168, g: 85, b: 247 },   // purple
-          { r: 236, g: 72, b: 153 },   // pink
-          { r: 251, g: 146, b: 60 },   // orange
-          { r: 16, g: 185, b: 129 }    // green
-        ];
-        const idx = Math.floor(Math.abs(Math.sin(colorPhase)) * colors.length) % colors.length;
-        const color = colors[idx];
-        
-        ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${this.opacity})`;
-        ctx.fill();
-        
-        // Enhanced rainbow glow
-        if (this.size > 1) {
-          ctx.shadowBlur = 10;
-          ctx.shadowColor = `rgba(${color.r}, ${color.g}, ${color.b}, ${this.opacity * 0.8})`;
-          ctx.fill();
-          ctx.shadowBlur = 0;
-        }
-      }
-    }
-
-    // Burst particle class
-    class BurstParticle {
-      constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 4 + 1;
-        this.vx = Math.cos(angle) * speed;
-        this.vy = Math.sin(angle) * speed;
-        this.size = Math.random() * 2.5 + 0.5;
-        this.opacity = 1;
-        this.decay = Math.random() * 0.015 + 0.01;
-      }
-
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        this.vx *= 0.96;
-        this.vy *= 0.96;
-        this.opacity -= this.decay;
-      }
-
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 3);
-        gradient.addColorStop(0, `rgba(0, 245, 255, ${this.opacity})`);
-        gradient.addColorStop(0.25, `rgba(168, 85, 247, ${this.opacity * 0.9})`);
-        gradient.addColorStop(0.5, `rgba(236, 72, 153, ${this.opacity * 0.7})`);
-        gradient.addColorStop(0.75, `rgba(251, 146, 60, ${this.opacity * 0.5})`);
-        gradient.addColorStop(1, `rgba(16, 185, 129, ${this.opacity * 0.3})`);
-        ctx.fillStyle = gradient;
-        ctx.shadowBlur = 20;
-        ctx.shadowColor = `rgba(0, 245, 255, ${this.opacity * 0.8})`;
-        ctx.fill();
-        ctx.shadowBlur = 0;
-      }
-
-      isDead() {
-        return this.opacity <= 0;
-      }
-    }
-
-    // Create fewer, more elegant stars
-    const createStars = () => {
-      stars = [];
-      const starCount = Math.floor((canvas.width * canvas.height) / 8000); // Dynamic based on screen size
-      const maxStars = 200; // Cap at 200 stars
-      const finalCount = Math.min(starCount, maxStars);
-      
-      for (let i = 0; i < finalCount; i++) {
-        stars.push(new Star());
-      }
-    };
-
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-
-    // Global click handler for burst effect (works even when clicking on content)
-    const handleClick = (e) => {
-      const burstX = e.clientX;
-      const burstY = e.clientY;
-      
-      // Create elegant burst at click position
-      for (let i = 0; i < 50; i++) {
-        burstParticles.push(new BurstParticle(burstX, burstY));
-      }
-    };
-
-    // Listen to document clicks to catch all clicks
-    document.addEventListener("click", handleClick);
-
-    // Smooth animation loop
     const animate = () => {
-      // Elegant dark gradient background
-      const gradient = ctx.createRadialGradient(
-        canvas.width / 2,
-        canvas.height / 2,
-        0,
-        canvas.width / 2,
-        canvas.height / 2,
-        Math.max(canvas.width, canvas.height) * 0.8
-      );
-      gradient.addColorStop(0, "#0a0e12");
-      gradient.addColorStop(0.5, "#050709");
-      gradient.addColorStop(1, "#000000");
-      
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      time += 0.0015;
+      noiseTimer++;
 
-      // Update and draw stars
-      stars.forEach((star) => {
-        star.update();
-        star.draw();
+      const w = canvas.width;
+      const h = canvas.height;
+
+      /* Base fill */
+      ctx.fillStyle = "#080808";
+      ctx.fillRect(0, 0, w, h);
+
+      /* Draw gradient orbs */
+      orbs.forEach((orb, i) => {
+        const ox = Math.sin(time * orb.sx + i * 2.1) * 60;
+        const oy = Math.cos(time * orb.sy + i * 1.7) * 45;
+        const cx = orb.x * w + ox;
+        const cy = orb.y * h + oy;
+        const r = orb.r * Math.min(w, h);
+
+        const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+        g.addColorStop(0, `rgba(${orb.color[0]},${orb.color[1]},${orb.color[2]},${orb.opacity})`);
+        g.addColorStop(0.35, `rgba(${orb.color[0]},${orb.color[1]},${orb.color[2]},${orb.opacity * 0.4})`);
+        g.addColorStop(0.7, `rgba(${orb.color[0]},${orb.color[1]},${orb.color[2]},${orb.opacity * 0.1})`);
+        g.addColorStop(1, "rgba(0,0,0,0)");
+
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, w, h);
       });
 
-      // Update and draw burst particles
-      burstParticles = burstParticles.filter(particle => !particle.isDead());
-      burstParticles.forEach((particle) => {
-        particle.update();
-        particle.draw();
-      });
+      /* Vignette */
+      const vg = ctx.createRadialGradient(w / 2, h / 2, h * 0.25, w / 2, h / 2, h * 0.9);
+      vg.addColorStop(0, "rgba(0,0,0,0)");
+      vg.addColorStop(0.6, "rgba(0,0,0,0.15)");
+      vg.addColorStop(1, "rgba(0,0,0,0.5)");
+      ctx.fillStyle = vg;
+      ctx.fillRect(0, 0, w, h);
+
+      /* Noise overlay (re-generate every ~30 frames for subtle grain animation) */
+      if (noiseTimer % 30 === 0) generateNoise();
+      ctx.globalAlpha = 0.5;
+      ctx.drawImage(noiseCanvas, 0, 0, w, h);
+      ctx.globalAlpha = 1;
 
       animationFrameId = requestAnimationFrame(animate);
     };
 
     animate();
 
-    // Cleanup
     return () => {
-      window.removeEventListener("resize", resizeCanvas);
-      document.removeEventListener("click", handleClick);
+      window.removeEventListener("resize", resize);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -200,7 +111,7 @@ export default function ParticleGalaxy() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 -z-10"
-      style={{ background: "#000000", pointerEvents: "none" }}
+      style={{ pointerEvents: "none" }}
     />
   );
 }

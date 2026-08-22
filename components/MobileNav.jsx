@@ -4,12 +4,11 @@ import { CiMenuFries } from "react-icons/ci";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
 const links = [
-  { name: "home", path: "#hero" },
-  { name: "about", path: "#about" },
-  { name: "skills", path: "#skills" },
-  { name: "projects", path: "#projects" },
-  { name: "education", path: "#education" },
-  { name: "contact", path: "#contact" },
+  { name: "About", path: "#about" },
+  { name: "Skills", path: "#skills" },
+  { name: "Projects", path: "#projects" },
+  { name: "Awards", path: "#awards" },
+  { name: "Contact", path: "#contact" },
 ];
 
 const MobileNav = () => {
@@ -24,32 +23,36 @@ const MobileNav = () => {
   return (
     <Sheet>
       <SheetTrigger className="flex justify-center items-center">
-        <CiMenuFries className="text-[32px] text-[#0A0A0A]" />
+        <CiMenuFries className="text-[28px] text-white" />
       </SheetTrigger>
-      <SheetContent className="flex flex-col bg-[#FFFFFF] border-l border-[#D8D8D8]">
-        {/* logo */}
-        <div className="mt-32 mb-40 text-center text-2xl">
+      <SheetContent className="flex flex-col bg-[#09090b] border-l border-white/10">
+        {/* Logo */}
+        <div className="mt-20 mb-16 text-center">
           <a href="#hero">
-            <h1 className="text-4xl font-semibold text-[#0A0A0A]">
-              Tushar<span className="text-[#FF4D00]">.</span>
+            <h1 className="text-2xl font-heading font-bold text-white">
+              Tushar<span className="text-accent">.</span>
             </h1>
           </a>
         </div>
 
-        <nav className="flex flex-col justify-center items-center gap-8">
-          {links.map((link, index) => {
-            return (
-              <a
-                href={link.path}
-                key={index}
-                onClick={(e) => handleClick(e, link.path)}
-                className="text-xl uppercase tracking-wider text-[#666666] hover:text-[#FF4D00] transition-colors duration-300 font-light"
-              >
-                {link.name}
-              </a>
-            );
-          })}
+        <nav className="flex flex-col justify-center items-center gap-6">
+          {links.map((link, index) => (
+            <a
+              href={link.path}
+              key={index}
+              onClick={(e) => handleClick(e, link.path)}
+              className="text-lg text-white/50 hover:text-white transition-colors duration-300 font-light"
+            >
+              {link.name}
+            </a>
+          ))}
         </nav>
+
+        <div className="mt-auto mb-8 flex justify-center">
+          <a href="#contact" className="pill-btn pill-btn-copper">
+            Let&apos;s Talk
+          </a>
+        </div>
       </SheetContent>
     </Sheet>
   );
