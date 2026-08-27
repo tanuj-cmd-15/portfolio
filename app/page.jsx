@@ -725,17 +725,64 @@ const FooterSection = () => {
 
         {/* Footer Bottom */}
         <div className="pt-10 border-t border-white/5">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            {/* Get in Touch */}
             <div>
-              <p className="font-heading font-bold text-xl text-white">
-                Tushar Pawar<span className="text-accent">.</span>
-              </p>
-              <p className="text-white/30 text-xs mt-1">
-                © {new Date().getFullYear()} All rights reserved.
-              </p>
+              <h3 className="font-heading font-bold text-lg mb-4">
+                Get in Touch<span className="text-accent">.</span>
+              </h3>
+              <div className="space-y-3">
+                <a 
+                  href="tel:+918485833673" 
+                  className="flex items-center gap-2 text-white/60 hover:text-accent transition-colors text-sm"
+                >
+                  <FaPhoneAlt className="text-xs" />
+                  <span>+91 84858 33673</span>
+                </a>
+                <a 
+                  href="mailto:pawartushar8485@gmail.com" 
+                  className="flex items-center gap-2 text-white/60 hover:text-accent transition-colors text-sm"
+                >
+                  <FaEnvelope className="text-xs" />
+                  <span>pawartushar8485@gmail.com</span>
+                </a>
+                <div className="flex items-center gap-2 text-white/60 text-sm">
+                  <FaMapMarkerAlt className="text-xs" />
+                  <span>Pune, Maharashtra - 411007</span>
+                </div>
+              </div>
             </div>
 
-            <Social />
+            {/* Quick Links */}
+            <div>
+              <h3 className="font-heading font-bold text-lg mb-4">
+                Quick Links<span className="text-accent">.</span>
+              </h3>
+              <div className="space-y-2">
+                <a href="#about" className="block text-white/60 hover:text-accent transition-colors text-sm">About</a>
+                <a href="#skills" className="block text-white/60 hover:text-accent transition-colors text-sm">Skills</a>
+                <a href="#projects" className="block text-white/60 hover:text-accent transition-colors text-sm">Projects</a>
+                <a href="#awards" className="block text-white/60 hover:text-accent transition-colors text-sm">Awards</a>
+              </div>
+            </div>
+
+            {/* Connect */}
+            <div>
+              <h3 className="font-heading font-bold text-lg mb-4">
+                Connect<span className="text-accent">.</span>
+              </h3>
+              <Social />
+            </div>
+          </div>
+
+          {/* Copyright */}
+          <div className="pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="font-heading font-bold text-xl text-white">
+              Tushar Pawar<span className="text-accent">.</span>
+            </p>
+            <p className="text-white/30 text-xs">
+              © {new Date().getFullYear()} All rights reserved.
+            </p>
           </div>
         </div>
       </div>
