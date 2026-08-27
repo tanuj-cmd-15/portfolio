@@ -4,7 +4,7 @@ import CountUp from "react-countup";
 
 const stats = [
     {
-      num: 9.15,
+      num: 9.36,
       decimals: 2,
       text: "M.Tech CGPA"
     },

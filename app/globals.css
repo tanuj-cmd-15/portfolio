@@ -377,4 +377,28 @@
   .border-gradient {
     border-image: linear-gradient(135deg, var(--accent-copper), transparent) 1;
   }
+
+  /* ── Tagline Animations ── */
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+
+  @keyframes gradient-y {
+    0%, 100% { 
+      background-position: 0% 0%;
+    }
+    50% { 
+      background-position: 0% 100%;
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+
+  .animate-gradient-y {
+    background-size: 100% 200%;
+    animation: gradient-y 3s ease infinite;
+  }
 }

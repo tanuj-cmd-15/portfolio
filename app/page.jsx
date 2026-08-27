@@ -158,7 +158,7 @@ const education = [
     degree: "M.Tech in Computer & Information Technology",
     institution: "Department Of Technology, SPPU, Pune",
     duration: "June 2026",
-    result: "CGPA: 9.15 (Academic Topper)",
+    result: "CGPA: 9.36 (Academic Topper)",
     icon: <FaGraduationCap />,
   },
   {
@@ -255,17 +255,39 @@ const HeroSection = () => {
             <span className="text-sm text-white/30 hidden md:inline">📍 Pune, India</span>
           </motion.div>
 
-          {/* Name */}
-          <motion.h1
-            className="font-heading font-[800] text-[clamp(3rem,10vw,9rem)] leading-[0.9] tracking-[-0.04em] text-white mb-6"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-          >
-            TUSHAR
-            <br />
-            PAWAR<span className="text-accent">.</span>
-          </motion.h1>
+          {/* Name with Tagline */}
+          <div className="relative mb-6">
+            <motion.h1
+              className="font-heading font-[800] text-[clamp(3rem,10vw,9rem)] leading-[0.9] tracking-[-0.04em] text-white"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.3 }}
+            >
+              TUSHAR
+              <br />
+              PAWAR<span className="text-accent">.</span>
+            </motion.h1>
+
+            {/* Vertical Tagline - aligned with bottom of PAWAR */}
+            <motion.div
+              className="hidden lg:flex absolute bottom-0 right-0 items-end gap-4"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+            >
+              {/* Vertical Line */}
+              <div className="w-[1px] h-20 bg-gradient-to-t from-accent via-accent/50 to-transparent" />
+              
+              {/* Text in two lines */}
+              <div className="pb-1">
+                <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em] leading-[1.8] text-white/40">
+                  Beyond visuals,
+                  <br />
+                  built with vision
+                </p>
+              </div>
+            </motion.div>
+          </div>
 
           {/* Subtitle */}
           <motion.p
@@ -329,9 +351,9 @@ const AboutSection = () => {
         </motion.p>
 
         <motion.h2 className="section-heading mb-16" {...fadeInUp}>
-          CRAFTING <span className="accent">INTELLIGENCE,</span>
+          BUILDING <span className="accent">SOLUTIONS,</span>
           <br />
-          ONE PIPELINE AT A TIME.
+          SOLVING PROBLEMS WITH DATA.
         </motion.h2>
 
         {/* Bento Grid */}
@@ -378,7 +400,7 @@ const AboutSection = () => {
           {/* Stats Row */}
           {[
             { num: "06", label: "Production Systems\nShipped" },
-            { num: "9.15", label: "M.Tech CGPA\nAcademic Topper" },
+            { num: "9.36", label: "M.Tech CGPA\nAcademic Topper" },
             { num: "02", label: "Professional\nCertifications" },
           ].map((stat, i) => (
             <motion.div
@@ -468,7 +490,7 @@ const ProjectsSection = () => {
         </motion.p>
 
         <motion.h2 className="section-heading mb-16" {...fadeInUp}>
-          BUILT. SHIPPED.<br /><span className="accent">RUNNING.</span>
+          PROJECTS THAT<br /><span className="accent">MAKE AN IMPACT.</span>
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -590,12 +612,14 @@ const AwardsSection = () => {
   );
 };
 
-/* ═══ 7. CONTACT ═══ */
-const ContactSection = () => {
+
+
+/* ═══ 8. FOOTER WITH GET IN TOUCH ═══ */
+const FooterSection = () => {
   const [formState, handleSubmit] = useForm("xyzgbaqw");
 
   return (
-    <section id="contact" className="section-padding">
+    <footer id="contact" className="relative overflow-hidden section-padding border-t border-white/5">
       <div className="container mx-auto max-w-6xl">
         <motion.p className="section-label" {...fadeInUp}>
           // GET IN TOUCH
@@ -605,7 +629,7 @@ const ContactSection = () => {
           LET&apos;S BUILD <span className="accent">SOMETHING.</span>
         </motion.h2>
 
-        <div className="grid grid-cols-1 xl:grid-cols-5 gap-5">
+        <div className="grid grid-cols-1 xl:grid-cols-5 gap-5 mb-20">
           {/* Contact Form */}
           <motion.div className="bento-card xl:col-span-3" {...staggerChild(0.1)}>
             {formState.succeeded ? (
@@ -698,36 +722,21 @@ const ContactSection = () => {
             </motion.div>
           </div>
         </div>
-      </div>
-    </section>
-  );
-};
 
-/* ═══ 8. FOOTER ═══ */
-const FooterSection = () => {
-  return (
-    <footer className="relative overflow-hidden py-20 border-t border-white/5">
-      {/* Background Text */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-        <div className="footer-bg-text text-center">
-          LET&apos;S
-          <br />
-          BUILD
-        </div>
-      </div>
+        {/* Footer Bottom */}
+        <div className="pt-10 border-t border-white/5">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <p className="font-heading font-bold text-xl text-white">
+                Tushar Pawar<span className="text-accent">.</span>
+              </p>
+              <p className="text-white/30 text-xs mt-1">
+                © {new Date().getFullYear()} All rights reserved.
+              </p>
+            </div>
 
-      <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <p className="font-heading font-bold text-xl text-white">
-              Tushar Pawar<span className="text-accent">.</span>
-            </p>
-            <p className="text-white/30 text-xs mt-1">
-              © {new Date().getFullYear()} All rights reserved.
-            </p>
+            <Social />
           </div>
-
-          <Social />
         </div>
       </div>
     </footer>
@@ -760,7 +769,6 @@ export default function Home() {
       <SkillsSection />
       <ProjectsSection />
       <AwardsSection />
-      <ContactSection />
       <FooterSection />
     </>
   );
