@@ -153,6 +153,29 @@ const projects = [
   },
 ];
 
+const experience = [
+  {
+    role: "OCR Research Intern",
+    company: "Research Project",
+    duration: "2024",
+    description:
+      "Conducted comprehensive analysis of state-of-the-art open-source OCR technologies for CIV board and document text extraction. Integrated and evaluated 7 OCR engines to build a production-ready multilingual OCR system with automatic language detection.",
+    responsibilities: [
+      "Analyzed and integrated 7 OCR engines: Tesseract, EasyOCR, PaddleOCR, Surya OCR, Chandra OCR, GOT-OCR2.0, and DeepSeek-OCR",
+      "Implemented automatic language detection using pytesseract OSD for 15+ Indian languages",
+      "Built full-stack Streamlit application with interactive cropping, preprocessing, and translation pipeline",
+      "Engineered Python 3.10 subprocess architecture for PaddleOCR integration with UTF-8 encoding",
+      "Achieved best results with Chandra OCR (77.8% accuracy) and PaddleOCR for complex Hindi documents",
+    ],
+    stack: ["Python", "OpenCV", "Tesseract", "PyTorch", "Streamlit", "SQLite"],
+    achievements: [
+      "7 OCR engines integrated (5 CPU, 2 GPU-based)",
+      "Automatic Hindi/English detection with 85.9% accuracy (Surya OCR)",
+      "Full UTF-8 multilingual support for Devanagari scripts",
+    ],
+  },
+];
+
 const education = [
   {
     degree: "M.Tech in Computer & Information Technology",
@@ -556,6 +579,94 @@ const ProjectsSection = () => {
 
 
 
+/* ═══ 5. EXPERIENCE ═══ */
+const ExperienceSection = () => {
+  return (
+    <section id="experience" className="section-padding">
+      <div className="container mx-auto max-w-6xl">
+        <motion.p className="section-label" {...fadeInUp}>
+          // EXPERIENCE
+        </motion.p>
+
+        <motion.h2 className="section-heading mb-16" {...fadeInUp}>
+          WHERE I&apos;VE <span className="accent">WORKED.</span>
+        </motion.h2>
+
+        <div className="space-y-5">
+          {experience.map((exp, index) => (
+            <motion.div
+              key={index}
+              className="bento-card"
+              {...staggerChild(index * 0.1)}
+            >
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+                <div>
+                  <h3 className="font-heading font-bold text-xl text-white mb-1">
+                    {exp.role}
+                  </h3>
+                  <p className="text-accent text-sm font-medium">{exp.company}</p>
+                </div>
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 w-fit">
+                  <div className="w-2 h-2 bg-accent rounded-full" />
+                  <span className="text-xs font-mono text-white/60">{exp.duration}</span>
+                </div>
+              </div>
+
+              <p className="text-white/60 text-sm leading-relaxed mb-6">
+                {exp.description}
+              </p>
+
+              {/* Key Responsibilities */}
+              <div className="mb-6">
+                <h4 className="text-white/40 text-xs uppercase tracking-wider font-mono mb-3">
+                  Key Responsibilities
+                </h4>
+                <ul className="space-y-2">
+                  {exp.responsibilities.map((item, i) => (
+                    <li key={i} className="flex items-start gap-3 text-white/60 text-sm">
+                      <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
+                      <span className="leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Tech Stack */}
+              <div className="mb-6">
+                <h4 className="text-white/40 text-xs uppercase tracking-wider font-mono mb-3">
+                  Technologies Used
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {exp.stack.map((tech, i) => (
+                    <span key={i} className="tech-tag text-[11px]">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Key Achievements */}
+              <div className="pt-6 border-t border-white/5">
+                <h4 className="text-white/40 text-xs uppercase tracking-wider font-mono mb-3">
+                  Key Achievements
+                </h4>
+                <div className="space-y-2">
+                  {exp.achievements.map((achievement, i) => (
+                    <div key={i} className="flex items-center gap-2 text-xs text-white/50">
+                      <div className="w-1 h-1 rounded-full bg-green-500" />
+                      {achievement}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 /* ═══ 6. AWARDS & CERTIFICATIONS ═══ */
 const AwardsSection = () => {
   return (
@@ -815,6 +926,7 @@ export default function Home() {
       <AboutSection />
       <SkillsSection />
       <ProjectsSection />
+      <ExperienceSection />
       <AwardsSection />
       <FooterSection />
     </>
