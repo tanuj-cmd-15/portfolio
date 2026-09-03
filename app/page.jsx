@@ -727,7 +727,7 @@ const AwardsSection = () => {
 
 
 
-/* ═══ 8. FOOTER WITH GET IN TOUCH ═══ */
+/* ═══ 8. FOOTER WITH CONTACT ═══ */
 const FooterSection = () => {
   const [formState, handleSubmit] = useForm("xyzgbaqw");
 
@@ -839,7 +839,7 @@ const FooterSection = () => {
         {/* Footer Bottom */}
         <div className="pt-10 border-t border-white/5">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            {/* Get in Touch */}
+            {/* Contact Info Links */}
             <div>
               <h3 className="font-heading font-bold text-lg mb-4">
                 Get in Touch<span className="text-accent">.</span>
@@ -875,6 +875,7 @@ const FooterSection = () => {
                 <a href="#about" className="block text-white/60 hover:text-accent transition-colors text-sm">About</a>
                 <a href="#skills" className="block text-white/60 hover:text-accent transition-colors text-sm">Skills</a>
                 <a href="#projects" className="block text-white/60 hover:text-accent transition-colors text-sm">Projects</a>
+                <a href="#experience" className="block text-white/60 hover:text-accent transition-colors text-sm">Experience</a>
                 <a href="#awards" className="block text-white/60 hover:text-accent transition-colors text-sm">Awards</a>
               </div>
             </div>
