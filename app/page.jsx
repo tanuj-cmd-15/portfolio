@@ -727,177 +727,71 @@ const AwardsSection = () => {
 
 
 
-/* ═══ 8. FOOTER WITH CONTACT ═══ */
+/* ═══ 8. FOOTER ═══ */
 const FooterSection = () => {
-  const [formState, handleSubmit] = useForm("xyzgbaqw");
-
   return (
-    <footer id="contact" className="relative overflow-hidden section-padding border-t border-white/5">
+    <footer id="contact" className="relative overflow-hidden py-20 border-t border-white/5">
       <div className="container mx-auto max-w-6xl">
-        <motion.p className="section-label" {...fadeInUp}>
-          // GET IN TOUCH
-        </motion.p>
-
-        <motion.h2 className="section-heading mb-16" {...fadeInUp}>
-          LET&apos;S BUILD <span className="accent">SOMETHING.</span>
-        </motion.h2>
-
-        <div className="grid grid-cols-1 xl:grid-cols-5 gap-5 mb-20">
-          {/* Contact Form */}
-          <motion.div className="bento-card xl:col-span-3" {...staggerChild(0.1)}>
-            {formState.succeeded ? (
-              <div className="flex flex-col items-center justify-center py-16 text-center">
-                <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mb-4">
-                  <span className="text-2xl">✓</span>
-                </div>
-                <h3 className="font-heading font-bold text-xl mb-2">Message Sent!</h3>
-                <p className="text-white/50 text-sm">I&apos;ll get back to you as soon as possible.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div>
-                    <label className="text-xs text-white/30 uppercase tracking-wider mb-2 block font-mono">Name</label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      placeholder="Your Name"
-                      className="form-input"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-xs text-white/30 uppercase tracking-wider mb-2 block font-mono">Email</label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      placeholder="your@email.com"
-                      className="form-input"
-                    />
-                    <ValidationError prefix="Email" field="email" errors={formState.errors} />
-                  </div>
-                </div>
-                <div>
-                  <label className="text-xs text-white/30 uppercase tracking-wider mb-2 block font-mono">Subject</label>
-                  <input
-                    type="text"
-                    name="subject"
-                    placeholder="Project Inquiry"
-                    className="form-input"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs text-white/30 uppercase tracking-wider mb-2 block font-mono">Message</label>
-                  <textarea
-                    name="message"
-                    required
-                    rows="5"
-                    placeholder="Tell me about your project..."
-                    className="form-input resize-none"
-                  />
-                  <ValidationError prefix="Message" field="message" errors={formState.errors} />
-                </div>
-                <button
-                  type="submit"
-                  disabled={formState.submitting}
-                  className="pill-btn pill-btn-copper w-full justify-center text-base"
-                >
-                  {formState.submitting ? "Sending..." : "Send Message"}
-                  <FaArrowRight className="text-sm" />
-                </button>
-              </form>
-            )}
-          </motion.div>
-
-          {/* Contact Info */}
-          <div className="xl:col-span-2 grid grid-cols-1 gap-5">
-            {contactInfo.map((info, i) => (
-              <motion.div
-                key={i}
-                className="bento-card flex items-start gap-4"
-                {...staggerChild(0.2 + i * 0.1)}
+        {/* Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          {/* Get in Touch */}
+          <div>
+            <h3 className="font-heading font-bold text-lg mb-4">
+              Get in Touch<span className="text-accent">.</span>
+            </h3>
+            <div className="space-y-3">
+              <a 
+                href="tel:+918485833673" 
+                className="flex items-center gap-2 text-white/60 hover:text-accent transition-colors text-sm"
               >
-                <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent flex-shrink-0">
-                  {info.icon}
-                </div>
-                <div>
-                  <p className="text-white/30 text-xs uppercase tracking-wider font-mono mb-1">{info.title}</p>
-                  <p className="text-white text-sm">{info.description}</p>
-                </div>
-              </motion.div>
-            ))}
+                <FaPhoneAlt className="text-xs" />
+                <span>+91 84858 33673</span>
+              </a>
+              <a 
+                href="mailto:pawartushar8485@gmail.com" 
+                className="flex items-center gap-2 text-white/60 hover:text-accent transition-colors text-sm"
+              >
+                <FaEnvelope className="text-xs" />
+                <span>pawartushar8485@gmail.com</span>
+              </a>
+              <div className="flex items-center gap-2 text-white/60 text-sm">
+                <FaMapMarkerAlt className="text-xs" />
+                <span>Pune, Maharashtra - 411007</span>
+              </div>
+            </div>
+          </div>
 
-            {/* Social Card */}
-            <motion.div className="bento-card" {...staggerChild(0.5)}>
-              <p className="text-white/30 text-xs uppercase tracking-wider font-mono mb-4">Connect</p>
-              <Social />
-            </motion.div>
+          {/* Quick Links */}
+          <div>
+            <h3 className="font-heading font-bold text-lg mb-4">
+              Quick Links<span className="text-accent">.</span>
+            </h3>
+            <div className="space-y-2">
+              <a href="#about" className="block text-white/60 hover:text-accent transition-colors text-sm">About</a>
+              <a href="#skills" className="block text-white/60 hover:text-accent transition-colors text-sm">Skills</a>
+              <a href="#projects" className="block text-white/60 hover:text-accent transition-colors text-sm">Projects</a>
+              <a href="#experience" className="block text-white/60 hover:text-accent transition-colors text-sm">Experience</a>
+              <a href="#awards" className="block text-white/60 hover:text-accent transition-colors text-sm">Awards</a>
+            </div>
+          </div>
+
+          {/* Connect */}
+          <div>
+            <h3 className="font-heading font-bold text-lg mb-4">
+              Connect<span className="text-accent">.</span>
+            </h3>
+            <Social />
           </div>
         </div>
 
-        {/* Footer Bottom */}
-        <div className="pt-10 border-t border-white/5">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            {/* Contact Info Links */}
-            <div>
-              <h3 className="font-heading font-bold text-lg mb-4">
-                Get in Touch<span className="text-accent">.</span>
-              </h3>
-              <div className="space-y-3">
-                <a 
-                  href="tel:+918485833673" 
-                  className="flex items-center gap-2 text-white/60 hover:text-accent transition-colors text-sm"
-                >
-                  <FaPhoneAlt className="text-xs" />
-                  <span>+91 84858 33673</span>
-                </a>
-                <a 
-                  href="mailto:pawartushar8485@gmail.com" 
-                  className="flex items-center gap-2 text-white/60 hover:text-accent transition-colors text-sm"
-                >
-                  <FaEnvelope className="text-xs" />
-                  <span>pawartushar8485@gmail.com</span>
-                </a>
-                <div className="flex items-center gap-2 text-white/60 text-sm">
-                  <FaMapMarkerAlt className="text-xs" />
-                  <span>Pune, Maharashtra - 411007</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Quick Links */}
-            <div>
-              <h3 className="font-heading font-bold text-lg mb-4">
-                Quick Links<span className="text-accent">.</span>
-              </h3>
-              <div className="space-y-2">
-                <a href="#about" className="block text-white/60 hover:text-accent transition-colors text-sm">About</a>
-                <a href="#skills" className="block text-white/60 hover:text-accent transition-colors text-sm">Skills</a>
-                <a href="#projects" className="block text-white/60 hover:text-accent transition-colors text-sm">Projects</a>
-                <a href="#experience" className="block text-white/60 hover:text-accent transition-colors text-sm">Experience</a>
-                <a href="#awards" className="block text-white/60 hover:text-accent transition-colors text-sm">Awards</a>
-              </div>
-            </div>
-
-            {/* Connect */}
-            <div>
-              <h3 className="font-heading font-bold text-lg mb-4">
-                Connect<span className="text-accent">.</span>
-              </h3>
-              <Social />
-            </div>
-          </div>
-
-          {/* Copyright */}
-          <div className="pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="font-heading font-bold text-xl text-white">
-              Tushar Pawar<span className="text-accent">.</span>
-            </p>
-            <p className="text-white/30 text-xs">
-              © {new Date().getFullYear()} All rights reserved.
-            </p>
-          </div>
+        {/* Copyright */}
+        <div className="pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="font-heading font-bold text-xl text-white">
+            Tushar Pawar<span className="text-accent">.</span>
+          </p>
+          <p className="text-white/30 text-xs">
+            © {new Date().getFullYear()} All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
