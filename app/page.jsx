@@ -197,6 +197,11 @@ const education = [
 
 const certifications = [
   {
+    title: "DevOps Engineering",
+    details: "AWS, Docker, Kubernetes, Jenkins, Terraform",
+    date: "TuteDude",
+  },
+  {
     title: "Java Full Stack Development",
     details: "Java, Spring Boot, Hibernate, HTML/CSS/JS, MySQL",
     date: "Oct 2024",
@@ -426,7 +431,7 @@ const AboutSection = () => {
           {[
             { num: "06", label: "Production Systems\nShipped" },
             { num: "9.36", label: "M.Tech CGPA\nAcademic Topper" },
-            { num: "02", label: "Professional\nCertifications" },
+            { num: "03", label: "Professional\nCertifications" },
           ].map((stat, i) => (
             <motion.div
               key={i}
